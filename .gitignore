@@ -1,0 +1,33 @@
+# Environnements et dépendances
+.venv/
+venv/
+node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+
+# Données utilisateur, secrets, exécution
+.env
+data/
+*.sqlite3
+*.sqlite3-*
+run/
+backups/
+dist-release/
+
+# Modèles et outils téléchargés
+models/
+.tools/
+
+# Divers
+.DS_Store
+Thumbs.db
+*.log

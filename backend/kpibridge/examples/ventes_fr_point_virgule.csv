@@ -1,0 +1,404 @@
+﻿Export synthétique — ventes magasin (données fictives)
+
+Code client;Date;Produit;Montant TTC;Statut
+00065;02/01/2025;Cahier A4;10,50;Annulée
+00065;02/01/2025;Clé USB 64 Go;29,80;Payée
+00019;04/01/2025;Cahier A4;7,00;Payée
+00019;04/01/2025;Stylo bille;1,90;Payée
+00019;04/01/2025;Clé USB 64 Go;59,60;Payée
+00019;04/01/2025;Lampe de bureau;138,00;Payée
+00056;04/01/2025;Agenda 2026;48,00;Payée
+00056;04/01/2025;Clé USB 64 Go;74,50;Payée
+00088;06/01/2025;Casque audio;49,00;Payée
+00088;06/01/2025;Souris sans fil;79,96;Payée
+00088;06/01/2025;Agenda 2026;48,00;Payée
+00031;08/01/2025;Stylo bille;3,80;Payée
+00031;08/01/2025;Souris sans fil;19,99;Payée
+00031;08/01/2025;Agenda 2026;48,00;Payée
+00027;09/01/2025;Cahier A4;17,50;Payée
+00047;10/01/2025;Clé USB 64 Go;14,90;Payée
+00047;10/01/2025;Clé USB 64 Go;74,50;Payée
+00047;10/01/2025;Cahier A4;3,50;Payée
+00032;13/01/2025;Cahier A4;14,00;Payée
+00032;13/01/2025;Lampe de bureau;172,50;Payée
+00032;13/01/2025;Clé USB 64 Go;59,60;Payée
+00032;13/01/2025;Chaise ergonomique;756,00;Payée
+00021;15/01/2025;Stylo bille;9,50;Payée
+00021;15/01/2025;Lampe de bureau;34,50;Payée
+00021;15/01/2025;Clé USB 64 Go;14,90;Payée
+00013;15/01/2025;Agenda 2026;24,00;Payée
+00013;15/01/2025;Stylo bille;5,70;Payée
+00013;15/01/2025;Chaise ergonomique;378,00;Payée
+00053;17/01/2025;Agenda 2026;48,00;Payée
+00053;17/01/2025;Casque audio;196,00;Payée
+00017;18/01/2025;Souris sans fil;59,97;Payée
+00077;18/01/2025;Clé USB 64 Go;14,90;Payée
+00037;19/01/2025;Stylo bille;5,70;Payée
+00037;19/01/2025;Souris sans fil;19,99;Payée
+00037;19/01/2025;Casque audio;196,00;Payée
+00043;20/01/2025;Chaise ergonomique;378,00;Payée
+00043;20/01/2025;Agenda 2026;36,00;Payée
+00043;20/01/2025;Casque audio;98,00;Annulée
+00043;20/01/2025;Lampe de bureau;172,50;Payée
+00061;21/01/2025;Souris sans fil;39,98;Payée
+00061;21/01/2025;Lampe de bureau;138,00;Payée
+00061;21/01/2025;Cahier A4;14,00;Payée
+00061;21/01/2025;Casque audio;196,00;Payée
+00011;22/01/2025;Souris sans fil;39,98;Payée
+00006;23/01/2025;Souris sans fil;99,95;Payée
+00006;23/01/2025;Lampe de bureau;172,50;Payée
+00006;23/01/2025;Chaise ergonomique;567,00;Payée
+00071;24/01/2025;Agenda 2026;48,00;Payée
+00071;24/01/2025;Cahier A4;3,50;Payée
+00071;24/01/2025;Souris sans fil;79,96;Payée
+00082;26/01/2025;Stylo bille;1,90;Payée
+00082;26/01/2025;Lampe de bureau;103,50;Payée
+00035;27/01/2025;Souris sans fil;79,96;Payée
+00035;27/01/2025;Chaise ergonomique;189,00;Remboursée
+00075;30/01/2025;Agenda 2026;12,00;Payée
+00075;30/01/2025;Cahier A4;7,00;Payée
+00075;30/01/2025;Cahier A4;17,50;Payée
+00075;30/01/2025;Cahier A4;7,00;Payée
+00060;01/02/2025;Agenda 2026;48,00;Payée
+00060;01/02/2025;Souris sans fil;19,99;Payée
+00060;01/02/2025;Souris sans fil;59,97;Payée
+00073;03/02/2025;Clé USB 64 Go;59,60;Payée
+00073;03/02/2025;Lampe de bureau;138,00;Payée
+00073;03/02/2025;Agenda 2026;36,00;Payée
+00063;03/02/2025;Stylo bille;3,80;Payée
+00043;04/02/2025;Clé USB 64 Go;44,70;Payée
+00081;05/02/2025;Clé USB 64 Go;14,90;Payée
+00081;05/02/2025;Lampe de bureau;34,50;Payée
+00081;05/02/2025;Cahier A4;14,00;Payée
+00042;07/02/2025;Cahier A4;7,00;Payée
+00042;07/02/2025;Souris sans fil;99,95;Payée
+00060;07/02/2025;Stylo bille;1,90;Payée
+00060;07/02/2025;Casque audio;147,00;Payée
+00060;07/02/2025;Cahier A4;3,50;Payée
+00060;07/02/2025;Lampe de bureau;138,00;Annulée
+00013;10/02/2025;Souris sans fil;79,96;Payée
+00013;10/02/2025;Casque audio;98,00;Payée
+00013;10/02/2025;Casque audio;147,00;Payée
+00013;10/02/2025;Clé USB 64 Go;44,70;Payée
+00040;10/02/2025;Clé USB 64 Go;44,70;Payée
+00040;10/02/2025;Agenda 2026;12,00;Payée
+00040;10/02/2025;Cahier A4;17,50;Payée
+00069;15/02/2025;Agenda 2026;48,00;Payée
+00087;16/02/2025;Souris sans fil;99,95;Payée
+00083;16/02/2025;Stylo bille;5,70;Payée
+00013;17/02/2025;Agenda 2026;60,00;Payée
+00013;17/02/2025;Stylo bille;9,50;Payée
+00013;17/02/2025;Casque audio;49,00;Payée
+00045;19/02/2025;Stylo bille;7,60;Payée
+00045;19/02/2025;Cahier A4;14,00;Payée
+00045;19/02/2025;Cahier A4;17,50;Payée
+00081;20/02/2025;Souris sans fil;19,99;Payée
+00081;20/02/2025;Agenda 2026;24,00;Payée
+00061;25/02/2025;Casque audio;245,00;Payée
+00071;01/03/2025;Souris sans fil;59,97;Payée
+00071;01/03/2025;Clé USB 64 Go;44,70;Payée
+00023;01/03/2025;Stylo bille;1,90;Payée
+00023;01/03/2025;Lampe de bureau;103,50;Payée
+00023;01/03/2025;Casque audio;196,00;Payée
+00031;01/03/2025;Lampe de bureau;138,00;Payée
+00031;01/03/2025;Casque audio;245,00;Payée
+00069;02/03/2025;Agenda 2026;24,00;Payée
+00069;02/03/2025;Stylo bille;1,90;Payée
+00069;02/03/2025;Souris sans fil;79,96;Payée
+00069;02/03/2025;Lampe de bureau;172,50;Payée
+00045;03/03/2025;Casque audio;49,00;Payée
+00045;03/03/2025;Casque audio;49,00;Remboursée
+00045;03/03/2025;Lampe de bureau;138,00;Payée
+00045;03/03/2025;Cahier A4;14,00;Payée
+00025;03/03/2025;Chaise ergonomique;567,00;Payée
+00025;03/03/2025;Souris sans fil;19,99;Payée
+00021;08/03/2025;Lampe de bureau;172,50;Annulée
+00021;08/03/2025;Stylo bille;1,90;Payée
+00021;08/03/2025;Cahier A4;7,00;Payée
+00021;08/03/2025;Stylo bille;5,70;Payée
+00059;09/03/2025;Cahier A4;3,50;Payée
+00059;09/03/2025;Chaise ergonomique;945,00;Payée
+00059;09/03/2025;Cahier A4;3,50;Payée
+00047;10/03/2025;Casque audio;49,00;Payée
+00047;10/03/2025;Lampe de bureau;34,50;Payée
+00047;10/03/2025;Clé USB 64 Go;44,70;Payée
+00047;10/03/2025;Souris sans fil;19,99;Payée
+00024;11/03/2025;Souris sans fil;79,96;Payée
+00010;12/03/2025;Cahier A4;17,50;Payée
+00010;12/03/2025;Stylo bille;5,70;Payée
+00010;12/03/2025;Agenda 2026;60,00;Payée
+00007;12/03/2025;Casque audio;245,00;Payée
+00007;12/03/2025;Cahier A4;17,50;Payée
+00007;12/03/2025;Cahier A4;10,50;Payée
+00007;12/03/2025;Cahier A4;7,00;Payée
+00072;13/03/2025;Lampe de bureau;172,50;Payée
+00072;13/03/2025;Lampe de bureau;103,50;Payée
+00072;13/03/2025;Clé USB 64 Go;29,80;Payée
+00011;18/03/2025;Cahier A4;17,50;Payée
+00011;18/03/2025;Lampe de bureau;172,50;Payée
+00050;19/03/2025;Clé USB 64 Go;14,90;Payée
+00050;19/03/2025;Lampe de bureau;138,00;Payée
+00058;19/03/2025;Casque audio;49,00;Payée
+00021;21/03/2025;Lampe de bureau;34,50;Payée
+00021;21/03/2025;Agenda 2026;36,00;Payée
+00070;22/03/2025;Stylo bille;9,50;Payée
+00070;22/03/2025;Souris sans fil;19,99;Payée
+00070;22/03/2025;Agenda 2026;36,00;Payée
+00066;23/03/2025;Chaise ergonomique;567,00;Payée
+00066;23/03/2025;Chaise ergonomique;189,00;Payée
+00066;23/03/2025;Cahier A4;14,00;Payée
+00066;23/03/2025;Chaise ergonomique;378,00;Payée
+00004;27/03/2025;Casque audio;49,00;Payée
+00021;30/03/2025;Lampe de bureau;138,00;Annulée
+00084;30/03/2025;Agenda 2026;48,00;Payée
+00051;01/04/2025;Agenda 2026;36,00;Payée
+00051;01/04/2025;Stylo bille;1,90;Payée
+00051;01/04/2025;Souris sans fil;99,95;Payée
+00051;01/04/2025;Cahier A4;10,50;Payée
+00067;06/04/2025;Cahier A4;10,50;Payée
+00067;06/04/2025;Souris sans fil;79,96;Payée
+00067;06/04/2025;Clé USB 64 Go;74,50;Payée
+00067;06/04/2025;Souris sans fil;79,96;Payée
+00013;08/04/2025;Casque audio;196,00;Payée
+00013;08/04/2025;Lampe de bureau;138,00;Remboursée
+00013;08/04/2025;Stylo bille;1,90;Payée
+00013;08/04/2025;Stylo bille;7,60;Payée
+00030;10/04/2025;Agenda 2026;36,00;Payée
+00030;10/04/2025;Stylo bille;9,50;Payée
+00030;10/04/2025;Agenda 2026;36,00;Payée
+00080;13/04/2025;Clé USB 64 Go;29,80;Payée
+00080;13/04/2025;Chaise ergonomique;189,00;Payée
+00018;13/04/2025;Chaise ergonomique;378,00;Payée
+00065;15/04/2025;Souris sans fil;19,99;Payée
+00065;15/04/2025;Cahier A4;14,00;Payée
+00065;15/04/2025;Souris sans fil;19,99;Payée
+00065;15/04/2025;Stylo bille;5,70;Payée
+00028;15/04/2025;Souris sans fil;59,97;Payée
+00028;15/04/2025;Casque audio;49,00;Payée
+00075;18/04/2025;Chaise ergonomique;756,00;Payée
+00075;18/04/2025;Chaise ergonomique;378,00;Payée
+00075;18/04/2025;Chaise ergonomique;378,00;Payée
+00043;21/04/2025;Stylo bille;5,70;Payée
+00043;21/04/2025;Agenda 2026;24,00;Payée
+00058;21/04/2025;Lampe de bureau;103,50;Payée
+00058;21/04/2025;Chaise ergonomique;756,00;Payée
+00007;21/04/2025;Souris sans fil;79,96;Payée
+00067;23/04/2025;Stylo bille;9,50;Payée
+00067;23/04/2025;Clé USB 64 Go;14,90;Payée
+00067;23/04/2025;Chaise ergonomique;378,00;Payée
+00067;23/04/2025;Chaise ergonomique;945,00;Annulée
+00056;23/04/2025;Stylo bille;7,60;Payée
+00056;23/04/2025;Casque audio;196,00;Payée
+00056;23/04/2025;Agenda 2026;48,00;Payée
+00056;23/04/2025;Agenda 2026;60,00;Payée
+00059;24/04/2025;Souris sans fil;39,98;Payée
+00059;24/04/2025;Clé USB 64 Go;14,90;Payée
+00059;24/04/2025;Clé USB 64 Go;59,60;Payée
+00082;24/04/2025;Souris sans fil;79,96;Payée
+00082;24/04/2025;Cahier A4;7,00;Payée
+00082;24/04/2025;Stylo bille;1,90;Payée
+00082;24/04/2025;Souris sans fil;79,96;Payée
+00047;01/05/2025;Stylo bille;9,50;Payée
+00047;01/05/2025;Agenda 2026;48,00;Payée
+00047;01/05/2025;Casque audio;147,00;Payée
+00047;01/05/2025;Chaise ergonomique;189,00;Payée
+00035;01/05/2025;Souris sans fil;99,95;Payée
+00035;01/05/2025;Stylo bille;5,70;Payée
+00035;01/05/2025;Casque audio;98,00;Payée
+00053;02/05/2025;Chaise ergonomique;378,00;Payée
+00053;02/05/2025;Lampe de bureau;34,50;Payée
+00053;02/05/2025;Agenda 2026;48,00;Payée
+00053;02/05/2025;Stylo bille;7,60;Payée
+00016;04/05/2025;Chaise ergonomique;378,00;Payée
+00016;04/05/2025;Agenda 2026;12,00;Payée
+00016;04/05/2025;Stylo bille;5,70;Payée
+00084;05/05/2025;Cahier A4;14,00;Payée
+00073;05/05/2025;Casque audio;49,00;Remboursée
+00073;05/05/2025;Chaise ergonomique;567,00;Payée
+00073;05/05/2025;Agenda 2026;48,00;Payée
+00073;05/05/2025;Clé USB 64 Go;44,70;Payée
+00073;05/05/2025;Cahier A4;17,50;Payée
+00073;05/05/2025;Clé USB 64 Go;74,50;Payée
+00028;11/05/2025;Stylo bille;7,60;Payée
+00038;12/05/2025;Cahier A4;14,00;Payée
+00038;12/05/2025;Cahier A4;7,00;Payée
+00038;12/05/2025;Clé USB 64 Go;59,60;Payée
+00020;12/05/2025;Cahier A4;10,50;Annulée
+00020;12/05/2025;Clé USB 64 Go;44,70;Payée
+00020;12/05/2025;Cahier A4;3,50;Payée
+00020;12/05/2025;Clé USB 64 Go;59,60;Payée
+00036;13/05/2025;Stylo bille;9,50;Payée
+00036;13/05/2025;Clé USB 64 Go;14,90;Payée
+00036;13/05/2025;Clé USB 64 Go;59,60;Payée
+00037;16/05/2025;Chaise ergonomique;378,00;Payée
+00037;16/05/2025;Clé USB 64 Go;44,70;Payée
+00037;16/05/2025;Clé USB 64 Go;14,90;Payée
+00037;16/05/2025;Stylo bille;5,70;Payée
+00080;16/05/2025;Cahier A4;10,50;Payée
+00080;16/05/2025;Lampe de bureau;103,50;Payée
+00080;16/05/2025;Chaise ergonomique;945,00;Payée
+00080;16/05/2025;Stylo bille;9,50;Payée
+00010;17/05/2025;Agenda 2026;36,00;Payée
+00032;18/05/2025;Souris sans fil;79,96;Payée
+00088;19/05/2025;Stylo bille;3,80;Payée
+00088;19/05/2025;Stylo bille;5,70;Payée
+00088;19/05/2025;Lampe de bureau;103,50;Payée
+00066;20/05/2025;Lampe de bureau;34,50;Payée
+00066;20/05/2025;Clé USB 64 Go;59,60;Payée
+00021;23/05/2025;Casque audio;147,00;Payée
+00021;23/05/2025;Agenda 2026;24,00;Payée
+00021;23/05/2025;Casque audio;49,00;Payée
+00021;23/05/2025;Cahier A4;14,00;Payée
+00068;26/05/2025;Stylo bille;3,80;Payée
+00068;26/05/2025;Lampe de bureau;172,50;Payée
+00068;26/05/2025;Stylo bille;1,90;Payée
+00083;26/05/2025;Agenda 2026;60,00;Payée
+00083;26/05/2025;Chaise ergonomique;567,00;Payée
+00083;26/05/2025;Clé USB 64 Go;14,90;Payée
+00083;26/05/2025;Casque audio;98,00;Payée
+00062;29/05/2025;Lampe de bureau;103,50;Payée
+00062;29/05/2025;Chaise ergonomique;189,00;Payée
+00074;31/05/2025;Cahier A4;3,50;Payée
+00074;31/05/2025;Clé USB 64 Go;44,70;Payée
+00048;31/05/2025;Agenda 2026;24,00;Annulée
+00048;31/05/2025;Lampe de bureau;172,50;Payée
+00048;31/05/2025;Agenda 2026;24,00;Payée
+00048;31/05/2025;Agenda 2026;12,00;Payée
+00065;03/06/2025;Souris sans fil;79,96;Payée
+00065;03/06/2025;Stylo bille;5,70;Payée
+00065;03/06/2025;Casque audio;49,00;Remboursée
+00065;03/06/2025;Lampe de bureau;172,50;Payée
+00008;03/06/2025;Lampe de bureau;172,50;Payée
+00008;03/06/2025;Chaise ergonomique;189,00;Payée
+00083;04/06/2025;Stylo bille;7,60;Payée
+00028;05/06/2025;Cahier A4;14,00;Payée
+00028;05/06/2025;Clé USB 64 Go;74,50;Payée
+00061;06/06/2025;Lampe de bureau;172,50;Payée
+00061;06/06/2025;Casque audio;147,00;Payée
+00061;06/06/2025;Chaise ergonomique;567,00;Payée
+00030;06/06/2025;Clé USB 64 Go;44,70;Payée
+00077;07/06/2025;Souris sans fil;99,95;Payée
+00077;07/06/2025;Clé USB 64 Go;14,90;Payée
+00077;07/06/2025;Chaise ergonomique;378,00;Payée
+00077;07/06/2025;Lampe de bureau;69,00;Payée
+00017;08/06/2025;Souris sans fil;99,95;Payée
+00049;12/06/2025;Agenda 2026;48,00;Payée
+00049;12/06/2025;Stylo bille;3,80;Payée
+00049;12/06/2025;Casque audio;49,00;Payée
+00049;12/06/2025;Chaise ergonomique;189,00;Payée
+00052;13/06/2025;Casque audio;245,00;Payée
+00052;13/06/2025;Cahier A4;10,50;Payée
+00080;16/06/2025;Casque audio;49,00;Payée
+00080;16/06/2025;Lampe de bureau;34,50;Payée
+00080;16/06/2025;Clé USB 64 Go;59,60;Payée
+00080;16/06/2025;Lampe de bureau;172,50;Payée
+00038;17/06/2025;Clé USB 64 Go;59,60;Payée
+00038;17/06/2025;Lampe de bureau;69,00;Payée
+00059;17/06/2025;Casque audio;196,00;Payée
+00059;17/06/2025;Souris sans fil;79,96;Payée
+00059;17/06/2025;Souris sans fil;19,99;Payée
+00040;17/06/2025;Lampe de bureau;69,00;Annulée
+00040;17/06/2025;Chaise ergonomique;567,00;Payée
+00040;17/06/2025;Chaise ergonomique;189,00;Payée
+00040;17/06/2025;Casque audio;245,00;Payée
+00009;18/06/2025;Casque audio;245,00;Payée
+00009;18/06/2025;Lampe de bureau;172,50;Payée
+00009;18/06/2025;Casque audio;49,00;Payée
+00054;19/06/2025;Clé USB 64 Go;59,60;Payée
+00058;19/06/2025;Cahier A4;17,50;Payée
+00058;19/06/2025;Clé USB 64 Go;14,90;Payée
+00058;19/06/2025;Souris sans fil;79,96;Payée
+00086;20/06/2025;Agenda 2026;36,00;Payée
+00032;23/06/2025;Clé USB 64 Go;74,50;Payée
+00032;23/06/2025;Chaise ergonomique;378,00;Payée
+00088;23/06/2025;Chaise ergonomique;378,00;Payée
+00088;23/06/2025;Agenda 2026;12,00;Payée
+00088;23/06/2025;Chaise ergonomique;189,00;Payée
+00088;23/06/2025;Souris sans fil;39,98;Payée
+00001;24/06/2025;Souris sans fil;99,95;Payée
+00001;24/06/2025;Chaise ergonomique;378,00;Payée
+00001;24/06/2025;Chaise ergonomique;945,00;Payée
+00048;24/06/2025;Casque audio;245,00;Payée
+00048;24/06/2025;Cahier A4;3,50;Remboursée
+00048;24/06/2025;Agenda 2026;24,00;Payée
+00070;26/06/2025;Cahier A4;14,00;Payée
+00068;26/06/2025;Lampe de bureau;138,00;Payée
+00068;26/06/2025;Agenda 2026;36,00;Payée
+00068;26/06/2025;Lampe de bureau;69,00;Payée
+00054;28/06/2025;Lampe de bureau;172,50;Payée
+00079;01/07/2025;Clé USB 64 Go;29,80;Payée
+00079;01/07/2025;Souris sans fil;99,95;Payée
+00079;01/07/2025;Souris sans fil;39,98;Payée
+00079;01/07/2025;Souris sans fil;59,97;Payée
+00088;03/07/2025;Cahier A4;10,50;Payée
+00088;03/07/2025;Lampe de bureau;172,50;Payée
+00060;04/07/2025;Cahier A4;3,50;Payée
+00060;04/07/2025;Souris sans fil;79,96;Payée
+00020;05/07/2025;Agenda 2026;60,00;Annulée
+00020;05/07/2025;Souris sans fil;99,95;Payée
+00020;05/07/2025;Chaise ergonomique;756,00;Payée
+00020;05/07/2025;Lampe de bureau;172,50;Payée
+00047;05/07/2025;Agenda 2026;24,00;Payée
+00047;05/07/2025;Casque audio;196,00;Payée
+00047;05/07/2025;Clé USB 64 Go;29,80;Payée
+00016;05/07/2025;Agenda 2026;24,00;Payée
+00016;05/07/2025;Chaise ergonomique;189,00;Payée
+00057;06/07/2025;Chaise ergonomique;378,00;Payée
+00057;06/07/2025;Clé USB 64 Go;44,70;Payée
+00057;06/07/2025;Chaise ergonomique;378,00;Payée
+00004;06/07/2025;Chaise ergonomique;189,00;Payée
+00004;06/07/2025;Agenda 2026;12,00;Payée
+00036;08/07/2025;Lampe de bureau;172,50;Payée
+00036;08/07/2025;Stylo bille;9,50;Payée
+00060;08/07/2025;Lampe de bureau;172,50;Payée
+00060;08/07/2025;Lampe de bureau;69,00;Payée
+00060;08/07/2025;Clé USB 64 Go;74,50;Payée
+00050;10/07/2025;Casque audio;245,00;Payée
+00050;10/07/2025;Stylo bille;5,70;Payée
+00050;10/07/2025;Cahier A4;10,50;Payée
+00050;10/07/2025;Cahier A4;17,50;Payée
+00070;11/07/2025;Casque audio;196,00;Payée
+00050;11/07/2025;Casque audio;98,00;Payée
+00071;11/07/2025;Clé USB 64 Go;29,80;Payée
+00071;11/07/2025;Cahier A4;17,50;Payée
+00071;11/07/2025;Chaise ergonomique;945,00;Payée
+00071;11/07/2025;Casque audio;49,00;Payée
+00017;12/07/2025;Lampe de bureau;172,50;Payée
+00021;12/07/2025;Agenda 2026;48,00;Payée
+00021;12/07/2025;Stylo bille;7,60;Payée
+00032;14/07/2025;Casque audio;98,00;Payée
+00032;14/07/2025;Souris sans fil;39,98;Payée
+00032;14/07/2025;Cahier A4;3,50;Payée
+00032;14/07/2025;Lampe de bureau;172,50;Payée
+00032;16/07/2025;Casque audio;245,00;Payée
+00032;16/07/2025;Casque audio;98,00;Annulée
+00071;17/07/2025;Cahier A4;7,00;Remboursée
+00071;17/07/2025;Cahier A4;14,00;Payée
+00071;17/07/2025;Casque audio;147,00;Payée
+00074;19/07/2025;Chaise ergonomique;189,00;Payée
+00074;19/07/2025;Casque audio;147,00;Payée
+00074;19/07/2025;Lampe de bureau;138,00;Payée
+00074;19/07/2025;Clé USB 64 Go;59,60;Payée
+00050;24/07/2025;Agenda 2026;48,00;Payée
+00050;24/07/2025;Chaise ergonomique;567,00;Payée
+00050;24/07/2025;Souris sans fil;19,99;Payée
+00088;25/07/2025;Chaise ergonomique;756,00;Payée
+00030;25/07/2025;Stylo bille;3,80;Payée
+00030;25/07/2025;Souris sans fil;39,98;Payée
+00073;26/07/2025;Stylo bille;9,50;Payée
+00073;26/07/2025;Cahier A4;14,00;Payée
+00038;27/07/2025;Lampe de bureau;34,50;Payée
+00005;28/07/2025;Clé USB 64 Go;59,60;Payée
+00005;28/07/2025;Chaise ergonomique;378,00;Payée
+00005;28/07/2025;Casque audio;49,00;Payée
+00035;30/07/2025;Cahier A4;14,00;Payée
+00035;30/07/2025;Stylo bille;7,60;Payée
+00037;30/07/2025;Stylo bille;7,60;Payée
+00037;30/07/2025;Cahier A4;10,50;Payée
+00037;30/07/2025;Souris sans fil;59,97;Payée
+00037;30/07/2025;Cahier A4;14,00;Payée
+00086;30/07/2025;Stylo bille;5,70;Payée
+00086;30/07/2025;Souris sans fil;59,97;Payée
+00086;30/07/2025;Cahier A4;17,50;Payée
+00086;30/07/2025;Clé USB 64 Go;29,80;Payée
+Total;;;42 676,80;

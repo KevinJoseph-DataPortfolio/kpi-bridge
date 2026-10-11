@@ -1,0 +1,59 @@
+[project]
+name = "kpibridge"
+version = "1.0.0"
+description = "KPI Bridge — transformer des données accessibles en dashboard vérifiable (local, mono-utilisateur)"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.143,<1",
+  "uvicorn>=0.54,<1",
+  "pydantic>=2.14,<3",
+  "python-multipart>=0.0.32",
+  "duckdb>=1.5,<2",
+  "pyarrow>=26",
+  "openpyxl>=3.1.5,<4",
+  "xlrd>=2.0.2,<3",
+  "pdfplumber>=0.11.10",
+  "pypdfium2>=5.14",
+  "pytesseract>=0.3.13",
+  "python-docx>=1.2",
+  "defusedxml>=0.7.1",
+  "reportlab>=5.0",
+  "pillow>=12.3",
+  "charset-normalizer>=3.4",
+  "httpx>=0.28",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=9", "ruff>=0.17", "mypy>=2.4"]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["kpibridge*"]
+
+[tool.setuptools.package-data]
+kpibridge = ["migrations/*.sql", "exports/fonts/*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "S", "UP"]
+ignore = ["S101", "S603", "S607", "S608", "B008", "E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = false
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
