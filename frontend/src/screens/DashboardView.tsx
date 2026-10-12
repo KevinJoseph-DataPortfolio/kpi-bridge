@@ -129,7 +129,9 @@ export default function DashboardView({ project, planId, onModify, onInvalid, on
       <div className="charts">
         {data.charts.map((ch) => (
           <div className="chart-box" key={ch.id} data-testid={`chart-${ch.id}`}>
-            <h3>{ch.title}</h3>
+            <h3>
+              {ch.title} — {t("plan.by")} {ch.dimension === "__period__" ? t(`grains.${grain}`) : ch.dimension_label}
+            </h3>
             <Chart data={ch} grain={grain} />
           </div>
         ))}

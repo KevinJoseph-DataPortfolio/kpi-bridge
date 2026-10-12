@@ -456,8 +456,9 @@ def cmd_stop(_args: argparse.Namespace) -> None:
 
 
 def cmd_status(_args: argparse.Namespace) -> None:
-    for name in ("app", "worker", "ollama"):
+    for name in ("app", "worker"):
         say(f"{name:7s} : {'actif' if running(name) else 'arrêté'}")
+    say(f"ollama  : {'service disponible' if http_ok(OLLAMA_URL + '/api/tags') else 'injoignable'}{' (lancé par KPI Bridge)' if running('ollama') else ''}")
     say(f"santé API : {'ok' if http_ok(f'http://127.0.0.1:{PORT}/api/v1/health') else 'injoignable'}")
 
 
