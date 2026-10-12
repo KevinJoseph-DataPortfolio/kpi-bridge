@@ -31,3 +31,8 @@ models/
 .DS_Store
 Thumbs.db
 *.log
+
+# Local build artefacts and personal helpers
+*.tsbuildinfo
+publier_github.cmd
+TASKS.md
