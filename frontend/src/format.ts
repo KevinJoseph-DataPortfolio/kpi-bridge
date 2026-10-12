@@ -25,7 +25,7 @@ export function formatValue(
   const nf = new Intl.NumberFormat(locale(lang), opts);
   // format(string) : précision décimale préservée (Intl.NumberFormat v3)
   const formatted = nf.format(value as unknown as number);
-  return unit === "percent" ? `${formatted} %` : formatted;
+  return unit === "percent" ? `${formatted}\u00A0%` : formatted;
 }
 
 export function formatDate(iso: string | null | undefined, lang: string, grain?: string): string {
