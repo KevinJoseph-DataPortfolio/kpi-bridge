@@ -1,5 +1,5 @@
-# KPI Bridge - installation Windows (idempotente). Equivalent : launch.cmd (installe au premier lancement).
-# Ce script ne modifie pas la politique d'execution : si elle bloque les scripts, utilisez launch.cmd.
+# KPI Bridge - Windows install (idempotent). Equivalent: launch.cmd (installs on first run).
+# This script does not change the execution policy: if it blocks scripts, use launch.cmd.
 param([switch]$NoAi, [switch]$NoOcr)
 $ErrorActionPreference = 'Stop'
 Set-Location -Path $PSScriptRoot
@@ -12,7 +12,7 @@ foreach ($cand in @(@('py', '-3'), @('python'))) {
         if ($LASTEXITCODE -eq 0) { $py = $cand; break }
     }
 }
-if (-not $py) { Write-Error 'Python 3.12 ou plus est requis : https://www.python.org/downloads/'; exit 1 }
+if (-not $py) { Write-Error 'Python 3.12 or newer is required: https://www.python.org/downloads/'; exit 1 }
 $extra = @()
 if ($NoAi) { $extra += '--no-ai' }
 if ($NoOcr) { $extra += '--no-ocr' }

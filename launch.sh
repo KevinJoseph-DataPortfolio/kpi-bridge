@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# KPI Bridge - lancement Linux/macOS (installe au premier lancement, puis réutilise l'installation).
+# KPI Bridge - Linux/macOS launcher (installs on first run, then reuses the installation).
 set -eu
 cd "$(dirname "$0")"
 PY=""
@@ -8,5 +8,5 @@ for cand in python3.14 python3.13 python3.12 python3; do
     PY="$cand"; break
   fi
 done
-[ -n "$PY" ] || { echo "Python 3.12 ou plus est requis : https://www.python.org/downloads/" >&2; exit 1; }
+[ -n "$PY" ] || { echo "Python 3.12 or newer is required: https://www.python.org/downloads/" >&2; exit 1; }
 exec "$PY" scripts/kpictl.py launch "$@"

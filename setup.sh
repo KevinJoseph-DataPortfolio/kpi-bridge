@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# KPI Bridge - installation Linux/macOS (idempotente). Options : --no-ai --no-ocr
+# KPI Bridge - Linux/macOS install (idempotent). Options: --no-ai --no-ocr
 set -eu
 cd "$(dirname "$0")"
 PY=""
@@ -8,5 +8,5 @@ for cand in python3.14 python3.13 python3.12 python3; do
     PY="$cand"; break
   fi
 done
-[ -n "$PY" ] || { echo "Python 3.12 ou plus est requis (paquet python3.12 / python3-venv)." >&2; exit 1; }
+[ -n "$PY" ] || { echo "Python 3.12 or newer is required (python3.12 / python3-venv package)." >&2; exit 1; }
 exec "$PY" scripts/kpictl.py setup "$@"

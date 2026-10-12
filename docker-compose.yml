@@ -1,11 +1,11 @@
-# KPI Bridge — distribution Docker Compose (chemin de référence quand Docker est disponible).
-# Seul le port de l'application est publié, et uniquement sur 127.0.0.1. Ollama et le worker ne sont pas exposés.
-# CPU par défaut ; GPU NVIDIA facultatif : docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d
+# KPI Bridge: Docker Compose distribution (reference path when Docker is available).
+# Only the application port is published, and only on 127.0.0.1. Ollama and the worker are not exposed.
+# CPU by default; optional NVIDIA GPU: docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d
 
 name: kpi-bridge
 
 x-app-env: &app-env
-  KPI_HOST: 0.0.0.0              # écoute interne au conteneur ; publication limitée à 127.0.0.1 ci-dessous
+  KPI_HOST: 0.0.0.0              # listens inside the container; publication limited to 127.0.0.1 below
   KPI_PORT: "8765"
   KPI_EXTRA_HOSTS: ""
   KPI_OLLAMA_URL: http://ollama:11434
@@ -48,7 +48,7 @@ services:
     mem_limit: 4g
     pids_limit: 256
     cpus: 2
-    networks: [internal]       # réseau interne sans accès Internet : aucun traitement ne sort
+    networks: [internal]       # internal network without Internet access: no processing leaves the machine
     restart: unless-stopped
 
   ollama:
@@ -59,7 +59,7 @@ services:
       OLLAMA_NUM_PARALLEL: "1"
     volumes:
       - ollama-models:/root/.ollama
-    networks: [internal, models]   # « models » sert au premier téléchargement du modèle ; aucun port publié
+    networks: [internal, models]   # "models" is used for the first model download; no port is published
     restart: unless-stopped
 
 networks:
