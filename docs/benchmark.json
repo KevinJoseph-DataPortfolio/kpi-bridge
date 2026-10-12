@@ -1,0 +1,20 @@
+{
+  "machine": {
+    "system": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.7",
+    "cpu": "AMD64 Family 25 Model 124 Stepping 0, AuthenticAMD"
+  },
+  "startup_api_s": 4.35,
+  "csv_bytes": 1870729,
+  "import_50k_rows_s": 5.4,
+  "first_dashboard_s": 0.267,
+  "filter_latency_s": {
+    "median": 0.209,
+    "max": 0.257,
+    "n": 16,
+    "cache": "miss (filtres distincts)"
+  },
+  "peak_rss_mib_benchmark_process": 172.2,
+  "ai_interpretation_s": 11.8,
+  "ai_valid": true
+}
