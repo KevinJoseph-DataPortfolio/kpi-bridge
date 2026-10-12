@@ -282,6 +282,7 @@
     "ignore": "игнорируется"
   },
   "describe": {
+    "quoted": "« {{name}} »",
     "fn": {
       "sum": "сумма {{field}}",
       "count_rows": "число строк",

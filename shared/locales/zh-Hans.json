@@ -282,6 +282,7 @@
     "ignore": "已忽略"
   },
   "describe": {
+    "quoted": "“{{name}}”",
     "fn": {
       "sum": "{{field}} 的总和",
       "count_rows": "行数",

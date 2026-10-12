@@ -64,6 +64,25 @@ def write_clean_csv(rows: list[dict]) -> None:
             w.writerow([r["order_id"], r["date"].isoformat(), r["client"], r["region"], r["product"], r["category"], r["qty"], r["unit_price"], r["amount"], r["cost"], "EUR"])
 
 
+EN = {
+    "Stylo bille": "Ballpoint pen", "Cahier A4": "A4 notebook", "Agenda 2026": "2026 planner",
+    "Clé USB 64 Go": "64 GB USB drive", "Souris sans fil": "Wireless mouse", "Casque audio": "Headphones",
+    "Lampe de bureau": "Desk lamp", "Chaise ergonomique": "Ergonomic chair",
+    "Papeterie": "Stationery", "Informatique": "IT accessories", "Mobilier": "Furniture",
+    "Nord": "North", "Sud": "South", "Est": "East", "Ouest": "West",
+}
+
+
+def write_en_csv(rows: list[dict]) -> None:
+    """Même jeu synthétique que ventes_demo.csv, avec en-têtes et libellés en anglais (démonstration en anglais)."""
+    with open(OUT / "sales_demo_en.csv", "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["Order ID", "Date", "Customer", "Region", "Product", "Category", "Quantity", "Unit price", "Amount", "Cost", "Currency"])
+        for r in rows:
+            w.writerow([r["order_id"].replace("CMD", "ORD"), r["date"].isoformat(), r["client"], EN[r["region"]], EN[r["product"]],
+                        EN[r["category"]], r["qty"], r["unit_price"], r["amount"], r["cost"], "EUR"])
+
+
 def fr_number(d: Decimal) -> str:
     s = f"{d:,.2f}"
     return s.replace(",", " ").replace(".", ",")
@@ -164,6 +183,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     rows = sales_rows()
     write_clean_csv(rows)
+    write_en_csv(rows)
     write_fr_csv(rows)
     write_xlsx(rows)
     write_pdf(rows)

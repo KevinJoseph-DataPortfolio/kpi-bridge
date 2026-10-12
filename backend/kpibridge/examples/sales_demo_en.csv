@@ -1,0 +1,655 @@
+Order ID,Date,Customer,Region,Product,Category,Quantity,Unit price,Amount,Cost,Currency
+ORD-00015,2025-01-02,C065,East,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00015,2025-01-02,C065,East,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00141,2025-01-04,C019,South,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00141,2025-01-04,C019,South,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00141,2025-01-04,C019,South,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00141,2025-01-04,C019,South,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00147,2025-01-04,C056,West,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00147,2025-01-04,C056,West,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00014,2025-01-06,C088,North,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00014,2025-01-06,C088,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00014,2025-01-06,C088,North,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00128,2025-01-08,C031,East,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00128,2025-01-08,C031,East,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00128,2025-01-08,C031,East,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00248,2025-01-09,C027,South,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00017,2025-01-10,C047,North,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00017,2025-01-10,C047,North,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00017,2025-01-10,C047,North,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00051,2025-01-13,C032,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00051,2025-01-13,C032,North,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00051,2025-01-13,C032,North,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00051,2025-01-13,C032,North,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00097,2025-01-15,C021,South,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00097,2025-01-15,C021,South,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00097,2025-01-15,C021,South,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00173,2025-01-15,C013,East,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00173,2025-01-15,C013,East,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00173,2025-01-15,C013,East,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00244,2025-01-17,C053,East,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00244,2025-01-17,C053,East,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00114,2025-01-18,C017,East,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00249,2025-01-18,C077,West,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00183,2025-01-19,C037,South,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00183,2025-01-19,C037,South,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00183,2025-01-19,C037,South,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00214,2025-01-20,C043,South,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00214,2025-01-20,C043,South,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00214,2025-01-20,C043,South,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00214,2025-01-20,C043,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00092,2025-01-21,C061,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00092,2025-01-21,C061,South,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00092,2025-01-21,C061,South,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00092,2025-01-21,C061,South,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00201,2025-01-22,C011,North,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00182,2025-01-23,C006,South,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00182,2025-01-23,C006,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00182,2025-01-23,C006,South,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00078,2025-01-24,C071,North,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00078,2025-01-24,C071,North,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00078,2025-01-24,C071,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00226,2025-01-26,C082,South,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00226,2025-01-26,C082,South,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00096,2025-01-27,C035,South,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00096,2025-01-27,C035,South,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00029,2025-01-30,C075,North,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00029,2025-01-30,C075,North,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00029,2025-01-30,C075,North,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00029,2025-01-30,C075,North,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00236,2025-02-01,C060,North,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00236,2025-02-01,C060,North,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00236,2025-02-01,C060,North,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00010,2025-02-03,C073,South,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00010,2025-02-03,C073,South,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00010,2025-02-03,C073,South,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00080,2025-02-03,C063,West,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00022,2025-02-04,C043,North,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00105,2025-02-05,C081,South,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00105,2025-02-05,C081,South,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00105,2025-02-05,C081,South,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00132,2025-02-07,C042,North,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00132,2025-02-07,C042,North,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00156,2025-02-07,C060,East,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00156,2025-02-07,C060,East,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00156,2025-02-07,C060,East,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00156,2025-02-07,C060,East,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00007,2025-02-10,C013,South,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00007,2025-02-10,C013,South,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00007,2025-02-10,C013,South,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00007,2025-02-10,C013,South,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00151,2025-02-10,C040,West,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00151,2025-02-10,C040,West,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00151,2025-02-10,C040,West,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00229,2025-02-15,C069,South,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00091,2025-02-16,C087,South,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00124,2025-02-16,C083,South,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00136,2025-02-17,C013,West,2026 planner,Stationery,5,12.00,60.00,37.20,EUR
+ORD-00136,2025-02-17,C013,West,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00136,2025-02-17,C013,West,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00005,2025-02-19,C045,East,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00005,2025-02-19,C045,East,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00005,2025-02-19,C045,East,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00083,2025-02-20,C081,South,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00083,2025-02-20,C081,South,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00118,2025-02-25,C061,South,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00035,2025-03-01,C071,North,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00035,2025-03-01,C071,North,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00044,2025-03-01,C023,East,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00044,2025-03-01,C023,East,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00044,2025-03-01,C023,East,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00120,2025-03-01,C031,North,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00120,2025-03-01,C031,North,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00246,2025-03-02,C069,South,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00246,2025-03-02,C069,South,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00246,2025-03-02,C069,South,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00246,2025-03-02,C069,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00068,2025-03-03,C045,North,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00068,2025-03-03,C045,North,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00068,2025-03-03,C045,North,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00068,2025-03-03,C045,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00076,2025-03-03,C025,South,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00076,2025-03-03,C025,South,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00037,2025-03-08,C021,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00037,2025-03-08,C021,East,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00037,2025-03-08,C021,East,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00037,2025-03-08,C021,East,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00032,2025-03-09,C059,East,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00032,2025-03-09,C059,East,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00032,2025-03-09,C059,East,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00211,2025-03-10,C047,East,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00211,2025-03-10,C047,East,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00211,2025-03-10,C047,East,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00211,2025-03-10,C047,East,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00061,2025-03-11,C024,West,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00165,2025-03-12,C010,South,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00165,2025-03-12,C010,South,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00165,2025-03-12,C010,South,2026 planner,Stationery,5,12.00,60.00,37.20,EUR
+ORD-00169,2025-03-12,C007,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00169,2025-03-12,C007,East,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00169,2025-03-12,C007,East,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00169,2025-03-12,C007,East,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00011,2025-03-13,C072,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00011,2025-03-13,C072,South,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00011,2025-03-13,C072,South,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00081,2025-03-18,C011,East,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00081,2025-03-18,C011,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00056,2025-03-19,C050,South,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00056,2025-03-19,C050,South,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00158,2025-03-19,C058,North,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00040,2025-03-21,C021,South,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00040,2025-03-21,C021,South,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00034,2025-03-22,C070,West,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00034,2025-03-22,C070,West,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00034,2025-03-22,C070,West,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00208,2025-03-23,C066,West,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00208,2025-03-23,C066,West,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00208,2025-03-23,C066,West,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00208,2025-03-23,C066,West,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00106,2025-03-27,C004,East,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00084,2025-03-30,C021,North,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00153,2025-03-30,C084,South,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00230,2025-04-01,C051,North,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00230,2025-04-01,C051,North,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00230,2025-04-01,C051,North,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00230,2025-04-01,C051,North,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00191,2025-04-06,C067,West,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00191,2025-04-06,C067,West,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00191,2025-04-06,C067,West,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00191,2025-04-06,C067,West,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00024,2025-04-08,C013,North,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00024,2025-04-08,C013,North,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00024,2025-04-08,C013,North,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00024,2025-04-08,C013,North,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00077,2025-04-10,C030,East,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00077,2025-04-10,C030,East,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00077,2025-04-10,C030,East,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00065,2025-04-13,C080,North,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00065,2025-04-13,C080,North,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00192,2025-04-13,C018,North,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00036,2025-04-15,C065,East,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00036,2025-04-15,C065,East,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00036,2025-04-15,C065,East,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00036,2025-04-15,C065,East,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00146,2025-04-15,C028,East,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00146,2025-04-15,C028,East,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00049,2025-04-18,C075,West,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00049,2025-04-18,C075,West,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00049,2025-04-18,C075,West,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00126,2025-04-21,C043,South,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00126,2025-04-21,C043,South,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00134,2025-04-21,C058,West,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00134,2025-04-21,C058,West,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00209,2025-04-21,C007,East,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00053,2025-04-23,C067,South,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00053,2025-04-23,C067,South,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00053,2025-04-23,C067,South,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00053,2025-04-23,C067,South,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00059,2025-04-23,C056,East,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00059,2025-04-23,C056,East,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00059,2025-04-23,C056,East,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00059,2025-04-23,C056,East,2026 planner,Stationery,5,12.00,60.00,37.20,EUR
+ORD-00042,2025-04-24,C059,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00042,2025-04-24,C059,South,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00042,2025-04-24,C059,South,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00119,2025-04-24,C082,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00119,2025-04-24,C082,North,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00119,2025-04-24,C082,North,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00119,2025-04-24,C082,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00189,2025-05-01,C047,East,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00189,2025-05-01,C047,East,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00189,2025-05-01,C047,East,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00189,2025-05-01,C047,East,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00235,2025-05-01,C035,West,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00235,2025-05-01,C035,West,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00235,2025-05-01,C035,West,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00027,2025-05-02,C053,South,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00027,2025-05-02,C053,South,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00027,2025-05-02,C053,South,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00027,2025-05-02,C053,South,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00206,2025-05-04,C016,West,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00206,2025-05-04,C016,West,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00206,2025-05-04,C016,West,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00052,2025-05-05,C084,South,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00071,2025-05-05,C073,West,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00071,2025-05-05,C073,West,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00071,2025-05-05,C073,West,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00071,2025-05-05,C073,West,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00125,2025-05-05,C073,South,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00125,2025-05-05,C073,South,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00242,2025-05-11,C028,North,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00116,2025-05-12,C038,West,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00116,2025-05-12,C038,West,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00116,2025-05-12,C038,West,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00175,2025-05-12,C020,South,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00175,2025-05-12,C020,South,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00175,2025-05-12,C020,South,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00175,2025-05-12,C020,South,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00072,2025-05-13,C036,East,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00072,2025-05-13,C036,East,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00072,2025-05-13,C036,East,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00028,2025-05-16,C037,West,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00028,2025-05-16,C037,West,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00028,2025-05-16,C037,West,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00028,2025-05-16,C037,West,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00104,2025-05-16,C080,East,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00104,2025-05-16,C080,East,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00104,2025-05-16,C080,East,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00104,2025-05-16,C080,East,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00088,2025-05-17,C010,South,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00070,2025-05-18,C032,East,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00009,2025-05-19,C088,South,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00009,2025-05-19,C088,South,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00009,2025-05-19,C088,South,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00170,2025-05-20,C066,West,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00170,2025-05-20,C066,West,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00004,2025-05-23,C021,North,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00004,2025-05-23,C021,North,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00004,2025-05-23,C021,North,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00004,2025-05-23,C021,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00145,2025-05-26,C068,West,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00145,2025-05-26,C068,West,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00145,2025-05-26,C068,West,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00231,2025-05-26,C083,West,2026 planner,Stationery,5,12.00,60.00,37.20,EUR
+ORD-00231,2025-05-26,C083,West,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00231,2025-05-26,C083,West,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00231,2025-05-26,C083,West,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00203,2025-05-29,C062,East,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00203,2025-05-29,C062,East,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00006,2025-05-31,C074,East,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00006,2025-05-31,C074,East,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00107,2025-05-31,C048,East,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00107,2025-05-31,C048,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00107,2025-05-31,C048,East,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00107,2025-05-31,C048,East,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00215,2025-06-03,C065,East,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00215,2025-06-03,C065,East,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00215,2025-06-03,C065,East,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00215,2025-06-03,C065,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00252,2025-06-03,C008,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00252,2025-06-03,C008,East,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00130,2025-06-04,C083,West,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00258,2025-06-05,C028,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00258,2025-06-05,C028,North,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00074,2025-06-06,C061,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00074,2025-06-06,C061,East,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00074,2025-06-06,C061,East,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00075,2025-06-06,C030,East,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00216,2025-06-07,C077,North,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00216,2025-06-07,C077,North,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00216,2025-06-07,C077,North,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00216,2025-06-07,C077,North,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00162,2025-06-08,C017,West,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00102,2025-06-12,C049,West,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00102,2025-06-12,C049,West,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00102,2025-06-12,C049,West,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00102,2025-06-12,C049,West,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00205,2025-06-13,C052,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00205,2025-06-13,C052,East,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00150,2025-06-16,C080,South,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00150,2025-06-16,C080,South,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00150,2025-06-16,C080,South,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00150,2025-06-16,C080,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00047,2025-06-17,C038,West,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00047,2025-06-17,C038,West,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00062,2025-06-17,C059,South,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00062,2025-06-17,C059,South,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00062,2025-06-17,C059,South,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00186,2025-06-17,C040,East,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00186,2025-06-17,C040,East,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00186,2025-06-17,C040,East,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00186,2025-06-17,C040,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00043,2025-06-18,C009,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00043,2025-06-18,C009,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00043,2025-06-18,C009,East,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00057,2025-06-19,C054,West,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00256,2025-06-19,C058,North,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00256,2025-06-19,C058,North,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00256,2025-06-19,C058,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00093,2025-06-20,C086,East,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00025,2025-06-23,C032,North,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00025,2025-06-23,C032,North,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00181,2025-06-23,C088,South,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00181,2025-06-23,C088,South,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00181,2025-06-23,C088,South,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00181,2025-06-23,C088,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00100,2025-06-24,C001,East,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00100,2025-06-24,C001,East,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00100,2025-06-24,C001,East,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00142,2025-06-24,C048,South,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00142,2025-06-24,C048,South,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00142,2025-06-24,C048,South,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00243,2025-06-26,C070,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00253,2025-06-26,C068,West,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00253,2025-06-26,C068,West,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00253,2025-06-26,C068,West,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00171,2025-06-28,C054,North,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00221,2025-07-01,C079,East,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00221,2025-07-01,C079,East,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00221,2025-07-01,C079,East,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00221,2025-07-01,C079,East,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00039,2025-07-03,C088,South,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00039,2025-07-03,C088,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00195,2025-07-04,C060,East,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00195,2025-07-04,C060,East,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00069,2025-07-05,C020,West,2026 planner,Stationery,5,12.00,60.00,37.20,EUR
+ORD-00069,2025-07-05,C020,West,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00069,2025-07-05,C020,West,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00069,2025-07-05,C020,West,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00164,2025-07-05,C047,North,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00164,2025-07-05,C047,North,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00164,2025-07-05,C047,North,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00194,2025-07-05,C016,South,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00194,2025-07-05,C016,South,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00167,2025-07-06,C057,South,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00167,2025-07-06,C057,South,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00167,2025-07-06,C057,South,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00188,2025-07-06,C004,South,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00188,2025-07-06,C004,South,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00139,2025-07-08,C036,North,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00139,2025-07-08,C036,North,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00168,2025-07-08,C060,West,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00168,2025-07-08,C060,West,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00168,2025-07-08,C060,West,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00160,2025-07-10,C050,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00160,2025-07-10,C050,East,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00160,2025-07-10,C050,East,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00160,2025-07-10,C050,East,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00016,2025-07-11,C070,South,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00172,2025-07-11,C050,South,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00238,2025-07-11,C071,West,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00238,2025-07-11,C071,West,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00238,2025-07-11,C071,West,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00238,2025-07-11,C071,West,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00163,2025-07-12,C017,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00166,2025-07-12,C021,South,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00166,2025-07-12,C021,South,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00247,2025-07-14,C032,South,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00247,2025-07-14,C032,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00247,2025-07-14,C032,South,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00247,2025-07-14,C032,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00207,2025-07-16,C032,West,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00207,2025-07-16,C032,West,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00212,2025-07-17,C071,West,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00212,2025-07-17,C071,West,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00212,2025-07-17,C071,West,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00058,2025-07-19,C074,North,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00058,2025-07-19,C074,North,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00058,2025-07-19,C074,North,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00058,2025-07-19,C074,North,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00184,2025-07-24,C050,West,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00184,2025-07-24,C050,West,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00184,2025-07-24,C050,West,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00131,2025-07-25,C088,West,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00250,2025-07-25,C030,West,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00250,2025-07-25,C030,West,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00030,2025-07-26,C073,North,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00030,2025-07-26,C073,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00149,2025-07-27,C038,West,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00122,2025-07-28,C005,East,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00122,2025-07-28,C005,East,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00122,2025-07-28,C005,East,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00041,2025-07-30,C035,South,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00041,2025-07-30,C035,South,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00094,2025-07-30,C037,West,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00094,2025-07-30,C037,West,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00094,2025-07-30,C037,West,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00094,2025-07-30,C037,West,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00137,2025-07-30,C086,East,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00137,2025-07-30,C086,East,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00137,2025-07-30,C086,East,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00137,2025-07-30,C086,East,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00115,2025-08-01,C026,South,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00115,2025-08-01,C026,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00135,2025-08-01,C041,North,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00135,2025-08-01,C041,North,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00135,2025-08-01,C041,North,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00135,2025-08-01,C041,North,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00121,2025-08-03,C054,South,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00002,2025-08-05,C004,North,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00026,2025-08-05,C036,South,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00026,2025-08-05,C036,South,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00026,2025-08-05,C036,South,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00026,2025-08-05,C036,South,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00185,2025-08-06,C056,North,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00185,2025-08-06,C056,North,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00187,2025-08-11,C082,East,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00218,2025-08-14,C054,East,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00218,2025-08-14,C054,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00110,2025-08-15,C076,East,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00110,2025-08-15,C076,East,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00110,2025-08-15,C076,East,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00224,2025-08-15,C062,East,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00224,2025-08-15,C062,East,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00240,2025-08-15,C088,North,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00240,2025-08-15,C088,North,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00193,2025-08-16,C088,North,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00193,2025-08-16,C088,North,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00193,2025-08-16,C088,North,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00245,2025-08-18,C049,West,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00241,2025-08-21,C066,South,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00241,2025-08-21,C066,South,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00241,2025-08-21,C066,South,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00241,2025-08-21,C066,South,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00232,2025-08-23,C024,East,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00098,2025-08-25,C083,North,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00098,2025-08-25,C083,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00109,2025-08-25,C059,East,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00109,2025-08-25,C059,East,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00109,2025-08-25,C059,East,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00154,2025-08-26,C088,West,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00154,2025-08-26,C088,West,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00154,2025-08-26,C088,West,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00063,2025-08-29,C070,North,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00227,2025-08-30,C088,North,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00227,2025-08-30,C088,North,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00234,2025-09-02,C032,East,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00079,2025-09-03,C044,West,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00079,2025-09-03,C044,West,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00196,2025-09-03,C053,West,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00099,2025-09-05,C032,West,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00099,2025-09-05,C032,West,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00099,2025-09-05,C032,West,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00099,2025-09-05,C032,West,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00101,2025-09-05,C043,East,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00101,2025-09-05,C043,East,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00101,2025-09-05,C043,East,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00101,2025-09-05,C043,East,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00111,2025-09-05,C031,North,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00111,2025-09-05,C031,North,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00111,2025-09-05,C031,North,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00111,2025-09-05,C031,North,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00018,2025-09-06,C069,North,2026 planner,Stationery,4,12.00,48.00,29.76,EUR
+ORD-00018,2025-09-06,C069,North,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00055,2025-09-06,C036,South,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00055,2025-09-06,C036,South,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00055,2025-09-06,C036,South,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00055,2025-09-06,C036,South,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00073,2025-09-08,C089,South,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00073,2025-09-08,C089,South,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00073,2025-09-08,C089,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00073,2025-09-08,C089,South,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00003,2025-09-16,C072,North,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00003,2025-09-16,C072,North,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00159,2025-09-16,C006,South,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00159,2025-09-16,C006,South,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00012,2025-09-18,C012,West,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00152,2025-09-19,C045,South,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00152,2025-09-19,C045,South,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00152,2025-09-19,C045,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00095,2025-09-21,C085,North,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00095,2025-09-21,C085,North,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00095,2025-09-21,C085,North,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00095,2025-09-21,C085,North,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00020,2025-09-22,C016,West,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00020,2025-09-22,C016,West,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00198,2025-09-23,C039,South,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00198,2025-09-23,C039,South,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00199,2025-09-23,C011,East,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00199,2025-09-23,C011,East,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00199,2025-09-23,C011,East,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00046,2025-09-24,C047,South,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00046,2025-09-24,C047,South,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00046,2025-09-24,C047,South,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00046,2025-09-24,C047,South,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00103,2025-09-27,C002,West,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00103,2025-09-27,C002,West,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00129,2025-09-27,C009,North,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00129,2025-09-27,C009,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00129,2025-09-27,C009,North,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00129,2025-09-27,C009,North,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00220,2025-09-27,C041,West,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00220,2025-09-27,C041,West,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00019,2025-09-28,C028,West,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00019,2025-09-28,C028,West,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00060,2025-10-01,C051,North,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00200,2025-10-01,C065,North,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00200,2025-10-01,C065,North,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00260,2025-10-01,C040,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00260,2025-10-01,C040,East,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00260,2025-10-01,C040,East,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00177,2025-10-02,C081,North,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00177,2025-10-02,C081,North,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00033,2025-10-03,C065,South,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00033,2025-10-03,C065,South,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00033,2025-10-03,C065,South,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00254,2025-10-03,C031,West,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00254,2025-10-03,C031,West,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00127,2025-10-04,C023,East,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00117,2025-10-13,C012,East,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00117,2025-10-13,C012,East,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00117,2025-10-13,C012,East,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00117,2025-10-13,C012,East,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00213,2025-10-13,C019,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00213,2025-10-13,C019,East,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00054,2025-10-14,C057,East,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00054,2025-10-14,C057,East,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00054,2025-10-14,C057,East,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00054,2025-10-14,C057,East,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00148,2025-10-14,C010,East,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00148,2025-10-14,C010,East,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00148,2025-10-14,C010,East,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00148,2025-10-14,C010,East,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00255,2025-10-15,C054,West,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00255,2025-10-15,C054,West,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00066,2025-10-16,C060,South,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00066,2025-10-16,C060,South,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00066,2025-10-16,C060,South,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00239,2025-10-16,C008,North,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00239,2025-10-16,C008,North,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00112,2025-10-17,C078,North,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00112,2025-10-17,C078,North,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00112,2025-10-17,C078,North,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00112,2025-10-17,C078,North,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00233,2025-10-18,C023,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00233,2025-10-18,C023,South,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00233,2025-10-18,C023,South,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00233,2025-10-18,C023,South,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00202,2025-10-20,C080,West,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00190,2025-10-21,C068,South,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00190,2025-10-21,C068,South,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00190,2025-10-21,C068,South,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR
+ORD-00251,2025-10-22,C074,East,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00251,2025-10-22,C074,East,2026 planner,Stationery,5,12.00,60.00,37.20,EUR
+ORD-00251,2025-10-22,C074,East,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00067,2025-10-24,C040,North,Desk lamp,Furniture,2,34.50,69.00,42.78,EUR
+ORD-00067,2025-10-24,C040,North,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00067,2025-10-24,C040,North,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00067,2025-10-24,C040,North,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00157,2025-10-25,C058,North,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00157,2025-10-25,C058,North,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00180,2025-10-25,C018,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00038,2025-10-26,C056,South,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00038,2025-10-26,C056,South,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00021,2025-10-29,C076,South,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00021,2025-10-29,C076,South,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00089,2025-11-01,C057,East,Ergonomic chair,Furniture,3,189.00,567.00,351.54,EUR
+ORD-00082,2025-11-02,C067,South,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00082,2025-11-02,C067,South,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00082,2025-11-02,C067,South,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00082,2025-11-02,C067,South,Ballpoint pen,Stationery,5,1.90,9.50,5.89,EUR
+ORD-00210,2025-11-02,C037,West,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00045,2025-11-07,C050,North,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00045,2025-11-07,C050,North,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00108,2025-11-09,C080,West,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00108,2025-11-09,C080,West,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00219,2025-11-10,C008,West,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00219,2025-11-10,C008,West,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00178,2025-11-11,C031,East,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00178,2025-11-11,C031,East,Headphones,IT accessories,1,49.00,49.00,30.38,EUR
+ORD-00178,2025-11-11,C031,East,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00178,2025-11-11,C031,East,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00237,2025-11-11,C029,South,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00237,2025-11-11,C029,South,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00048,2025-11-12,C052,East,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00143,2025-11-13,C087,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00087,2025-11-17,C055,South,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00013,2025-11-18,C088,South,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00013,2025-11-18,C088,South,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00013,2025-11-18,C088,South,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00013,2025-11-18,C088,South,Wireless mouse,IT accessories,5,19.99,99.95,61.97,EUR
+ORD-00113,2025-11-18,C081,North,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00155,2025-11-20,C036,East,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00133,2025-11-21,C049,East,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00133,2025-11-21,C049,East,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00133,2025-11-21,C049,East,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00179,2025-11-22,C048,West,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00179,2025-11-22,C048,West,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00179,2025-11-22,C048,West,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00001,2025-11-24,C004,North,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00001,2025-11-24,C004,North,2026 planner,Stationery,1,12.00,12.00,7.44,EUR
+ORD-00001,2025-11-24,C004,North,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00176,2025-11-24,C009,West,Ergonomic chair,Furniture,5,189.00,945.00,585.90,EUR
+ORD-00197,2025-11-25,C058,North,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00197,2025-11-25,C058,North,2026 planner,Stationery,2,12.00,24.00,14.88,EUR
+ORD-00197,2025-11-25,C058,North,Desk lamp,Furniture,5,34.50,172.50,106.95,EUR
+ORD-00197,2025-11-25,C058,North,Ballpoint pen,Stationery,1,1.90,1.90,1.18,EUR
+ORD-00064,2025-11-29,C084,North,Ballpoint pen,Stationery,2,1.90,3.80,2.36,EUR
+ORD-00228,2025-12-01,C062,West,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00228,2025-12-01,C062,West,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00031,2025-12-03,C034,East,Headphones,IT accessories,2,49.00,98.00,60.76,EUR
+ORD-00031,2025-12-03,C034,East,Wireless mouse,IT accessories,4,19.99,79.96,49.58,EUR
+ORD-00138,2025-12-03,C029,West,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00140,2025-12-03,C004,East,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00140,2025-12-03,C004,East,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00050,2025-12-04,C037,North,A4 notebook,Stationery,2,3.50,7.00,4.34,EUR
+ORD-00050,2025-12-04,C037,North,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00050,2025-12-04,C037,North,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00144,2025-12-05,C063,West,Desk lamp,Furniture,3,34.50,103.50,64.17,EUR
+ORD-00144,2025-12-05,C063,West,64 GB USB drive,IT accessories,5,14.90,74.50,46.19,EUR
+ORD-00144,2025-12-05,C063,West,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00144,2025-12-05,C063,West,Desk lamp,Furniture,1,34.50,34.50,21.39,EUR
+ORD-00023,2025-12-09,C028,West,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00023,2025-12-09,C028,West,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00257,2025-12-11,C010,North,64 GB USB drive,IT accessories,4,14.90,59.60,36.95,EUR
+ORD-00257,2025-12-11,C010,North,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00223,2025-12-13,C051,West,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00223,2025-12-13,C051,West,Ballpoint pen,Stationery,3,1.90,5.70,3.53,EUR
+ORD-00223,2025-12-13,C051,West,A4 notebook,Stationery,3,3.50,10.50,6.51,EUR
+ORD-00161,2025-12-14,C037,West,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00161,2025-12-14,C037,West,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00161,2025-12-14,C037,West,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00217,2025-12-15,C005,South,64 GB USB drive,IT accessories,1,14.90,14.90,9.24,EUR
+ORD-00123,2025-12-18,C070,East,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00123,2025-12-18,C070,East,Wireless mouse,IT accessories,2,19.99,39.98,24.79,EUR
+ORD-00123,2025-12-18,C070,East,A4 notebook,Stationery,4,3.50,14.00,8.68,EUR
+ORD-00085,2025-12-19,C038,West,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00204,2025-12-19,C021,North,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00204,2025-12-19,C021,North,Ergonomic chair,Furniture,2,189.00,378.00,234.36,EUR
+ORD-00204,2025-12-19,C021,North,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00204,2025-12-19,C021,North,2026 planner,Stationery,3,12.00,36.00,22.32,EUR
+ORD-00225,2025-12-23,C018,East,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00090,2025-12-25,C035,West,Ergonomic chair,Furniture,1,189.00,189.00,117.18,EUR
+ORD-00090,2025-12-25,C035,West,Ballpoint pen,Stationery,4,1.90,7.60,4.71,EUR
+ORD-00090,2025-12-25,C035,West,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00090,2025-12-25,C035,West,Wireless mouse,IT accessories,1,19.99,19.99,12.39,EUR
+ORD-00008,2025-12-26,C078,North,64 GB USB drive,IT accessories,2,14.90,29.80,18.48,EUR
+ORD-00008,2025-12-26,C078,North,Ergonomic chair,Furniture,4,189.00,756.00,468.72,EUR
+ORD-00222,2025-12-27,C089,South,Headphones,IT accessories,4,49.00,196.00,121.52,EUR
+ORD-00222,2025-12-27,C089,South,Headphones,IT accessories,5,49.00,245.00,151.90,EUR
+ORD-00222,2025-12-27,C089,South,Wireless mouse,IT accessories,3,19.99,59.97,37.18,EUR
+ORD-00222,2025-12-27,C089,South,A4 notebook,Stationery,5,3.50,17.50,10.85,EUR
+ORD-00259,2025-12-27,C051,South,Headphones,IT accessories,3,49.00,147.00,91.14,EUR
+ORD-00259,2025-12-27,C051,South,Desk lamp,Furniture,4,34.50,138.00,85.56,EUR
+ORD-00086,2025-12-28,C059,East,64 GB USB drive,IT accessories,3,14.90,44.70,27.71,EUR
+ORD-00174,2025-12-28,C058,West,A4 notebook,Stationery,1,3.50,3.50,2.17,EUR

@@ -6,12 +6,12 @@ test.skip(!process.env.KPI_SCREENSHOTS, "captures à la demande");
 
 const PY = process.env.KPI_E2E_PYTHON ?? "python";
 
-for (const lang of ["fr", "ru", "zh-Hans"]) {
+for (const lang of ["en", "fr", "ru", "zh-Hans"]) {
   test(`capture dashboard ${lang} @mobile`, async ({ page }, info) => {
     const url = execSync(`${PY} ../scripts/e2e_server.py token`).toString().trim().replace("http://127.0.0.1:8799", "");
     await page.goto(url);
     await page.getByTestId("lang-select").selectOption(lang);
-    await page.getByTestId("example-ventes_demo.csv").click();
+    await page.getByTestId(`example-${lang === "en" ? "sales_demo_en.csv" : "ventes_demo.csv"}`).click();
     for (const s of ["total_amount", "amount_by_period", "avg_basket", "top_products", "margin", "order_count"]) {
       await page.getByTestId(`suggestion-${s}`).click();
     }
@@ -26,5 +26,16 @@ for (const lang of ["fr", "ru", "zh-Hans"]) {
     await expect(page.getByTestId("dashboard")).toBeVisible();
     await page.waitForTimeout(800);
     await page.screenshot({ path: `../docs/screenshots/dashboard-${lang}-${info.project.name}.png`, fullPage: true });
+
+    // Vignettes du README (anglais, bureau) : tableau de bord au-dessus de la ligne de flottaison, puis la preuve d'un chiffre.
+    if (lang === "en" && info.project.name === "desktop") {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.waitForTimeout(600);
+      await page.screenshot({ path: "../docs/screenshots/dashboard-en-hero.png" });
+      await page.getByTestId("verify-avg_basket").click();
+      await expect(page.getByTestId("evidence")).toBeVisible();
+      await page.waitForTimeout(400);
+      await page.screenshot({ path: "../docs/screenshots/evidence-en.png" });
+    }
   });
 }

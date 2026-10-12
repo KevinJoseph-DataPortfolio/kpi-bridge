@@ -282,6 +282,7 @@
     "ignore": "ignored"
   },
   "describe": {
+    "quoted": "“{{name}}”",
     "fn": {
       "sum": "sum of {{field}}",
       "count_rows": "number of rows",
