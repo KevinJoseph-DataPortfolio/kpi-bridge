@@ -23,27 +23,28 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-      - name: OCR (Tesseract + langues)
+      - name: OCR (Tesseract + languages)
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-fra tesseract-ocr-deu \
             tesseract-ocr-spa tesseract-ocr-rus tesseract-ocr-chi-sim
-      - name: Dépendances verrouillées (empreintes vérifiées)
+      - name: Locked dependencies (hashes verified)
         run: |
           python -m pip install --require-hashes -r backend/requirements.lock
           python -m pip install --require-hashes -r backend/requirements-dev.lock
       - name: Lint
         run: ruff check backend scripts
       - name: Types
-        run: mypy backend/kpibridge
-      - name: Tests (IA remplacée par un substitut de test explicitement identifié)
+        working-directory: backend  # the mypy config lives in backend/pyproject.toml
+        run: mypy kpibridge
+      - name: Tests (AI replaced by an explicitly identified test double)
         working-directory: backend
         env:
           KPI_LLM_PROVIDER: fake
         run: python -m pytest -q
-      - name: Audit des vulnérabilités Python
+      - name: Python vulnerability audit
         run: pip-audit -r backend/requirements.lock --require-hashes --strict
-      - name: Inventaire et contrôle des licences
+      - name: Licence inventory and check
         run: python scripts/check_licenses.py
 
   frontend:
@@ -63,7 +64,7 @@ jobs:
         working-directory: frontend
       - run: npm run build
         working-directory: frontend
-      - name: Audit npm (vulnérabilités élevées ou critiques)
+      - name: npm audit (high or critical vulnerabilities)
         run: npm audit --audit-level=high --omit=dev
         working-directory: frontend
       - uses: actions/upload-artifact@v4
@@ -89,7 +90,7 @@ jobs:
       - run: python -m pip install --require-hashes -r backend/requirements.lock
       - run: npm ci && npx playwright install --with-deps chromium
         working-directory: frontend
-      - name: Parcours navigateur dans les six langues (substitut d'IA de test)
+      - name: Browser journeys in the six languages (AI test double)
         working-directory: frontend
         env:
           KPI_LLM_PROVIDER: fake
@@ -106,14 +107,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Recherche de secrets
+      - name: Secret scan
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Construction de l'image
+      - name: Image build
         run: docker build -t kpi-bridge:ci .
-      - name: Analyse de l'image (vulnérabilités corrigibles élevées/critiques)
-        uses: aquasecurity/trivy-action@0.33.1
+      - name: Image scan (fixable high/critical vulnerabilities)
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1  # v0.35.0 (pinned by commit SHA)
         with:
           image-ref: kpi-bridge:ci
           severity: HIGH,CRITICAL
