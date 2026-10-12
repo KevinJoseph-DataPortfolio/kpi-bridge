@@ -1,8 +1,8 @@
-"""Normalisation : configuration de table (réversible) → jeu typé versionné + profil de qualité.
+"""Normalisation: table configuration (reversible) → typed, versioned dataset + quality profile.
 
-La configuration (`TableConfig`) contient toutes les décisions : ligne d'en-tête, type et convention de chaque colonne,
-lignes exclues (avec motif), corrections de cellules (avec valeur d'origine). Une nouvelle configuration produit une
-nouvelle `DatasetVersion` ; revenir en arrière = réappliquer une configuration précédente.
+The configuration (`TableConfig`) holds every decision: header row, type and convention of each column,
+excluded rows (with a reason), cell corrections (with the original value). A new configuration produces a new
+`DatasetVersion`; going back = re-applying an earlier configuration.
 """
 
 from __future__ import annotations
@@ -57,7 +57,7 @@ class TableConfig(BaseModel):
     confirmed: dict[str, Any] = Field(default_factory=dict)
 
 
-# ----------------------------------------------------------------------------- inférence
+# ----------------------------------------------------------------------------- inference
 
 
 def header_names(rows: list[list[str | None]], header_row: int, header_depth: int, width: int) -> list[str]:
@@ -83,7 +83,7 @@ def data_row_indices(n_rows: int, config: TableConfig) -> list[int]:
 
 
 def _infer_column(values: list[str | None]) -> dict[str, Any]:
-    """Infère type et conventions d'une colonne à partir de ses cellules brutes."""
+    """Infers a column's type and conventions from its raw cells."""
     kinds: Counter[str] = Counter()
     texts: list[str] = []
     for cell in values:
@@ -100,7 +100,7 @@ def _infer_column(values: list[str | None]) -> dict[str, Any]:
         return out
     native_num = kinds["N"] + kinds["P"]
     if kinds["F"] and kinds["F"] == total - native_num:
-        # formules (avec ou sans cache) : résultat numérique, valeurs sans cache indisponibles
+        # formulas (with or without cache): numeric result, values without a cache are unavailable
         out["type"] = "number"
         return out
     if kinds["D"] and kinds["D"] + len([t for t in texts if date_shape(t)]) >= 0.8 * total:
@@ -161,7 +161,7 @@ def infer_config(rows: list[list[str | None]], meta: dict[str, Any]) -> tuple[Ta
         col_vals = [rows[i][j] if j < len(rows[i]) else None for i in data_idx]
         info = _infer_column(col_vals)
         if all(decode(v)[0] == "empty" for v in col_vals) and {"amount", "cost", "quantity"} & set(guess_roles(names[j], "number")):
-            # colonne vide nommée comme une mesure : typée nombre, ses agrégats seront « indisponibles », jamais 0
+            # empty column named like a measure: typed as a number, its aggregates will be "unavailable", never 0
             info["type"] = "number"
         spec = ColumnSpec(
             id=f"c{j}",
@@ -362,14 +362,14 @@ def _profile_table(
     n_raw: int,
 ) -> dict[str, Any]:
     n = len(data_idx)
-    # doublons exacts : signalés, jamais supprimés automatiquement
+    # exact duplicates: flagged, never removed automatically
     keys = [c["id"] for c in cols]
     hashes: dict[str, list[int]] = defaultdict(list)
     for pos in range(n):
         h = hashlib.blake2b(repr(tuple(typed[k][pos] for k in keys)).encode(), digest_size=12).hexdigest()
         hashes[h].append(data_idx[pos])
     dup_groups = [rows for rows in hashes.values() if len(rows) > 1]
-    # grain : clé de commande candidate et champs de niveau commande (constants par commande)
+    # grain: candidate order key and order-level fields (constant per order)
     order_keys = [c["id"] for c in cols if "order_id" in c["roles"] and c["type"] in ("text", "id", "number")]
     grain: dict[str, Any] = {}
     for ok in order_keys:

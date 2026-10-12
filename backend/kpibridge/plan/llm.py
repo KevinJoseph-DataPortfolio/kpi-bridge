@@ -1,5 +1,5 @@
-"""Fournisseurs de modèle. V1 : Ollama local uniquement (aucun envoi externe), et un substitut de test explicitement
-identifié pour la CI (`KPI_LLM_PROVIDER=fake`), jamais présenté comme une interprétation réelle."""
+"""Model providers. V1: local Ollama only (nothing sent outside), plus an explicitly identified test substitute
+for CI (`KPI_LLM_PROVIDER=fake`), never presented as a real interpretation."""
 
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ class OllamaProvider:
 
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
-        # Le seul hôte contacté est l'URL Ollama configurée (locale par défaut) ; pas de redirections suivies.
+        # The only host contacted is the configured Ollama URL (local by default); redirects are not followed.
         self.client = httpx.Client(base_url=settings.ollama_url, timeout=settings.ollama_timeout_s, follow_redirects=False, trust_env=False)
 
     def status(self) -> dict[str, Any]:
@@ -60,7 +60,7 @@ class OllamaProvider:
             "options": {"temperature": 0, "num_ctx": self.settings.ollama_num_ctx, "num_predict": 1800, "seed": 7},
         }
         t0 = time.monotonic()
-        deadline = t0 + self.settings.ollama_timeout_s  # échéance globale réelle (pas seulement un délai de lecture)
+        deadline = t0 + self.settings.ollama_timeout_s  # real global deadline (not just a read timeout)
         parts: list[str] = []
         model = self.settings.ollama_model
         try:
@@ -90,8 +90,8 @@ class OllamaProvider:
 
 
 class FakeProvider:
-    """Substitut déterministe POUR LES TESTS CI UNIQUEMENT. Il construit une réponse à partir de mots-clés et des
-    rôles de colonnes. Les résultats sont marqués `provider=fake-test-double` dans le plan."""
+    """Deterministic substitute FOR CI TESTS ONLY. It builds a reply from keywords and column
+        roles. Results are marked `provider=fake-test-double` in the plan."""
 
     name = "fake-test-double"
 

@@ -1,11 +1,11 @@
-"""Worker de traitement : superviseur + un sous-processus par tâche.
+"""Processing worker: a supervisor plus one subprocess per job.
 
-- une tâche lourde à la fois (par défaut) ;
-- annulation et délai maximal appliqués en terminant le sous-processus ;
-- limite mémoire du sous-processus (POSIX, RLIMIT_AS) ; sous Windows, le délai et l'isolation par processus s'appliquent ;
-- reprise bornée après crash (tentatives max), temporaires supprimés en fin de tâche et au démarrage.
+- one heavy job at a time (by default);
+- cancellation and maximum duration enforced by terminating the subprocess;
+- subprocess memory limit (POSIX, RLIMIT_AS); on Windows, the timeout and per-process isolation apply;
+- bounded retry after a crash (max attempts), temporary files removed at the end of a job and at start-up.
 
-Lancement : ``python -m kpibridge.worker``
+Launch: ``python -m kpibridge.worker``
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ def _limit_memory(mib: int) -> None:
 
 
 def run_job_child(job_id: str) -> None:
-    """Exécuté dans un sous-processus isolé."""
+    """Runs in an isolated subprocess."""
     settings = get_settings()
     _limit_memory(settings.limits.job_memory_mib)
     db = Database(settings)
@@ -60,7 +60,7 @@ def run_job_child(job_id: str) -> None:
         jobs.fail(db, job_id, exc.code, exc.params)
     except MemoryError:
         jobs.fail(db, job_id, "out_of_memory")
-    except Exception as exc:  # noqa: BLE001 — aucune trace système côté utilisateur
+    except Exception as exc:  # noqa: BLE001 — no system trace shown to the user
         log.error("tâche %s en échec : %s", job_id, type(exc).__name__)
         jobs.fail(db, job_id, "internal_error")
     finally:
@@ -117,7 +117,7 @@ class Supervisor:
         proc.join(1)
         row = self.db.one("SELECT status, attempts, max_attempts FROM jobs WHERE id=?", (job_id,))
         if row is not None and row["status"] == "running":
-            # le sous-processus est mort sans conclure (crash, mémoire) : reprise bornée
+            # the subprocess died without finishing (crash, memory): bounded retry
             if row["attempts"] < row["max_attempts"]:
                 self.db.run("UPDATE jobs SET status='queued', stage='requeued_after_crash', updated_at=? WHERE id=?", (now(), job_id))
             else:

@@ -1,4 +1,4 @@
-"""CSV / TSV / TXT délimité : encodage, BOM, séparateur, lecture bornée en flux."""
+"""Delimited CSV / TSV / TXT: encoding, BOM, separator, bounded streaming read."""
 
 from __future__ import annotations
 
@@ -76,7 +76,7 @@ def parse_delimited_text(text: str, name: str, ctx: IngestContext, delimiter: st
     reader = csv.reader(io.StringIO(text, newline=""), delimiter=delim)
     rows: list[list[str | None]] = []
     srcs: list[str] = []
-    max_raw_rows = limits.max_rows + 1000  # marge pour titres/en-têtes/totaux
+    max_raw_rows = limits.max_rows + 1000  # margin for titles/headers/totals
     cells = 0
     try:
         for rec_no, rec in enumerate(reader, start=1):

@@ -1,4 +1,4 @@
-"""File de tâches persistante (SQLite). Pas de Redis : une tâche lourde à la fois, reprise bornée après crash."""
+"""Persistent job queue (SQLite). No Redis: one heavy job at a time, bounded retry after a crash."""
 
 from __future__ import annotations
 
@@ -61,7 +61,7 @@ def public(row: dict[str, Any]) -> dict[str, Any]:
 
 
 def progress(db: Database, job_id: str, stage: str, value: float) -> None:
-    """Mise à jour de progression depuis le traitement ; lève JobCancelled si l'annulation est demandée."""
+    """Progress update from inside a job; raises JobCancelled if cancellation is requested."""
     with db.conn() as con:
         row = con.execute("SELECT status, cancel_requested FROM jobs WHERE id=?", (job_id,)).fetchone()
         if row is None or row["cancel_requested"] or row["status"] != "running":
@@ -108,7 +108,7 @@ def mark_cancelled(db: Database, job_id: str) -> None:
 
 
 def recover_after_crash(db: Database) -> dict[str, int]:
-    """Au démarrage du worker : les tâches 'running' orphelines sont relancées (si tentatives restantes) ou échouées."""
+    """At worker start-up: orphaned 'running' jobs are requeued (if attempts remain) or failed."""
     requeued = failed = cancelled = 0
     t = now()
     with db.tx() as con:

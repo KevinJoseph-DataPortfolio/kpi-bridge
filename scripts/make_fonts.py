@@ -1,7 +1,7 @@
-"""Produit les polices statiques (graisse Regular) embarquées pour les exports, à partir des polices variables
-officielles Noto (google/fonts, licence SIL OFL 1.1). À relancer seulement pour changer de version de police.
+"""Builds the static (Regular weight) fonts embedded in the exports, from the official Noto variable fonts
+(google/fonts, SIL OFL 1.1 licence). Re-run only to change the font version.
 
-Usage : python scripts/make_fonts.py <NotoSans[wdth,wght].ttf> <NotoSansSC[wght].ttf>
+Usage: python scripts/make_fonts.py <NotoSans[wdth,wght].ttf> <NotoSansSC[wght].ttf>
 """
 
 from __future__ import annotations

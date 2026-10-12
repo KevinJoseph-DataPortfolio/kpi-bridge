@@ -1,7 +1,7 @@
-"""Mesures sur la machine courante : démarrage, import d'un CSV de 50 000 lignes, calcul, filtres, mémoire, IA.
+"""Measurements on the current machine: start-up, import of a 50,000-row CSV, computation, filters, memory, AI.
 
-Usage : python scripts/benchmark.py [--ai]   (résultats en JSON dans docs/benchmark.json)
-Les valeurs dépendent du matériel ; elles sont mesurées, jamais supposées.
+Usage: python scripts/benchmark.py [--ai]   (JSON results in docs/benchmark.json)
+Values depend on the hardware; they are measured, never assumed.
 """
 
 from __future__ import annotations

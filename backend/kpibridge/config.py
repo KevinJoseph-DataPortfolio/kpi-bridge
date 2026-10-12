@@ -1,7 +1,7 @@
-"""Configuration chargée depuis l'environnement (aucun secret fixe).
+"""Configuration loaded from the environment (no hard-coded secret).
 
-Toutes les limites sont configurables par variables d'environnement `KPI_*` et exposées à l'interface
-via `/api/v1/meta` afin d'être visibles par l'utilisateur.
+Every limit can be set through `KPI_*` environment variables and is exposed to the UI
+through `/api/v1/meta`, so users can see it.
 """
 
 from __future__ import annotations
@@ -81,7 +81,7 @@ class Settings:
     ollama_model: str = "qwen3:4b"
     ollama_timeout_s: int = 120
     ollama_num_ctx: int = 4096
-    llm_provider: str = "ollama"  # "ollama" | "fake" (tests CI uniquement, identifié comme substitut)
+    llm_provider: str = "ollama"  # "ollama" | "fake" (CI tests only, flagged as a substitute)
     tesseract_cmd: str | None = None
     session_ttl_s: int = 12 * 3600
     bootstrap_ttl_s: int = 300

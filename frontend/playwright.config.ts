@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
-// Le serveur de test lance l'application compilée (API + frontend sur la même origine) et le worker,
-// avec un répertoire de données jetable. KPI_LLM_PROVIDER=fake en CI ; =ollama pour le test du vrai chemin IA.
+// The test server launches the built application (API + frontend on the same origin) and the worker,
+// with a throwaway data directory. KPI_LLM_PROVIDER=fake in CI; =ollama to test the real AI path.
 export default defineConfig({
   testDir: "./e2e",
   timeout: 240_000,

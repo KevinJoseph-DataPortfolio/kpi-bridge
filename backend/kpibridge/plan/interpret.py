@@ -1,11 +1,11 @@
-"""Interprétation d'une demande libre par le modèle local → plan validé, ou échec explicite (repli constructeur guidé).
+"""Interpretation of a free-text request by the local model → validated plan, or an explicit failure (fallback: guided builder).
 
-Défenses contre l'injection de prompt (le contenu du fichier et la demande sont des DONNÉES) :
-- le modèle ne dispose d'aucun outil, d'aucun accès réseau ni fichier ;
-- il ne reçoit que le schéma, des profils bornés et au plus 3 échantillons courts par colonne ;
-- sa sortie est contrainte par un schéma JSON, puis validée strictement (Pydantic) et sémantiquement ;
-- il ne produit jamais de chiffres : les valeurs sont calculées par le moteur déterministe ;
-- les libellés qu'il écrit sont affichés comme texte échappé.
+Defences against prompt injection (the file content and the request are DATA):
+- the model has no tool, no network access and no file access;
+- it receives only the schema, bounded profiles and at most 3 short samples per column;
+- its output is constrained by a JSON schema, then validated strictly (Pydantic) and semantically;
+- it never produces figures: values are computed by the deterministic engine;
+- the labels it writes are displayed as escaped text.
 """
 
 from __future__ import annotations
@@ -75,9 +75,9 @@ REPAIR_HINTS = {
 
 
 def normalize_output(out: LLMOutput, profile: dict[str, Any]) -> LLMOutput:
-    """Corrections STRUCTURELLES sûres et déterministes (aucun chiffre, aucun champ inventé) :
-    - une seule colonne date et une variation / courbe temporelle demandée ⇒ cette colonne devient la période ;
-    - un graphique dont la dimension est la colonne date ⇒ graphique par période (« __period__ »)."""
+    """Safe, deterministic STRUCTURAL fixes (no figure, no invented field):
+        - a single date column and a change / time curve requested ⇒ that column becomes the period;
+        - a chart whose dimension is the date column ⇒ by-period chart ("__period__")."""
     dates = [c["id"] for c in profile["columns"] if c["type"] == "date"]
     data = out.model_copy(deep=True)
     wants_period = any(m.compare == "previous_period" for m in data.metrics) or any(
@@ -120,12 +120,12 @@ def build_user_message(request: str, ui_lang: str, profile: dict[str, Any]) -> s
 
 
 def strict_schema(schema: dict[str, Any]) -> dict[str, Any]:
-    """Toutes les propriétés deviennent obligatoires pour la grammaire de génération : sinon le modèle peut omettre
-    `metrics` ou `charts` (champs à valeur par défaut). La validation Pydantic, elle, reste celle du modèle."""
+    """Every property becomes required for the generation grammar: otherwise the model may omit
+        `metrics` or `charts` (fields with a default value). Pydantic validation itself stays that of the model."""
     def walk(node: Any) -> None:
         if isinstance(node, dict):
             if node.get("type") == "object" and "properties" in node:
-                # le grain (« une valeur par clé ») est une décision confirmée par l'utilisateur, jamais par le modèle
+                # the grain ("one value per key") is a decision confirmed by the user, never by the model
                 node["properties"].pop("per", None)
                 node["required"] = list(node["properties"].keys())
             for v in node.values():
@@ -140,7 +140,7 @@ def strict_schema(schema: dict[str, Any]) -> dict[str, Any]:
 
 
 def interpret(provider: Provider, request: str, ui_lang: str, profile: dict[str, Any], max_repairs: int = 1) -> dict[str, Any]:
-    """Retourne {plan, unavailable, attempts, model, provider} ou lève UserError('ai_plan_invalid')."""
+    """Returns {plan, unavailable, attempts, model, provider} or raises UserError('ai_plan_invalid')."""
     system = SYSTEM_PROMPT.replace("{lang}", LANG_NAMES.get(ui_lang, "French"))
     schema = strict_schema(LLMOutput.model_json_schema())
     user = build_user_message(request, ui_lang, profile)

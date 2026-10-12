@@ -1,4 +1,4 @@
-// Client HTTP : même origine, cookie HttpOnly, en-tête anti-CSRF sur toute requête modifiante.
+// HTTP client: same origin, HttpOnly cookie, anti-CSRF header on every state-changing request.
 
 export class ApiError extends Error {
   code: string;
@@ -66,7 +66,7 @@ export function saveBlob(blob: Blob, filename: string): void {
   setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
-// Envoi de fichier en flux brut (pas de multipart) avec progression réelle d'envoi.
+// Raw-stream file upload (no multipart) with real upload progress.
 export function uploadFile(
   projectId: string,
   file: File,
@@ -105,12 +105,12 @@ export async function bootstrapSession(): Promise<boolean> {
   const hash = window.location.hash;
   const m = /token=([A-Za-z0-9_-]{20,200})/.exec(hash);
   if (m) {
-    // Le secret à usage unique est retiré de l'URL et de l'historique immédiatement.
+    // The single-use secret is removed from the URL and from the history immediately.
     history.replaceState(null, "", window.location.pathname);
     try {
       await send("POST", "/session/bootstrap", { token: m[1] });
     } catch {
-      /* jeton expiré ou déjà utilisé : l'état de session est vérifié ci-dessous */
+      /* token expired or already used: the session state is checked below */
     }
   }
   const s = await get<{ authenticated: boolean }>("/session");

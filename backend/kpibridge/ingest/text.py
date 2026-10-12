@@ -1,7 +1,7 @@
-"""Extraction de valeurs explicitement présentes dans du texte, chacune reliée à son passage source.
+"""Extracts values explicitly present in text, each linked to its source passage.
 
-Règle : seules les lignes de la forme « libellé : nombre [unité] » sont retenues. Le backend vérifie que la valeur
-figure littéralement dans le passage cité. Aucune complétion de chiffre manquant, aucune interprétation libre.
+Rule: only lines shaped like "label: number [unit]" are kept. The backend checks that the value appears
+verbatim in the quoted passage. No completion of a missing figure, no free interpretation.
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ def extract_text_values(lines: list[tuple[str, str]], name: str) -> RawTable | N
         if not m:
             continue
         value = m.group("value").strip()
-        # Preuve : la valeur doit apparaître telle quelle dans le passage
+        # Evidence: the value must appear verbatim in the passage
         if value not in line:
             continue
         label = m.group("label").strip(" .-–—")

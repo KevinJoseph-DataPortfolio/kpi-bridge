@@ -1,8 +1,8 @@
-"""Évaluation du VRAI modèle local (Ollama) dans les six langues, sur le profil réel de l'exemple synthétique.
+"""Evaluation of the REAL local model (Ollama) in the six languages, on the real profile of the synthetic example.
 
-Ce n'est pas un test CI (le modèle peut varier) : c'est une mesure reproductible, consignée dans docs/TEST_REPORT.md.
-Usage : python scripts/eval_llm.py [--out docs/llm_eval.json]
-Prérequis : Ollama démarré avec le modèle configuré (KPI_OLLAMA_MODEL, défaut qwen3:4b).
+This is not a CI test (the model may vary): it is a reproducible measurement, recorded in docs/TEST_REPORT.md.
+Usage: python scripts/eval_llm.py [--out docs/llm_eval.json]
+Prerequisite: Ollama running with the configured model (KPI_OLLAMA_MODEL, default qwen3:4b).
 """
 
 from __future__ import annotations

@@ -31,7 +31,7 @@ for (const lang of Object.keys(REQUESTS)) {
   test(`parcours document → demande → KPI → dashboard → filtre → export [${lang}]`, async ({ page }) => {
     const L = locale(lang);
     await page.goto(sessionUrl());
-    await expect(page).toHaveURL(/127\.0\.0\.1:8799\/$/); // le secret a été retiré de l'URL
+    await expect(page).toHaveURL(/127\.0\.0\.1:8799\/$/); // the secret was removed from the URL
     await page.getByTestId("lang-select").selectOption(lang);
     await expect(page.locator("h1")).toHaveText(L.upload.title);
 
@@ -44,7 +44,7 @@ for (const lang of Object.keys(REQUESTS)) {
     await page.getByTestId("submit-request").click();
     await expect(page.getByTestId("plan-review")).toBeVisible();
 
-    // attendre la fin de l'interprétation (prêt, questions ou repli)
+    // wait for interpretation to finish (ready, questions or fallback)
     const state = page.locator('[data-testid="validate-plan"], [data-testid="questions"], [data-testid="ai-failed"]').first();
     await expect(state).toBeVisible({ timeout: REAL_AI ? 200_000 : 30_000 });
     if (await page.getByTestId("ai-failed").isVisible()) {
@@ -69,7 +69,7 @@ for (const lang of Object.keys(REQUESTS)) {
     await expect(firstValue).not.toContainText("NaN");
     const scopeBefore = await page.getByTestId("scope").innerText();
 
-    // filtre de catégorie : s'applique à tout le dashboard
+    // category filter: applies to the whole dashboard
     const dimSummary = page.locator('[data-testid^="dim-"]').first();
     if (await dimSummary.count()) {
       await dimSummary.click();
@@ -78,7 +78,7 @@ for (const lang of Object.keys(REQUESTS)) {
       await expect(page.getByTestId("reset-filters")).toBeVisible();
     }
 
-    // « Vérifier ce chiffre »
+    // "Check this figure"
     await page.locator('[data-testid^="verify-"]').first().click();
     await expect(page.getByTestId("evidence")).toBeVisible();
     await noRawKeys(page);

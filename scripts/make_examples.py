@@ -1,7 +1,7 @@
-"""Génère les fichiers de démonstration SYNTHÉTIQUES livrés avec l'application (aucune donnée réelle).
+"""Generates the SYNTHETIC demo files shipped with the application (no real data).
 
-Usage : python scripts/make_examples.py
-Les sorties sont écrites dans backend/kpibridge/examples/ et sont déterministes (graine fixe).
+Usage: python scripts/make_examples.py
+Outputs are written to backend/kpibridge/examples/ and are deterministic (fixed seed).
 """
 
 from __future__ import annotations
@@ -74,7 +74,7 @@ EN = {
 
 
 def write_en_csv(rows: list[dict]) -> None:
-    """Même jeu synthétique que ventes_demo.csv, avec en-têtes et libellés en anglais (démonstration en anglais)."""
+    """Same synthetic set as ventes_demo.csv, with English headers and labels (English demo)."""
     with open(OUT / "sales_demo_en.csv", "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["Order ID", "Date", "Customer", "Region", "Product", "Category", "Quantity", "Unit price", "Amount", "Cost", "Currency"])

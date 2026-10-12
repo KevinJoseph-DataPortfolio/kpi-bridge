@@ -1,6 +1,6 @@
-"""Serveur de test navigateur : données jetables, worker réel, application compilée sur 127.0.0.1:8799.
+"""Browser-test server: throwaway data, real worker, built application on 127.0.0.1:8799.
 
-Les tests obtiennent un lien de session à usage unique via `python scripts/e2e_server.py token`.
+Tests obtain a single-use session link through `python scripts/e2e_server.py token`.
 """
 
 from __future__ import annotations

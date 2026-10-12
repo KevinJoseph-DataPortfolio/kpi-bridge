@@ -1,4 +1,4 @@
-"""Accès SQLite (métadonnées, tâches) avec migrations versionnées."""
+"""SQLite access (metadata, jobs) with versioned migrations."""
 
 from __future__ import annotations
 
@@ -59,7 +59,7 @@ def migrate(settings: Settings) -> None:
 
 
 class Database:
-    """Petit wrapper thread-safe (une connexion par appel)."""
+    """Small thread-safe wrapper (one connection per call)."""
 
     def __init__(self, settings: Settings) -> None:
         self.settings = settings

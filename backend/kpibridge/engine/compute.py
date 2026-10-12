@@ -1,13 +1,13 @@
-"""Compilation du plan validé vers des requêtes DuckDB paramétrées et évaluation décimale exacte.
+"""Compiles the validated plan into parameterised DuckDB queries and evaluates exact decimals.
 
-Principes :
-- les identifiants de colonnes proviennent uniquement de la liste blanche validée (`c<n>`), jamais d'un texte libre ;
-- toutes les valeurs (filtres) sont passées en paramètres ;
-- les agrégats sont calculés en DECIMAL par DuckDB, les combinaisons (ratios, différences) en `decimal.Decimal` ;
-- absence de valeur ≠ 0 ; division par zéro ⇒ indisponible avec motif ;
-- devises différentes ⇒ résultats séparés ;
-- `per` (grain) : une valeur par clé, avec contrôle de cohérence (valeur constante par clé, clé non répartie
-  entre plusieurs groupes).
+Principles:
+- column identifiers come only from the validated allow-list (`c<n>`), never from free text;
+- every value (filters) is passed as a parameter;
+- aggregates are computed as DECIMAL by DuckDB, combinations (ratios, differences) as `decimal.Decimal`;
+- a missing value ≠ 0; division by zero ⇒ unavailable, with a reason;
+- different currencies ⇒ separate results;
+- `per` (grain): one value per key, with a consistency check (constant value per key, key not split
+  across several groups).
 """
 
 from __future__ import annotations
@@ -165,7 +165,7 @@ class Engine:
         raise ValueError(f.op)
 
     def scope_filters(self, user: UserFilters, period: tuple[dt.date, dt.date] | None = "default", skip_dim: str | None = None) -> list[Filter]:  # type: ignore[assignment]
-        """Filtres de périmètre : filtres globaux du plan + filtres utilisateur (période, catégories)."""
+        """Scope filters: the plan's global filters plus user filters (period, categories)."""
         flt = list(self.plan.global_filters)
         for dim, values in user.dims.items():
             if dim == skip_dim or not values or dim not in self.cols:
@@ -201,7 +201,7 @@ class Engine:
                 out.append(q(k))
         return out
 
-    # ------------------------------------------------------------------ agrégats
+    # ------------------------------------------------------------------ aggregates
     def agg_values(self, a: Agg, keys: list[str], scope: list[Filter]) -> dict[tuple, Any]:
         params: list[Any] = []
         flt = scope + list(a.filters)
@@ -274,9 +274,9 @@ class Engine:
                 out[key] = _dec(val) if cnt else None
         return out
 
-    # ------------------------------------------------------------------ évaluation
+    # ------------------------------------------------------------------ evaluation
     def money_fields(self, metric: Metric) -> list[str]:
-        """Champs monétaires du KPI : type « montant », ou nombre agrégé dans un KPI d'unité monétaire."""
+        """Monetary fields of the KPI: 'amount' type, or a number aggregated in a KPI with a currency unit."""
         out = []
         for a in iter_aggs(metric.expression):
             if not a.field or a.fn not in ("sum", "avg", "median", "min", "max"):
@@ -417,7 +417,7 @@ class Engine:
         }
         if data_bounds is None or prev_w[1] < data_bounds[0]:
             return {**info, "status": "unavailable", "reason": "no_comparable_period"}
-        # couverture partielle de la période précédente : signalée, jamais masquée
+        # partial coverage of the previous period: flagged, never hidden
         info["previous_partial"] = prev_w[0] < data_bounds[0]
         info["data_start"] = data_bounds[0].isoformat()
         keys = [ckey] if ckey else []

@@ -1,6 +1,6 @@
-"""Recettes de dashboard : mapping de colonnes, conventions, définitions KPI et disposition, réutilisables sur un
-fichier suivant. À l'application, le schéma, les types, conventions et unités sont revalidés ; toute colonne absente
-ou de type différent exige un remapping explicite. Aucun ancien chiffre n'est réutilisé : tout est recalculé."""
+"""Dashboard recipes: column mapping, conventions, KPI definitions and layout, reusable on a later file.
+On application, the schema, types, conventions and units are revalidated; any missing column or column of a
+different type requires an explicit remapping. No old figure is reused: everything is recomputed."""
 
 from __future__ import annotations
 
@@ -82,7 +82,7 @@ class Recipes:
         return {"id": rid, **clean}
 
     def check(self, rid: str, table_id: str) -> dict[str, Any]:
-        """Compare la recette au nouveau tableau : correspondances, colonnes manquantes ou incompatibles."""
+        """Compares the recipe with the new table: matches, missing or incompatible columns."""
         recipe = self.get(rid)
         cv = self.svc.current_version(table_id)
         new_cols = cv["profile"]["columns"]
@@ -122,7 +122,7 @@ class Recipes:
             if target not in new_ids:
                 raise UserError("invalid_mapping", field=p["field"])
             mapping[p["field"]] = target
-        # Applique conventions / types de la recette aux colonnes mappées (nouvelle version de données)
+        # Applies the recipe's conventions / types to the mapped columns (new data version)
         cfg = cv["config"].model_copy(deep=True)
         changed = False
         for f in recipe["fields"]:
@@ -144,7 +144,7 @@ class Recipes:
         cfg.confirmed = {k: v for k, v in cfg.confirmed.items() if v is not None}
         if changed or cfg.confirmed != cv["config"].confirmed:
             self.svc.update_config(table_id, cfg, None, "recipe_conventions", {"recipe": rid})
-        # Traduit les identifiants de champs du plan
+        # Translates the plan's field identifiers
         text = json.dumps(recipe["plan"])
 
         def repl(m: re.Match[str]) -> str:
@@ -155,7 +155,7 @@ class Recipes:
             return f'"{new}{suffix}"'
 
         new_plan = json.loads(FIELD_RE.sub(repl, text))
-        # les filtres de valeurs (ex. statuts annulés) sont conservés tels quels mais revalidés
+        # value filters (e.g. cancelled statuses) are kept as they are but revalidated
         plan_id = self.plans.from_plan_json(pid, table_id, new_plan, origin="recipe")
         return {"status": "plan_created", "plan_id": plan_id, "mapping": mapping}
 

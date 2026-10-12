@@ -1,7 +1,7 @@
-"""PDF : distinction texte / scanné, extraction des tableaux, en-têtes répétés, provenance page+zone.
+"""PDF: text vs scanned detection, table extraction, repeated headers, page+area provenance.
 
-Le PDF n'est jamais rendu activement : pas de JavaScript, pas d'actions, pas de liens suivis. Les aperçus sont des
-images rasterisées par PDFium.
+The PDF is never actively rendered: no JavaScript, no actions, no links followed. Previews are images
+rasterised by PDFium.
 """
 
 from __future__ import annotations
@@ -76,7 +76,7 @@ def parse_pdf(path: Path, name: str, ctx: IngestContext) -> list[RawTable]:
         if len(scanned_pages) > limits.max_ocr_pages:
             raise LimitExceeded("too_many_ocr_pages", count=len(scanned_pages), limit=limits.max_ocr_pages, needs_selection=True)
         tables: list[RawTable] = []
-        # --- pages texte : tableaux avec fusion inter-pages
+        # --- text pages: tables merged across pages
         current: RawTable | None = None
         current_header: tuple | None = None
         text_lines_total: list[tuple[str, str]] = []
@@ -128,7 +128,7 @@ def parse_pdf(path: Path, name: str, ctx: IngestContext) -> list[RawTable]:
             ctx.progress("extract", 0.1 + 0.4 * (i + 1) / max(1, len(text_pages)))
         for t in tables:
             mark_rows(t)
-        # --- pages scannées : OCR
+        # --- scanned pages: OCR
         if scanned_pages:
             langs = ocr_langs(ctx.ui_lang, ctx.options.get("ocr_lang"))
             doc = pdfium.PdfDocument(str(path))
@@ -147,7 +147,7 @@ def parse_pdf(path: Path, name: str, ctx: IngestContext) -> list[RawTable]:
                     gray = prepare_image(img_path, limits.max_image_pixels)
                     words = run_ocr(gray, ctx.tesseract_cmd, langs)
                     grid, srcs, meta, low = words_to_grid(words, p)
-                    # Les coordonnées OCR sont celles de l'image préparée (même taille si pas d'agrandissement)
+                    # OCR coordinates refer to the prepared image (same size when there is no upscaling)
                     for t in structure_grid(grid, srcs, f"{name} · OCR p.{p}", "ocr", cell_meta=meta):
                         t.images[str(p)] = img_name
                         t.note("ocr_page", page=p, langs=langs)

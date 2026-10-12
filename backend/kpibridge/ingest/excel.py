@@ -1,7 +1,7 @@
-"""Excel : XLSX (openpyxl, lecture seule, valeurs en cache uniquement) et XLS (xlrd).
+"""Excel: XLSX (openpyxl, read-only, cached values only) and XLS (xlrd).
 
-Aucune formule n'est recalculée et aucun programme externe (Excel, LibreOffice) n'est lancé. Une formule sans valeur
-en cache est marquée « indisponible ». Les macros ne sont jamais exécutées (les fichiers à macros sont refusés en amont).
+No formula is recalculated and no external program (Excel, LibreOffice) is launched. A formula with no cached
+value is flagged "unavailable". Macros are never executed (macro-enabled files are refused upstream).
 """
 
 from __future__ import annotations
@@ -58,7 +58,7 @@ def _encode(value: object, number_format: str | None = None) -> str | None:
 
 
 def _merged_ranges(path: Path) -> dict[str, list[str]]:
-    """Lit les plages fusionnées de chaque feuille directement dans le XML (parseur sans entités externes)."""
+    """Reads each sheet's merged ranges straight from the XML (parser without external entities)."""
     result: dict[str, list[str]] = {}
     with zipfile.ZipFile(path) as zf:
         wb = DET.fromstring(zf.read("xl/workbook.xml"))

@@ -1,8 +1,8 @@
-"""Clarifications prioritaires (1 à 3 par étape) avant calcul, déduites déterministiquement du plan et du profil.
+"""Prioritised clarifications (1 to 3 per step) before computing, derived deterministically from the plan and the profile.
 
-Ordre de priorité : convention de date ambiguë > convention numérique ambiguë > devise inconnue > lignes annulées /
-remboursées > montant de niveau commande répété par ligne > HT/TTC > doublons exacts.
-Aucune question cosmétique (couleur, titre).
+Priority order: ambiguous date convention > ambiguous number convention > unknown currency > cancelled /
+refunded rows > order-level amount repeated on each line > tax-inclusive vs exclusive > exact duplicates.
+No cosmetic question (colour, title).
 """
 
 from __future__ import annotations
@@ -33,7 +33,7 @@ def questions_for(plan: AnalysisPlan, profile: dict[str, Any], cfg: TableConfig,
     cols = columns_by_id(profile)
     used = fields_used(plan)
     qs: list[dict[str, Any]] = []
-    # 1-2. conventions ambiguës sur des champs utilisés (dates : seulement si un KPI temporel / période est utilisé)
+    # 1-2. ambiguous conventions on fields in use (dates: only if a time-based KPI / period is used)
     for tq in table_questions:
         col = tq.get("params", {}).get("column")
         if col not in used:
@@ -62,7 +62,7 @@ def questions_for(plan: AnalysisPlan, profile: dict[str, Any], cfg: TableConfig,
             if any(f.field == c["id"] for f in plan.global_filters):
                 continue
             qs.append({"key": key, "kind": "cancelled_rows", "params": {"column": c["id"], "name": c["name"], "values": vals[:8]}, "options": ["exclude", "include"]})
-    # 5. montant de niveau commande répété sur chaque ligne
+    # 5. order-level amount repeated on every line
     for g in (profile.get("grain") or {}).values():
         for f in g.get("order_level_fields", []):
             key = f"order_level:{f}"
@@ -84,7 +84,7 @@ def questions_for(plan: AnalysisPlan, profile: dict[str, Any], cfg: TableConfig,
     dup = profile.get("duplicates") or {}
     if dup.get("groups") and "duplicates" not in answers and not cfg.confirmed.get("duplicates"):
         qs.append({"key": "duplicates", "kind": "duplicates", "params": {"groups": dup["groups"], "rows": dup["rows"]}, "options": ["keep", "exclude"]})
-    # dédoublonnage des clés, max 3
+    # de-duplicate keys, max 3
     seen: set[str] = set()
     unique = []
     for q in qs:
@@ -96,7 +96,7 @@ def questions_for(plan: AnalysisPlan, profile: dict[str, Any], cfg: TableConfig,
 
 
 def apply_plan_answer(plan: AnalysisPlan, question: dict[str, Any], answer: str) -> AnalysisPlan:
-    """Applique une réponse qui modifie le plan (les réponses de configuration de table sont gérées par le service)."""
+    """Applies an answer that changes the plan (table-configuration answers are handled by the service)."""
     kind = question["kind"]
     data = plan.model_copy(deep=True)
     if kind == "cancelled_rows" and answer == "exclude":

@@ -36,7 +36,7 @@ export default function Upload({ meta, project, onProject, onReady, onReload }: 
     get<ProjectSummary[]>("/projects").then(setProjects).catch(() => undefined);
   }, [project?.id]);
 
-  // reprise d'une tâche d'import active après rechargement
+  // resume an active import job after a reload
   useEffect(() => {
     const active = project?.active_jobs.find((j) => j.kind === "ingest");
     if (active && !jobId) setJobId(active.id);

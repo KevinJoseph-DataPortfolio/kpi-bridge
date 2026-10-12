@@ -1,4 +1,4 @@
-"""Gestionnaires de tâches exécutés dans le sous-processus du worker."""
+"""Job handlers run inside the worker's subprocess."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ def _interpret(settings: Settings, db: Database, job_id: str, payload: dict[str,
 
 
 def _sleep_test(settings: Settings, db: Database, job_id: str, payload: dict[str, Any], work_dir: Path) -> dict[str, Any]:
-    """Tâche de test (annulation / crash / délai) : n'est enregistrée que si KPI_ENABLE_TEST_JOBS=1."""
+    """Test job (cancellation / crash / timeout): registered only when KPI_ENABLE_TEST_JOBS=1."""
     import os
     import time
 

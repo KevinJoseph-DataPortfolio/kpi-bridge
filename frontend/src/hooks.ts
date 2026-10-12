@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { get } from "./api";
 import type { Job } from "./types";
 
-// Suivi d'une tâche serveur ; la tâche continue côté serveur même si la page est rechargée.
+// Tracks a server job; the job keeps running server-side even if the page is reloaded.
 export function useJob(jobId: string | null, onFinish?: (job: Job) => void): Job | null {
   const [job, setJob] = useState<Job | null>(null);
   const cb = useRef(onFinish);
@@ -24,7 +24,7 @@ export function useJob(jobId: string | null, onFinish?: (job: Job) => void): Job
           return;
         }
       } catch {
-        /* réessai */
+        /* retry */
       }
       timer = setTimeout(tick, 600);
     };

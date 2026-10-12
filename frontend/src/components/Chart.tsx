@@ -30,7 +30,7 @@ export default function Chart({ data, grain }: { data: ChartData; grain: string 
         name: s.currency ?? data.title,
         type: data.type === "line" ? "line" : "bar",
         data: values,
-        connectNulls: false, // une période absente reste un trou, jamais un zéro
+        connectNulls: false, // a missing period stays a gap, never a zero
         showSymbol: true,
         itemStyle: { color: PALETTE[i % PALETTE.length] },
         barMaxWidth: 36,
@@ -53,7 +53,7 @@ export default function Chart({ data, grain }: { data: ChartData; grain: string 
       legend: data.series.length > 1 ? { top: 0 } : undefined,
       tooltip: {
         trigger: "axis",
-        // Contenu HTML construit uniquement à partir de texte échappé
+        // HTML content built only from escaped text
         formatter: (params: unknown) => {
           const list = (Array.isArray(params) ? params : [params]) as { dataIndex: number; seriesIndex: number; marker: string }[];
           if (!list.length) return "";

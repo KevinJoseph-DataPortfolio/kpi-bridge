@@ -1,4 +1,4 @@
-"""Règles de calcul centrales (docs/KPI_RULES.md). Valeurs attendues calculées à la main."""
+"""Core computation rules (docs/KPI_RULES.md). Expected values computed by hand."""
 
 from __future__ import annotations
 
@@ -26,9 +26,9 @@ def test_average_basket_uses_distinct_orders_not_rows(env):
     o, a = env.col(tid, "order"), env.col(tid, "amount")
     spec = {"metrics": [metric("basket", "currency", agg("sum", a), agg("count_distinct", o), kind="ratio")]}
     dash = env.dashboard(tid, spec, answers={"cancelled_rows": "include"})
-    # 250 / 3 commandes (et non 250 / 5 lignes = 50)
+    # 250 / 3 orders (not 250 / 5 rows = 50)
     assert value(dash, "basket") == [("EUR", "83.33333333333333333333333333")] or value(dash, "basket")[0][1].startswith("83.333333")
-    # avec exclusion des annulations : 205 / 2 = 102.5
+    # with cancellations excluded: 205 / 2 = 102.5
     dash = env.dashboard(tid, spec, answers={"cancelled_rows": "exclude"})
     assert Decimal(value(dash, "basket")[0][1]) == Decimal("102.5")
 
@@ -38,11 +38,11 @@ def test_weighted_rate_not_average_of_rates(env):
     tid = env.ingest_bytes("r.csv", data.encode())[0]
     v, c, r = env.col(tid, "visits"), env.col(tid, "conversions"), env.col(tid, "rate")
     dash = env.dashboard(tid, {"metrics": [metric("rate", "percent", agg("sum", c), agg("sum", v), kind="percent_of")]})
-    # (10 + 5) / (1000 + 10) × 100 = 1.4851…  (la moyenne des taux donnerait 25.5)
+    # (10 + 5) / (1000 + 10) × 100 = 1.4851…  (the average of the rates would give 25.5)
     assert value(dash, "rate")[0][1].startswith("1.485148514")
-    # moyenne brute d'une colonne de taux : refusée sans règle explicite
+    # raw average of a rate column: refused without an explicit rule
     plan = env.plans.builder(env.pid, tid, {"metrics": [metric("avg_rate", "percent", agg("avg", r))]}, "fr")
-    assert plan["status"] == "ready"  # 'rate' est numérique, pas pourcentage typé
+    assert plan["status"] == "ready"  # 'rate' is numeric, not a typed percentage
     data2 = "store,rate\nA,1%\nB,50%\n"
     tid2 = env.ingest_bytes("r2.csv", data2.encode())[0]
     plan = env.plans.builder(env.pid, tid2, {"metrics": [metric("avg_rate", "percent", agg("avg", env.col(tid2, "rate")))]}, "fr")
@@ -61,7 +61,7 @@ def test_missing_costs_zero_denominator_missing_month_mixed_currencies(env):
     )
     tid = env.ingest_bytes("m.csv", data.encode())[0]
     d, a, cost, q, cur = (env.col(tid, n) for n in ("date", "amount", "cost", "qty", "currency"))
-    # pas de suggestion de marge si les coûts sont vides ? la colonne existe mais n'a aucune valeur
+    # no margin suggestion if the costs are empty? the column exists but has no value
     spec = {
         "metrics": [
             metric("sales", "currency", agg("sum", a), compare="previous_period"),
@@ -72,19 +72,19 @@ def test_missing_costs_zero_denominator_missing_month_mixed_currencies(env):
         "period_field": d,
     }
     dash = env.dashboard(tid, spec)
-    # devises mélangées : résultats séparés, aucune conversion
+    # mixed currencies: separate results, no conversion
     assert sorted(value(dash, "sales")) == [("EUR", "125"), ("USD", "50")]
-    # coûts absents : indisponible, jamais 0
+    # missing costs: unavailable, never 0
     assert card(dash, "cost")["status"] == "unavailable"
     assert card(dash, "cost")["reason"] == "no_values"
-    # dénominateur nul : indisponible avec motif
+    # zero denominator: unavailable with a reason
     vals = {v["currency"]: v for v in card(dash, "unit")["values"]}
     assert vals["EUR"]["value"] is None and vals["EUR"]["reason"] == "division_by_zero"
-    # mois absent (février) : trou explicite, pas de zéro
+    # missing month (February): explicit gap, no zero
     eur = next(s for s in dash["charts"][0]["series"] if s["currency"] == "EUR")
     feb = next(p for p in eur["points"] if p["x"] == "2026-02-01")
     assert feb["y"] is None
-    # variation : mars vs février — février sans données -> pas de variation inventée
+    # change: March vs February — February has no data -> no invented change
     var = card(dash, "sales")["variation"]
     assert var["status"] == "unavailable" and var["reason"] == "no_comparable_period"
 
@@ -116,8 +116,8 @@ def test_order_level_amount_not_summed_per_line(env):
     plan = env.plans.answer(plan["id"], {q["key"]: "once_per_order"})
     env.plans.validate(plan["id"])
     dash = env.plans.dashboard(plan["id"], None)
-    assert value(dash, "ca") == [(None, "140")]  # et non 240
-    # répartir ce montant par produit compterait deux fois la commande O1 : refusé
+    assert value(dash, "ca") == [(None, "140")]  # not 240
+    # splitting this amount by product would count order O1 twice: refused
     plan2 = env.builder_plan(tid, {"metrics": [metric("ca", "number", agg("sum", t, per=o))],
                                    "charts": [{"id": "p", "type": "bar", "metric": "ca", "dimension": env.col(tid, "product")}]}, answers={})
     env.plans.validate(plan2["id"])
@@ -142,7 +142,7 @@ def test_global_filter_applies_to_cards_charts_and_table(env):
     from kpibridge.engine.compute import UserFilters
 
     _cols, _labels, rows = eng.all_rows(UserFilters.from_dict({"dims": {p: ["P1"]}}))
-    assert len(rows) == 2  # l'export CSV suit le même périmètre
+    assert len(rows) == 2  # the CSV export follows the same scope
 
 
 def test_full_scope_never_sampled(env):

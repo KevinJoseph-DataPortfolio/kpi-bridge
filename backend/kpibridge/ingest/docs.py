@@ -1,4 +1,4 @@
-"""DOCX (tableaux + texte), TXT (délimité ou texte libre) et JSON (listes d'objets aplaties)."""
+"""DOCX (tables + text), TXT (delimited or free text) and JSON (flattened lists of objects)."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from .text import extract_text_values
 
 
 def parse_docx(path: Path, name: str, ctx: IngestContext) -> list[RawTable]:
-    import docx  # python-docx : parseur lxml sans résolution d'entités
+    import docx  # python-docx: lxml parser without entity resolution
 
     try:
         document = docx.Document(str(path))
@@ -28,7 +28,7 @@ def parse_docx(path: Path, name: str, ctx: IngestContext) -> list[RawTable]:
             cells: list[str | None] = []
             prev_tc = None
             for cell in row.cells:
-                # cellules fusionnées horizontalement : python-docx répète la même cellule
+                # horizontally merged cells: python-docx repeats the same cell
                 if prev_tc is not None and cell._tc is prev_tc:
                     cells.append(None)
                     continue

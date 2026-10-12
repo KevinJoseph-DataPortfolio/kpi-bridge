@@ -1,7 +1,7 @@
-"""Test de fumée d'une instance lancée : session → exemple → demande libre (IA réelle ou substitut) → clarifications →
-validation → dashboard → filtre → exports. Usage : python scripts/smoke_api.py --port 8765 [--lang fr]
+"""Smoke test of a running instance: session → example → free-text request (real AI or substitute) → clarifications →
+validation → dashboard → filter → exports. Usage: python scripts/smoke_api.py --port 8765 [--lang fr]
 
-Le lien de session est créé localement (même KPI_DATA_DIR que l'instance) et n'est jamais affiché.
+The session link is created locally (same KPI_DATA_DIR as the instance) and is never displayed.
 """
 
 from __future__ import annotations

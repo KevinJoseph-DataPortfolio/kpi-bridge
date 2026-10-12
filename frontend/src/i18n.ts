@@ -39,7 +39,7 @@ void i18n.use(initReactI18next).init({
   },
   lng: initialLang(),
   fallbackLng: "en",
-  interpolation: { escapeValue: false }, // React échappe déjà tout le texte rendu
+  interpolation: { escapeValue: false }, // React already escapes all rendered text
   returnNull: false,
 });
 

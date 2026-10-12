@@ -1,4 +1,4 @@
-"""Services métier partagés entre l'API et le worker : projets, fichiers, tables, versions, plans."""
+"""Business services shared by the API and the worker: projects, files, tables, versions, plans."""
 
 from __future__ import annotations
 
@@ -72,7 +72,7 @@ class Services:
 
     # ------------------------------------------------------------------ fichiers
     def save_upload(self, pid: str, filename: str, chunks: Any, options: dict[str, Any] | None = None) -> dict[str, Any]:
-        """Enregistre un fichier en flux avec arrêt dès que la limite d'octets est dépassée."""
+        """Saves a file as a stream, stopping as soon as the byte limit is exceeded."""
         self.get_project(pid)
         ext = check_extension(filename)
         fid = new_id("src")
@@ -182,7 +182,7 @@ class Services:
             self.db.run("UPDATE source_files SET status='failed', error_code=?, error_params=? WHERE id=?", (exc.code, dumps(exc.params), fid))
             raise
         prog("verify", 0.9)
-        # remplace les tables existantes de ce fichier (réimport avec options)
+        # replaces this file's existing tables (re-import with options)
         for old in self.db.all("SELECT id FROM extracted_tables WHERE source_file_id=?", (fid,)):
             self._remove_table_files(pid, old["id"])
         self.db.run("DELETE FROM extracted_tables WHERE source_file_id=?", (fid,))
@@ -190,7 +190,7 @@ class Services:
         for t in tables:
             tid = new_id("tbl")
             raw_path = project_path(self.settings, pid, "raw", f"{tid}.parquet")
-            # images OCR rasterisées : copiées dans le projet (aperçu des cellules sources)
+            # rasterised OCR images: copied into the project (source-cell preview)
             images = {}
             for page, img in t.images.items():
                 src_img = Path(work_dir) / img
@@ -245,7 +245,7 @@ class Services:
                 (new_id("trf"), pid, tid, prev or None, version, op, dumps(params), t),
             )
             con.execute("UPDATE extracted_tables SET current_version=? WHERE id=?", (version, tid))
-            # invalide les caches dépendants
+            # invalidate dependent caches
             con.execute("DELETE FROM result_cache WHERE plan_id IN (SELECT id FROM analysis_plans WHERE table_id=?)", (tid,))
         return version
 
@@ -337,7 +337,7 @@ class Services:
 
     @staticmethod
     def pending_table_questions(meta: dict[str, Any], cfg: TableConfig, profile: dict[str, Any]) -> list[dict[str, Any]]:
-        """Questions de structure encore ouvertes (en-tête incertain, conventions ambiguës non confirmées)."""
+        """Structure questions still open (uncertain header, unconfirmed ambiguous conventions)."""
         out = []
         for q in meta.get("questions", []):
             key = q["kind"] + (":" + q["params"]["column"] if "column" in q.get("params", {}) else "")

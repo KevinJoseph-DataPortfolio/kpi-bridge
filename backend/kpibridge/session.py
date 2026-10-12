@@ -1,4 +1,4 @@
-"""CLI utilisé par le lanceur : `python -m kpibridge.session new` affiche l'URL d'ouverture à usage unique."""
+"""CLI used by the launcher: `python -m kpibridge.session new` prints the single-use opening URL."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ def main(argv: list[str]) -> int:
     settings = get_settings()
     ensure_dirs(settings)
     token = create_bootstrap_token(settings)
-    # Le secret est dans le fragment : il n'est jamais envoyé dans une requête HTTP ni écrit dans un journal serveur.
+    # The secret is in the fragment: it is never sent in an HTTP request nor written to a server log.
     print(f"http://127.0.0.1:{settings.port}/#token={token}")
     return 0
 

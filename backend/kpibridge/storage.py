@@ -1,4 +1,4 @@
-"""Stockage privé des projets : noms générés, chemins résolus côté serveur uniquement."""
+"""Private project storage: generated names, paths resolved server-side only."""
 
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ def project_path(settings: Settings, project_id: str, *parts: str) -> Path:
 
 
 def restrict(path: Path) -> None:
-    """Permissions restrictives (POSIX). Sous Windows, le profil utilisateur porte déjà l'ACL."""
+    """Restrictive permissions (POSIX). On Windows, the user profile already carries the ACL."""
     try:
         if path.is_dir():
             os.chmod(path, stat.S_IRWXU)
@@ -81,7 +81,7 @@ def delete_project_files(settings: Settings, project_id: str) -> None:
 
 
 def sweep_tmp(settings: Settings) -> int:
-    """Supprime les temporaires restés après un arrêt brutal."""
+    """Removes temporary files left after a hard stop."""
     count = 0
     if settings.tmp_dir.exists():
         for child in settings.tmp_dir.iterdir():

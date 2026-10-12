@@ -1,4 +1,4 @@
-"""Fixtures communes. Chaque test dispose d'un répertoire de données isolé."""
+"""Shared fixtures. Every test gets an isolated data directory."""
 
 from __future__ import annotations
 

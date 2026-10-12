@@ -1,5 +1,5 @@
-// Affichage localisé. Les valeurs arrivent comme chaînes décimales exactes ; Intl.NumberFormat accepte les chaînes
-// (pas de conversion intermédiaire en flottant) et arrondit uniquement pour l'affichage.
+// Localised display. Values arrive as exact decimal strings; Intl.NumberFormat accepts strings
+// (no intermediate float conversion) and rounds only for display.
 
 const DEFAULT_DECIMALS: Record<string, number> = { currency: 2, percent: 1, count: 0, ratio: 2, number: 2 };
 
@@ -23,7 +23,7 @@ export function formatValue(
     opts.currency = currency;
   }
   const nf = new Intl.NumberFormat(locale(lang), opts);
-  // format(string) : précision décimale préservée (Intl.NumberFormat v3)
+  // format(string): decimal precision preserved (Intl.NumberFormat v3)
   const formatted = nf.format(value as unknown as number);
   return unit === "percent" ? `${formatted}\u00A0%` : formatted;
 }

@@ -1,7 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-// En développement uniquement : proxy vers l'API locale. La distribution sert le build compilé (pas de serveur Vite).
+// Development only: proxy to the local API. The distribution serves the compiled build (no Vite server).
 export default defineConfig({
   plugins: [react()],
   server: {

@@ -1,4 +1,4 @@
-"""Validation sémantique d'un plan contre le profil réel de la table (champs, types, unités, devises, grain)."""
+"""Semantic validation of a plan against the table's real profile (fields, types, units, currencies, grain)."""
 
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ def parse_plan(data: Any) -> tuple[AnalysisPlan | None, list[PlanIssue]]:
 
 
 def coerce_value(value: str, col_type: str) -> Any:
-    """Convertit une valeur de filtre (chaîne) vers le type canonique de la colonne. Lève ValueError."""
+    """Converts a filter value (string) to the column's canonical type. Raises ValueError."""
     if col_type in NUMERIC:
         try:
             return Decimal(value)

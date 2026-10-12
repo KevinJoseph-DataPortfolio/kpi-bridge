@@ -1,4 +1,4 @@
-"""Ingestion : détection de format puis parseur dédié. Exécutée dans le worker, jamais dans l'API."""
+"""Ingestion: format detection, then a dedicated parser. Runs in the worker, never in the API."""
 
 from __future__ import annotations
 

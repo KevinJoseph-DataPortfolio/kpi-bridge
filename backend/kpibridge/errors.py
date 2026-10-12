@@ -1,4 +1,4 @@
-"""Erreurs métier traduisibles : un code stable + des paramètres, jamais de trace système côté utilisateur."""
+"""Translatable business errors: a stable code plus parameters, never a system trace shown to the user."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from typing import Any
 
 
 class UserError(Exception):
-    """Erreur présentable à l'utilisateur. Le frontend traduit `code` via `errors.<code>`."""
+    """User-presentable error. The frontend translates `code` through `errors.<code>`."""
 
     status_code = 400
 
@@ -33,4 +33,4 @@ class LimitExceeded(UserError):
 
 
 class JobCancelled(Exception):
-    """Levée dans un traitement lorsque l'annulation est demandée."""
+    """Raised inside a job when cancellation is requested."""

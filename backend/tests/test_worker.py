@@ -1,4 +1,4 @@
-"""Worker réel (sous-processus) : annulation, crash, reprise bornée, délai, temporaires nettoyés."""
+"""Real worker (subprocess): cancellation, crash, bounded retry, timeout, temporary files cleaned."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ def test_cancel_running_job(worker_env):
     assert jobs.request_cancel(db, jid)
     j = wait_for(db, jid, ("cancelled",), timeout=20)
     assert j["status"] == "cancelled"
-    assert not (settings.tmp_dir / jid).exists()  # temporaires supprimés
+    assert not (settings.tmp_dir / jid).exists()  # temporary files removed
 
 
 def test_crash_is_retried_then_failed_and_timeout_enforced(worker_env):
@@ -58,7 +58,7 @@ def test_crash_is_retried_then_failed_and_timeout_enforced(worker_env):
     procs.append(start_worker(settings.data_dir))
     jid = jobs.enqueue(db, "sleep_test", None, {"crash": True}, timeout_s=60, max_attempts=2)
     j = wait_for(db, jid, ("failed",), timeout=60)
-    assert j["error"]["code"] == "worker_crashed" and j["attempts"] == 2  # reprise bornée : 2 tentatives
+    assert j["error"]["code"] == "worker_crashed" and j["attempts"] == 2  # bounded retry: 2 attempts
     jt = jobs.enqueue(db, "sleep_test", None, {"seconds": 30}, timeout_s=2)
     j = wait_for(db, jt, ("failed",), timeout=30)
     assert j["error"]["code"] == "job_timeout"
@@ -70,11 +70,11 @@ def test_supervisor_crash_recovery_on_restart(worker_env):
     procs.append(p)
     jid = jobs.enqueue(db, "sleep_test", None, {"seconds": 3}, timeout_s=60, max_attempts=2)
     wait_for(db, jid, ("running",))
-    p.kill()  # arrêt brutal du superviseur pendant la tâche
+    p.kill()  # hard stop of the supervisor during the job
     p.wait(10)
     (settings.tmp_dir / "orphan-file.tmp").write_text("x")
     assert jobs.get(db, jid)["status"] == "running"
     procs.append(start_worker(settings.data_dir))
-    j = wait_for(db, jid, ("done",), timeout=60)  # relancée une fois, résultat cohérent
+    j = wait_for(db, jid, ("done",), timeout=60)  # requeued once, consistent result
     assert j["result"] == {"slept": 3}
-    assert not (settings.tmp_dir / "orphan-file.tmp").exists()  # balayage au redémarrage
+    assert not (settings.tmp_dir / "orphan-file.tmp").exists()  # sweep on restart

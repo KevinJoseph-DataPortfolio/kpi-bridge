@@ -1,7 +1,7 @@
-"""Suggestions fondées uniquement sur les champs réellement disponibles (déterministes, sans IA).
+"""Suggestions based only on the fields actually available (deterministic, no AI).
 
-Chaque suggestion porte un fragment de plan. Choisir des suggestions sans texte libre construit le plan sans modèle :
-ce n'est pas une interprétation de langage naturel, et c'est présenté comme tel.
+Each suggestion carries a plan fragment. Picking suggestions with no free text builds the plan without a model:
+this is not natural-language interpretation, and it is presented as such.
 """
 
 from __future__ import annotations

@@ -1,4 +1,4 @@
-"""Interprétation (modèle substitut CI explicitement identifié) : réparation bornée, refus, injection."""
+"""Interpretation (explicitly identified CI substitute model): bounded repair, refusal, injection."""
 
 from __future__ import annotations
 

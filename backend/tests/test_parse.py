@@ -12,7 +12,7 @@ def test_number_conventions_exact():
     assert parse_number("-0,10", "comma").value == Decimal("-0.10")
     assert parse_number("12,5 %", "comma").percent is True
     assert parse_number("abc", "dot") is None
-    # 0.1 + 0.2 exact en décimal
+    # 0.1 + 0.2 exact in decimal
     assert parse_number("0.1", "dot").value + parse_number("0.2", "dot").value == Decimal("0.3")
 
 
@@ -34,6 +34,6 @@ def test_date_order_ambiguous_until_resolved():
     assert order == "MDY" and not ambiguous
     assert parse_date("03/04/2026", "DMY").isoformat() == "2026-04-03"
     assert parse_date("03/04/2026", "MDY").isoformat() == "2026-03-04"
-    assert parse_date("03/04/2026", None) is None  # jamais de supposition cachée
+    assert parse_date("03/04/2026", None) is None  # never a hidden assumption
     assert parse_date("2026年3月4日", None).isoformat() == "2026-03-04"
     assert parse_date("4 марта 2026", None).isoformat() == "2026-03-04"

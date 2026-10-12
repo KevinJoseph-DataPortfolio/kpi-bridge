@@ -1,7 +1,7 @@
-"""Format de sortie demandé au modèle (non récursif, plus simple que la grammaire) et compilation vers `AnalysisPlan`.
+"""Output format requested from the model (non-recursive, simpler than the grammar) and its compilation to `AnalysisPlan`.
 
-Le constructeur guidé utilise exactement le même format : les deux chemins passent par la même compilation et la
-même validation, puis par le même moteur déterministe.
+The guided builder uses exactly the same format: both paths go through the same compilation and the same
+validation, then through the same deterministic engine.
 """
 
 from __future__ import annotations

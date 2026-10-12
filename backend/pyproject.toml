@@ -1,7 +1,7 @@
 [project]
 name = "kpibridge"
 version = "1.0.0"
-description = "KPI Bridge — transformer des données accessibles en dashboard vérifiable (local, mono-utilisateur)"
+description = "KPI Bridge — turns accessible data into a verifiable dashboard (local, single-user)"
 license = "MIT"
 requires-python = ">=3.12"
 dependencies = [

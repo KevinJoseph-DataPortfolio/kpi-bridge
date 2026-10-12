@@ -1,15 +1,15 @@
-"""Protections HTTP de l'application locale.
+"""HTTP protections of the local application.
 
-Modèle : application mono-utilisateur sur 127.0.0.1. Menaces visées : page web tierce ouverte dans le navigateur
-(CSRF, lecture cross-origin, rebinding DNS), autre utilisateur/processus local sans le secret de session, contenu
-de fichier malveillant (XSS). Voir SECURITY.md.
+Model: single-user application on 127.0.0.1. Threats addressed: a third-party web page open in the browser
+(CSRF, cross-origin read, DNS rebinding), another local user/process without the session secret, malicious file
+content (XSS). See SECURITY.md.
 
-Session :
-1. le lanceur exécute `python -m kpibridge.session new` : un secret aléatoire à usage unique est généré, seule son
-   empreinte SHA-256 est écrite dans `run/bootstrap/` (permissions restrictives), le secret est transmis au navigateur
-   dans le fragment d'URL (`#token=…`, jamais envoyé au serveur ni journalisé) ;
-2. la page l'échange immédiatement via POST contre un cookie HttpOnly/SameSite=Strict, puis efface le fragment ;
-3. l'empreinte est supprimée : le secret ne peut plus resservir. Expiration : 5 minutes.
+Session:
+1. the launcher runs `python -m kpibridge.session new`: a random single-use secret is generated, only its SHA-256
+   digest is written to `run/bootstrap/` (restrictive permissions), and the secret is handed to the browser in
+   the URL fragment (`#token=…`, never sent to the server nor logged);
+2. the page immediately exchanges it through a POST for an HttpOnly/SameSite=Strict cookie, then clears the fragment;
+3. the digest is deleted: the secret cannot be reused. Expiry: 5 minutes.
 """
 
 from __future__ import annotations
@@ -67,7 +67,7 @@ def consume_bootstrap_token(settings: Settings, token: str) -> bool:
     if not token or len(token) > 200:
         return False
     d = bootstrap_dir(settings)
-    # purge des jetons expirés
+    # purge expired tokens
     for p in d.glob("*.pending"):
         try:
             if time.time() - float(p.read_text()) > settings.bootstrap_ttl_s:
@@ -79,7 +79,7 @@ def consume_bootstrap_token(settings: Settings, token: str) -> bool:
         created = float(path.read_text())
     except (OSError, ValueError):
         return False
-    path.unlink(missing_ok=True)  # usage unique, même en cas d'expiration
+    path.unlink(missing_ok=True)  # single use, even on expiry
     return time.time() - created <= settings.bootstrap_ttl_s
 
 

@@ -14,7 +14,7 @@ export default tseslint.config(
       "react-hooks/exhaustive-deps": "warn",
       "no-restricted-syntax": [
         "error",
-        { selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']", message: "Interdit : tout contenu est rendu comme texte échappé." },
+        { selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']", message: "Forbidden: all content is rendered as escaped text." },
       ],
     },
   },

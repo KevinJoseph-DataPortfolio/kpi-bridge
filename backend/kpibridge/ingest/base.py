@@ -1,15 +1,15 @@
-"""Structures communes à tous les parseurs.
+"""Structures shared by all parsers.
 
-Les cellules brutes sont des chaînes. Les valeurs typées nativement par le format (nombre Excel, date Excel,
-booléen JSON…) sont encodées avec un préfixe de contrôle `\\x1f` qui ne peut pas apparaître dans un texte
-utilisateur (les caractères de contrôle sont retirés des textes) :
+Raw cells are strings. Values natively typed by the format (Excel number, Excel date, JSON boolean…) are
+encoded with a control prefix `\\x1f` that cannot appear in user text (control characters are stripped
+from texts):
 
-- ``\\x1fN<decimal>`` nombre natif (représentation canonique, point décimal)
-- ``\\x1fP<decimal>`` nombre natif au format pourcentage (fraction : 0.125 = 12,5 %)
-- ``\\x1fD<iso>`` date native ISO 8601
-- ``\\x1fB<true|false>`` booléen natif
-- ``\\x1fF`` formule sans valeur en cache (valeur indisponible)
-- ``\\x1fC`` + l'un des codes ci-dessus : valeur issue du cache d'une formule
+- ``\\x1fN<decimal>`` native number (canonical representation, decimal point)
+- ``\\x1fP<decimal>`` native percentage-formatted number (fraction: 0.125 = 12.5 %)
+- ``\\x1fD<iso>`` native ISO 8601 date
+- ``\\x1fB<true|false>`` native boolean
+- ``\\x1fF`` formula with no cached value (value unavailable)
+- ``\\x1fC`` + one of the codes above: value taken from a formula's cache
 """
 
 from __future__ import annotations
@@ -91,7 +91,7 @@ def display(cell: str | None) -> str:
 
 @dataclass
 class RawTable:
-    """Tableau extrait, non typé, avec provenance par ligne."""
+    """Extracted, untyped table with per-row provenance."""
 
     name: str
     kind: str  # csv | sheet | pdf_text | ocr | docx | text | json | join
@@ -104,7 +104,7 @@ class RawTable:
     cell_meta: dict[str, dict[str, Any]] = field(default_factory=dict)  # "r,c" -> {conf, bbox, page}
     col_refs: list[str] = field(default_factory=list)
     notes: list[dict[str, Any]] = field(default_factory=list)
-    images: dict[str, str] = field(default_factory=dict)  # page -> nom de fichier image rasterisée (OCR)
+    images: dict[str, str] = field(default_factory=dict)  # page -> rasterised image file name (OCR)
 
     @property
     def n_cols(self) -> int:
@@ -130,7 +130,7 @@ class RawTable:
 
 @dataclass
 class IngestContext:
-    """Contexte d'un import : limites, options utilisateur et rappel de progression/annulation."""
+    """Import context: limits, user options and the progress/cancellation callback."""
 
     limits: Any
     options: dict[str, Any]

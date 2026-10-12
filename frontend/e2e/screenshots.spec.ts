@@ -1,7 +1,7 @@
 import { execSync } from "node:child_process";
 import { expect, test } from "@playwright/test";
 
-// Captures de contrôle visuel (données synthétiques uniquement). Lancement : KPI_SCREENSHOTS=1 npx playwright test screenshots
+// Visual-check captures (synthetic data only). Run: KPI_SCREENSHOTS=1 npx playwright test screenshots
 test.skip(!process.env.KPI_SCREENSHOTS, "captures à la demande");
 
 const PY = process.env.KPI_E2E_PYTHON ?? "python";
@@ -27,7 +27,7 @@ for (const lang of ["en", "fr", "ru", "zh-Hans"]) {
     await page.waitForTimeout(800);
     await page.screenshot({ path: `../docs/screenshots/dashboard-${lang}-${info.project.name}.png`, fullPage: true });
 
-    // Vignettes du README (anglais, bureau) : tableau de bord au-dessus de la ligne de flottaison, puis la preuve d'un chiffre.
+    // README thumbnails (English, desktop): dashboard above the fold, then the evidence behind a figure.
     if (lang === "en" && info.project.name === "desktop") {
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.waitForTimeout(600);

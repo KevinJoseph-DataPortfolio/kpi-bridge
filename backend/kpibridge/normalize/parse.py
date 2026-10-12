@@ -1,4 +1,4 @@
-"""Analyse des valeurs : nombres (conventions), montants, pourcentages, dates. Représentations canoniques exactes."""
+"""Value parsing: numbers (conventions), amounts, percentages, dates. Exact canonical representations."""
 
 from __future__ import annotations
 
@@ -40,7 +40,7 @@ class Parsed:
 
 
 def split_number(text: str) -> tuple[str, str | None, bool, bool] | None:
-    """Retourne (noyau, devise, pourcentage, négatif) ou None si la forme n'est pas numérique."""
+    """Returns (core, currency, percentage, negative) or None if the form is not numeric."""
     m = NUMBER_RE.match(text.strip())
     if not m:
         return None
@@ -92,7 +92,7 @@ def parse_number(text: str, convention: str) -> Parsed | None:
 
 
 def infer_convention(values: list[str]) -> tuple[str | None, bool, int, list[str]]:
-    """Retourne (convention, ambiguë, nb_valides, exemples ambigus)."""
+    """Returns (convention, ambiguous, valid_count, ambiguous examples)."""
     dot_ok = comma_ok = 0
     differ: list[str] = []
     numeric_like = 0
@@ -131,7 +131,7 @@ MONTHS = {
     # es
     "enero": 1, "febrero": 2, "marzo": 3, "abril": 4, "mayo": 5, "junio": 6, "julio": 7, "agosto": 8, "septiembre": 9, "setiembre": 9,
     "octubre": 10, "noviembre": 11, "diciembre": 12, "ene": 1, "dic": 12,
-    # ru (nominatif + génitif)
+    # ru (nominative + genitive)
     "январь": 1, "января": 1, "февраль": 2, "февраля": 2, "март": 3, "марта": 3, "апрель": 4, "апреля": 4, "май": 5, "мая": 5,
     "июнь": 6, "июня": 6, "июль": 7, "июля": 7, "август": 8, "августа": 8, "сентябрь": 9, "сентября": 9, "октябрь": 10, "октября": 10,
     "ноябрь": 11, "ноября": 11, "декабрь": 12, "декабря": 12,
@@ -159,7 +159,7 @@ def _year(y: str) -> int:
 
 
 def date_shape(text: str) -> str | None:
-    """Classe la forme d'une date : 'iso', 'ymd', 'dm_or_md', 'ym', 'zh', 'named' ou None."""
+    """Classifies a date's form: 'iso', 'ymd', 'dm_or_md', 'ym', 'zh', 'named' or None."""
     t = text.strip()
     if ISO_RE.match(t):
         return "iso"
@@ -178,7 +178,7 @@ def date_shape(text: str) -> str | None:
 
 
 def parse_date(text: str, order: str | None) -> dt.date | None:
-    """order ∈ {'DMY','MDY'} pour les formes jj/mm ambiguës."""
+    """order ∈ {'DMY','MDY'} for ambiguous dd/mm forms."""
     t = text.strip()
     m = ISO_RE.match(t)
     if m:
@@ -213,7 +213,7 @@ def parse_date(text: str, order: str | None) -> dt.date | None:
 
 
 def infer_date_order(values: list[str]) -> tuple[str | None, bool, list[str]]:
-    """Pour les formes jj/mm ou mm/jj : retourne (ordre, ambigu, exemples)."""
+    """For dd/mm or mm/dd forms: returns (order, ambiguous, examples)."""
     dmy_possible = mdy_possible = True
     ambiguous_examples: list[str] = []
     any_pair = False

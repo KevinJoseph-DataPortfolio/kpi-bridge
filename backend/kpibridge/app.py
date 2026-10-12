@@ -1,4 +1,4 @@
-"""API HTTP versionnée (/api/v1) et service du frontend compilé sous la même origine."""
+"""Versioned HTTP API (/api/v1), serving the built frontend from the same origin."""
 
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ class Ctx:
         self.recipes = Recipes(self.svc, self.plans)
 
 
-# ---------------------------------------------------------------------- modèles de requête
+# ---------------------------------------------------------------------- request models
 class ProjectIn(BaseModel):
     name: str = Field(default="Projet", max_length=120)
     ui_lang: str = "fr"
@@ -161,7 +161,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     api = "/api/v1"
 
-    # ------------------------------------------------------------------ session & méta
+    # ------------------------------------------------------------------ session & meta
     @app.get(f"{api}/health")
     def health() -> dict[str, Any]:
         return {"status": "ok", "version": __version__, "worker": worker_alive(settings.run_dir)}
@@ -245,7 +245,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         declared = request.headers.get("content-length")
         if declared and declared.isdigit() and int(declared) > settings.limits.max_file_bytes:
             raise UserError("file_too_large", status_code=413, limit_mib=settings.limits.max_file_bytes // (1024 * 1024))
-        # Lecture en flux : arrêt dès que la limite est dépassée (pas de stockage complet préalable).
+        # Streamed read: stops as soon as the limit is exceeded (no full buffering beforehand).
         buffer: list[bytes] = []
         total = 0
         async for chunk in request.stream():
@@ -275,7 +275,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         ctx.svc.delete_file(pid, fid)
         return {"deleted": True}
 
-    # ------------------------------------------------------------------ tâches
+    # ------------------------------------------------------------------ jobs
     @app.get(f"{api}/jobs/{{job_id}}")
     def job(job_id: str) -> dict[str, Any]:
         _ids(job_id)
@@ -483,7 +483,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         _project_of_table(ctx, pid, body.table_id)
         return ctx.recipes.apply(rid, pid, body.table_id, body.mapping)
 
-    # ------------------------------------------------------------------ frontend compilé
+    # ------------------------------------------------------------------ built frontend
     static_dir = settings.static_dir
     if static_dir and static_dir.is_dir():
         index = static_dir / "index.html"

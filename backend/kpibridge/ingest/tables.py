@@ -1,12 +1,12 @@
-"""Détection de structure sur une grille de cellules brutes.
+"""Structure detection on a grid of raw cells.
 
-- découpage en blocs (tableaux multiples séparés par des lignes vides) ;
-- lignes de titre au-dessus de l'en-tête ;
-- choix de la ligne d'en-tête (avec niveau de confiance ; incertitude ⇒ choix utilisateur) ;
-- en-têtes répétés, lignes vides, totaux / sous-totaux (mots-clés multilingues ou somme vérifiée).
+- splitting into blocks (several tables separated by empty rows);
+- title rows above the header;
+- header-row choice (with a confidence level; uncertainty ⇒ the user decides);
+- repeated headers, empty rows, totals / subtotals (multilingual keywords or verified sum).
 
-Aucune ligne n'est supprimée : les lignes écartées sont marquées dans `excluded` avec un motif, et l'utilisateur
-peut les réintégrer (transformation réversible).
+No row is deleted: discarded rows are marked in `excluded` with a reason, and the user can bring them back
+(reversible transformation).
 """
 
 from __future__ import annotations
@@ -16,8 +16,8 @@ from decimal import Decimal, InvalidOperation
 
 from .base import RawTable, decode
 
-# Le mot-clé doit OUVRIR la cellule (« Total », « Sous-total Nord », « Итого »…) : un texte qui contient seulement
-# « sum » (ex. une formule textuelle « @SUM(…) ») n'est pas une ligne de total.
+# The keyword must OPEN the cell ("Total", "Sous-total Nord", "Итого"…): a text that merely contains
+# "sum" (e.g. a textual formula "@SUM(…)") is not a total row.
 TOTAL_RE = re.compile(
     r"(?i)^\s*((sous[-\s]?total(es|aux)?|total(es|aux)?|total\s+général|grand\s+total|subtotal|sub-total|total|"
     r"summe|gesamt(summe)?|zwischensumme|insgesamt|итого|всего|подытог|suma|total\s+general)(\b|$|\s)"
@@ -58,7 +58,7 @@ def header_score(rows: list[list[str | None]], idx: int, width: int) -> float:
     fill_ratio = len(filled) / width
     text_ratio = len(texts) / len(filled)
     distinct = len({decode(c)[1] for c in filled}) / len(filled)
-    # La ligne suivante doit ressembler à des données (au moins un nombre ou date) pour renforcer la confiance
+    # The next row must look like data (at least one number or date) to raise confidence
     nxt = rows[idx + 1] if idx + 1 < len(rows) else []
     nxt_num = sum(1 for c in nxt if cell_is_numeric(c) or decode(c)[0] == "D")
     data_bonus = 0.2 if nxt_num > 0 else 0.0
@@ -75,7 +75,7 @@ def detect_header(rows: list[list[str | None]], width: int) -> tuple[int, bool]:
         if s > best + 0.05:
             best_idx, best = i, s
     confident = best >= 0.75
-    # Ambiguïté : deux candidats proches
+    # Ambiguity: two close candidates
     close = [i for i, s in enumerate(scores) if i != best_idx and abs(s - best) < 0.05 and s > 0.6]
     if close:
         confident = False
@@ -83,7 +83,7 @@ def detect_header(rows: list[list[str | None]], width: int) -> tuple[int, bool]:
 
 
 def split_blocks(rows: list[list[str | None]]) -> list[tuple[int, int]]:
-    """Blocs [start, end) de lignes non vides ; une seule ligne vide entre deux blocs de même largeur reste un bloc."""
+    """Blocks [start, end) of non-empty rows; a single empty row between two blocks of the same width stays one block."""
     blocks: list[tuple[int, int]] = []
     start = None
     empty_run = 0
@@ -97,7 +97,7 @@ def split_blocks(rows: list[list[str | None]]) -> list[tuple[int, int]]:
         if start is None:
             start = i
         elif empty_run == 1:
-            # une ligne vide isolée : nouveau tableau si la ligne courante ressemble à un en-tête différent
+            # an isolated empty row: new table if the current row looks like a different header
             prev = rows[i - 2] if i >= 2 else []
             if _looks_like_new_header(row, prev):
                 blocks.append((start, i - 1))
@@ -143,7 +143,7 @@ def _to_decimal(cell: str | None) -> Decimal | None:
 
 
 def mark_rows(table: RawTable) -> None:
-    """Marque en-têtes répétés, lignes vides et totaux dans la zone de données."""
+    """Flags repeated headers, empty rows and totals in the data area."""
     if table.header_row is None:
         return
     start = table.header_row + table.header_depth
@@ -168,7 +168,7 @@ def mark_rows(table: RawTable) -> None:
             run_sums = [Decimal(0)] * width
             run_counts = [0] * width
             continue
-        # Ligne sans libellé dont chaque nombre égale la somme des lignes précédentes ⇒ total implicite
+        # Row without a label whose every number equals the sum of the preceding rows ⇒ implicit total
         nums: dict[int, Decimal] = {}
         for j, c in enumerate(row):
             dv = _to_decimal(c) if cell_is_numeric(c) else None
@@ -194,7 +194,7 @@ def structure_grid(
     col_refs: list[str] | None = None,
     cell_meta: dict | None = None,
 ) -> list[RawTable]:
-    """Découpe une grille en tableaux et détecte leur structure."""
+    """Splits a grid into tables and detects their structure."""
     tables: list[RawTable] = []
     blocks = split_blocks(rows)
     pending_titles: list[str] = []
@@ -203,10 +203,10 @@ def structure_grid(
         width = max((len(r) for r in block_rows), default=0)
         filled_rows = [_filled(r) for r in block_rows]
         if e - s <= 2 and max(filled_rows, default=0) <= 1:
-            # bloc de titre isolé
+            # isolated title block
             pending_titles.extend(str(decode(c)[1]) for r in block_rows for c in r if c not in (None, ""))
             continue
-        # retirer les colonnes entièrement vides du bloc
+        # drop the block's entirely empty columns
         keep = [j for j in range(width) if any(j < len(r) and r[j] not in (None, "") for r in block_rows)]
         block = [[(r[j] if j < len(r) else None) for j in keep] for r in block_rows]
         refs = [col_refs[j] for j in keep] if col_refs else [str(j + 1) for j in keep]
@@ -227,7 +227,7 @@ def structure_grid(
             col_refs=refs,
             cell_meta=meta,
         )
-        # lignes au-dessus de l'en-tête = titres
+        # rows above the header = titles
         for i in range(header_idx):
             t.excluded[i] = "title"
         if pending_titles:

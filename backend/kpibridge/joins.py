@@ -1,8 +1,8 @@
-"""Jointure prudente entre deux tableaux d'un projet.
+"""Cautious join between two tables of a project.
 
-Seule une jointure « plusieurs vers un » (lookup) est autorisée : la clé du tableau de droite doit être unique.
-Contrôles avant création : unicité de la clé, compatibilité des types, nombre de lignes et sommes des colonnes
-numériques du tableau de gauche identiques avant et après. Toute duplication bloque la jointure.
+Only a "many-to-one" join (lookup) is allowed: the right-hand table's key must be unique.
+Checks before creation: key uniqueness, type compatibility, and identical row count and numeric column sums
+of the left-hand table before and after. Any duplication blocks the join.
 """
 
 from __future__ import annotations
@@ -90,7 +90,7 @@ def create_join(svc: Services, pid: str, left_id: str, left_key: str, right_id: 
         rsel = rsel.set_column(0, "__rk", pc.cast(rsel.column(0), left.schema.field(left_key).type))
     left_idx = left.append_column("__lpos", pa.array(range(left.num_rows), type=pa.int64()))
     joined = left_idx.join(rsel, keys=left_key, right_keys="__rk", join_type="left outer").sort_by("__lpos")
-    # contrôles avant/après
+    # before/after checks
     if joined.num_rows != left.num_rows:
         raise UserError("join_blocked", reason="row_count_changed", before=left.num_rows, after=joined.num_rows)
     sums = {}
@@ -121,7 +121,7 @@ def create_join(svc: Services, pid: str, left_id: str, left_key: str, right_id: 
     restrict(raw_path)
     meta = raw.meta_dict()
     cfg, questions = infer_config(raw.rows, meta)
-    # les types d'origine sont conservés (valeurs natives encodées) ; on reporte devise et type texte/identifiant
+    # original types are kept (encoded native values); currency and text/identifier type are carried over
     src_specs = [next(s for s in lv["config"].columns if s.id == c["id"]) for c in lcols] + [
         next(s for s in rv["config"].columns if s.id == c) for c in bring
     ]

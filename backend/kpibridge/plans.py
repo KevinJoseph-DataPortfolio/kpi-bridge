@@ -1,4 +1,4 @@
-"""Cycle de vie des demandes et plans : création, interprétation, clarification, validation, calcul, preuve."""
+"""Request and plan lifecycle: creation, interpretation, clarification, validation, computation, evidence."""
 
 from __future__ import annotations
 
@@ -55,7 +55,7 @@ class Plans:
             if jrow is not None:
                 job = jobs.public(dict(jrow))
                 if job["status"] in ("cancelled", "failed"):
-                    # tâche annulée ou arrêtée (délai, crash) : le plan n'a pas été produit
+                    # job cancelled or stopped (timeout, crash): no plan was produced
                     code = "ai_cancelled" if job["status"] == "cancelled" else (job["error"] or {}).get("code", "ai_error")
                     self._set_status(plan_id, "ai_failed", issues=[{"code": code, "params": (job["error"] or {}).get("params", {}), "severity": "error"}])
                     return self.get(plan_id)
@@ -80,7 +80,7 @@ class Plans:
         rows = self.db.all("SELECT id FROM analysis_plans WHERE project_id=? ORDER BY updated_at DESC", (pid,))
         return [self.get(r["id"]) for r in rows]
 
-    # ------------------------------------------------------------------ création
+    # ------------------------------------------------------------------ creation
     def suggestions(self, table_id: str, lang: str) -> list[dict[str, Any]]:
         cv = self.svc.current_version(table_id)
         out = []
@@ -113,7 +113,7 @@ class Plans:
         )
         self.svc.update_project_state(pid, {"last_plan_id": plan_id, "last_table_id": table_id})
         if mode == "ai":
-            # Le texte peut combiner suggestions + demande libre : les suggestions sont passées comme précision.
+            # The text may combine suggestions + a free request: the suggestions are passed as extra detail.
             job_id = jobs.enqueue(self.db, "interpret", pid, {"plan_id": plan_id, "suggestions": suggestion_ids}, timeout_s=self.settings.ollama_timeout_s * 3 + 60, max_attempts=1)
             return {"plan_id": plan_id, "job_id": job_id, "mode": mode}
         labels = self._suggestion_labels(ui_lang)
@@ -158,7 +158,7 @@ class Plans:
         return {"plan_id": plan_id, "status": self.get(plan_id)["status"], "attempts": result["attempts"]}
 
     def builder(self, pid: str, table_id: str, spec: dict[str, Any], ui_lang: str, replace_plan: str | None = None) -> dict[str, Any]:
-        """Constructeur guidé : même format que la sortie du modèle, mêmes validations, même moteur."""
+        """Guided builder: same format as the model output, same validations, same engine."""
         try:
             out = LLMOutput.model_validate({**spec, "understood": True})
             plan = compile_output(out)
@@ -283,7 +283,7 @@ class Plans:
         return self.get(plan_id)
 
     def _ensure_current(self, prow: dict[str, Any]) -> tuple[AnalysisPlan, dict[str, Any]]:
-        """Revalide le plan si la table a changé de version. Jamais de chiffre calculé sur une ancienne version."""
+        """Revalidates the plan if the table changed version. Never a figure computed on a stale version."""
         if prow["status"] != "validated":
             raise UserError("plan_not_validated", status=prow["status"])
         cv = self.svc.current_version(prow["table_id"])

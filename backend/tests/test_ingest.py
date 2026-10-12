@@ -1,4 +1,4 @@
-"""Import des formats : résultats attendus calculés à la main sur des données synthétiques."""
+"""Format import: expected results computed by hand on synthetic data."""
 
 from __future__ import annotations
 
@@ -31,9 +31,9 @@ def test_french_csv_semicolon_decimals_leading_zero_ids(env):
     prof = env.profile(tid)
     cols = {c["name"]: c for c in prof["columns"]}
     assert cols["Code client"]["type"] == "id"
-    assert cols["Code client"]["top"][0]["value"] in ("00042", "00107")  # zéros initiaux conservés
+    assert cols["Code client"]["top"][0]["value"] in ("00042", "00107")  # leading zeros kept
     assert cols["Montant"]["convention"] == "comma"
-    assert prof["excluded"].get("total") == 1  # ligne Total exclue (pas de double total)
+    assert prof["excluded"].get("total") == 1  # Total row excluded (no double total)
     dash = env.dashboard(tid, {"metrics": [metric("t", "number", agg("sum", env.col(tid, "Montant")))]})
     assert value(dash, "t") == [(None, "1244.75")]
 
@@ -51,7 +51,7 @@ def test_ambiguous_dates_require_clarification(env):
     env.plans.validate(plan["id"])
     dash = env.plans.dashboard(plan["id"], None)
     xs = [p["x"] for p in dash["charts"][0]["series"][0]["points"]]
-    assert xs[0] == "2026-03-01" and "2026-05-01" in xs  # 3 mars et 6 mai (MDY)
+    assert xs[0] == "2026-03-01" and "2026-05-01" in xs  # 3 March and 6 May (MDY)
 
 
 def _xlsx_complex() -> bytes:
@@ -66,10 +66,10 @@ def _xlsx_complex() -> bytes:
     ws.append(["Région", "Produit", "Montant"])
     ws.append(["Nord", "P1", 100])
     ws.append([None, "P2", 50.5])
-    ws.merge_cells("A4:A5")  # Région fusionnée sur deux lignes
+    ws.merge_cells("A4:A5")  # Region merged across two rows
     ws.append(["Sous-total Nord", None, 150.5])
     ws.append(["Sud", "P1", 20])
-    ws.append([None, None, 20])  # total implicite : égal à la somme précédente ? non (une seule ligne) -> conservé
+    ws.append([None, None, 20])  # implicit total: equal to the preceding sum? no (single row) -> kept
     ws.append(["Total général", None, 190.5])
     other = wb.create_sheet("Coûts")
     other.append(["Produit", "Coût"])
@@ -89,10 +89,10 @@ def test_excel_titles_merged_multisheet_subtotals(env):
     m = env.col(ventes, "Montant")
     r = env.col(ventes, "Région")
     dash = env.dashboard(ventes, {"metrics": [metric("t", "number", agg("sum", m))], "charts": [{"id": "c", "type": "bar", "metric": "t", "dimension": r}]})
-    # 100 + 50.5 + 20 + 20 = 190.5 : sous-total et total général non additionnés
+    # 100 + 50.5 + 20 + 20 = 190.5 : subtotal and grand total not added
     assert value(dash, "t") == [(None, "190.5")]
     pts = {p["x"]: p["y"] for p in dash["charts"][0]["series"][0]["points"]}
-    assert pts["Nord"] == "150.5"  # la cellule fusionnée Région s'applique aux deux lignes
+    assert pts["Nord"] == "150.5"  # the merged Region cell applies to both rows
 
 
 def test_xlsx_formula_without_cache_is_unavailable(env):
@@ -104,14 +104,14 @@ def test_xlsx_formula_without_cache_is_unavailable(env):
     ws.append(["A", 2, 3, "=B2*C2"])
     ws.append(["B", 4, 1, "=B3*C3"])
     buf = io.BytesIO()
-    wb.save(buf)  # openpyxl n'écrit pas de valeur en cache
+    wb.save(buf)  # openpyxl writes no cached value
     tid = env.ingest_bytes("f.xlsx", buf.getvalue())[0]
     prof = env.profile(tid)
     total = next(c for c in prof["columns"] if c["name"] == "Total")
     assert total["formula_missing"] == 2
     dash = env.dashboard(tid, {"metrics": [metric("t", "number", agg("sum", total["id"]))]})
     c = dash["cards"][0]
-    assert c["status"] == "unavailable"  # jamais un zéro fictif
+    assert c["status"] == "unavailable"  # never a fake zero
 
 
 def test_old_xls_is_usable(env):
@@ -146,7 +146,7 @@ def test_text_pdf_multipage_repeated_headers_and_provenance(env):
     assert prof["n_rows"] == 120
     assert prof["excluded"].get("repeated_header", 0) >= 1
     dash = env.dashboard(tid, {"metrics": [metric("t", "number", agg("sum", env.col(tid, "Montant")))]})
-    # Σ (i + 0.5) pour i = 1..120 = 7260 + 60 = 7320
+    # Σ (i + 0.5) for i = 1..120 = 7260 + 60 = 7320
     assert value(dash, "t") == [(None, "7320.00")]
     detail = dash["detail"]["rows"][0]["src"]
     assert detail.startswith("page=1;bbox=")
@@ -183,7 +183,7 @@ def test_scanned_pdf_ocr_readable(env):
     assert env.svc.table_row(tid)["kind"] == "ocr"
     dash = env.dashboard(tid, {"metrics": [metric("t", "number", agg("sum", env.col(tid, "Ventes")))]})
     assert value(dash, "t") == [(None, "3540")]
-    # la provenance pointe vers la page et une zone, et l'image source est conservée
+    # provenance points to the page and an area, and the source image is kept
     src = dash["detail"]["rows"][0]["src"]
     assert src.startswith("page=1;bbox=") and "ocr=1" in src
 
@@ -199,9 +199,9 @@ def test_degraded_scan_never_fabricates(env):
         prof = env.profile(tid)
         for c in prof["columns"]:
             if c["type"] in ("number", "money"):
-                # tout nombre présent doit provenir d'une cellule lisible : on ne peut pas dépasser les vraies valeurs
+                # any number present must come from a readable cell: it cannot exceed the real values
                 assert Decimal(c["max"]) <= Decimal("99999")
-        # les ambiguïtés sont visibles (cellules peu lisibles ou valeurs illisibles signalées)
+        # ambiguities are visible (hard-to-read cells or unreadable values flagged)
         assert any(c.get("ocr_low") or c.get("invalid") for c in prof["columns"]) or prof["n_rows"] <= 3
 
 
@@ -247,7 +247,7 @@ def test_tabular_image(env):
     assert value(dash, "t") == [(None, "3540")]
 
 
-# ---------------------------------------------------------------------------- sécurité des fichiers
+# ---------------------------------------------------------------------------- file security
 
 
 def test_fake_mime_and_refused_types(env):
@@ -300,7 +300,7 @@ def test_oversized_file_stopped_during_streaming(env, settings):
     with pytest.raises(LimitExceeded) as e:
         env.svc.save_upload(env.pid, "big.csv", gen())
     assert e.value.code == "file_too_large"
-    assert len(chunks_read) <= settings.limits.max_file_bytes // (1024 * 1024) + 1  # arrêt borné
+    assert len(chunks_read) <= settings.limits.max_file_bytes // (1024 * 1024) + 1  # bounded stop
     assert not list((settings.projects_dir / env.pid / "sources").iterdir())
 
 

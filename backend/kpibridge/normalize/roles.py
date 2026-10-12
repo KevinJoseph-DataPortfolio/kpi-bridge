@@ -1,5 +1,5 @@
-"""Rôles sémantiques probables des colonnes (multilingue). Ce sont des indices pour les suggestions et le modèle,
-jamais une décision de calcul cachée : le plan doit référencer explicitement les champs."""
+"""Likely semantic roles of columns (multilingual). These are hints for suggestions and for the model,
+never a hidden computation decision: the plan must reference fields explicitly."""
 
 from __future__ import annotations
 
@@ -96,8 +96,8 @@ def guess_roles(header: str, col_type: str) -> list[str]:
             continue
         if r == "date" and col_type != "date":
             continue
-        # Une colonne numérique nommée « Commandes » est un comptage, pas un identifiant : l'utilisateur peut la typer
-        # explicitement « identifiant » dans l'écran de vérification si c'est un numéro de commande.
+        # A numeric column named "Commandes" is a count, not an identifier: the user can explicitly type it
+        # as "identifier" in the review screen if it is an order number.
         if r in ("product", "category", "region", "customer", "status", "channel", "currency", "order_id") and numeric:
             continue
         filtered.append(r)
@@ -105,7 +105,7 @@ def guess_roles(header: str, col_type: str) -> list[str]:
         filtered.append("amount")
     if col_type == "date" and "date" not in filtered:
         filtered.append("date")
-    # « total » dans un nom de colonne numérique = montant ; un coût n'est jamais un montant de vente
+    # "total" in a numeric column name = amount; a cost is never a sales amount
     if "cost" in filtered and "amount" in filtered:
         filtered.remove("amount")
     if "unit_price" in filtered and "amount" in filtered and not any(_match(name, _norm(k)) for k in ("total", "montant", "amount", "сумма", "金额", "betrag", "importe")):

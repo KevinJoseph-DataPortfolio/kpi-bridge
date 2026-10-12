@@ -1,8 +1,8 @@
-"""Grammaire de calcul fermée.
+"""Closed computation grammar.
 
-Le modèle de langage (ou le constructeur guidé, ou une recette) produit un `AnalysisPlan` JSON. Ce plan est validé
-strictement (schéma Pydantic, `extra="forbid"`) puis sémantiquement contre les champs réels (`validate.py`).
-Il ne contient AUCUN code : uniquement des références de champs, des opérateurs et des agrégations d'une liste fermée.
+The language model (or the guided builder, or a recipe) produces a JSON `AnalysisPlan`. The plan is validated
+strictly (Pydantic schema, `extra="forbid"`), then semantically against the real fields (`validate.py`).
+It contains NO code: only field references, operators and aggregations from a closed list.
 """
 
 from __future__ import annotations

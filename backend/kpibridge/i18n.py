@@ -1,5 +1,5 @@
-"""Traductions côté serveur (exports, libellés de suggestions). Source unique : `shared/locales/<lang>.json`,
-également utilisée par le frontend."""
+"""Server-side translations (exports, suggestion labels). Single source: `shared/locales/<lang>.json`,
+also used by the frontend."""
 
 from __future__ import annotations
 

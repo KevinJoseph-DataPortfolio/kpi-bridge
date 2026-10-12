@@ -66,14 +66,14 @@ export default function App() {
       setProject(p);
       return p;
     } catch (e) {
-      // projet supprimé ou introuvable : retour à l'accueil
+      // project deleted or not found: back to the home screen
       openProject(null);
       setError(e);
       return null;
     }
   }, [projectId, openProject]);
 
-  // Reprise après rechargement : projet, tâche active, dernier plan.
+  // Resume after a reload: project, active job, latest plan.
   useEffect(() => {
     if (!authed || !projectId) return;
     void reload().then(async (p) => {

@@ -1,7 +1,7 @@
-"""Exports : PDF (snapshot), PNG (rendu de la 1re page du PDF), CSV (périmètre filtré, cellules texte neutralisées).
+"""Exports: PDF (snapshot), PNG (page 1 of the PDF rendered), CSV (filtered scope, text cells neutralised).
 
-Polices Noto embarquées (OFL) : latin/cyrillique (Noto Sans) et chinois simplifié (Noto Sans SC). Aucun CDN.
-Le PDF et le PNG sont des instantanés : ils indiquent explicitement la période, les filtres et la version des données.
+Embedded Noto fonts (OFL): Latin/Cyrillic (Noto Sans) and Simplified Chinese (Noto Sans SC). No CDN.
+The PDF and PNG are snapshots: they state the period, the filters and the data version explicitly.
 """
 
 from __future__ import annotations
@@ -81,8 +81,8 @@ MISSING_GLYPH = "□"
 
 
 def _runs(text: str) -> list[tuple[str, str]]:
-    """Découpe un texte en segments (police, texte) selon la couverture réelle des polices embarquées.
-    Un caractère absent des deux polices est remplacé de façon visible par « □ » (jamais supprimé en silence)."""
+    """Splits a text into (font, text) segments according to the real coverage of the embedded fonts.
+    A character missing from both fonts is visibly replaced by '□' (never silently dropped)."""
     from reportlab.pdfbase import pdfmetrics
 
     _register_fonts()
@@ -214,7 +214,7 @@ def render_pdf(payload: dict[str, Any], lang: str, project_name: str) -> bytes:
                 color = "#15803d" if Decimal(r) >= 0 else "#b91c1c"
                 text(x + card_w - 8, y - 14, ("+" if Decimal(r) >= 0 else "") + format_number(r, lang, "percent"), 8, color, right=True)
     y -= card_h + 16
-    # --- graphiques (2 par ligne)
+    # --- charts (2 per row)
     charts = [ch for ch in payload.get("charts", [])]
     chart_w = (w - 2 * margin - 14) / 2
     chart_h = 170
@@ -231,7 +231,7 @@ def render_pdf(payload: dict[str, Any], lang: str, project_name: str) -> bytes:
         _draw_chart(c, ch, x, y - chart_h, chart_w, chart_h, lang, text, fit)
     if charts:
         y -= chart_h + 20
-    # --- tableau détaillé (paginé)
+    # --- detail table (paginated)
     detail = payload.get("detail") or {}
     columns = detail.get("columns", [])[:10]
     rows = detail.get("rows", [])
@@ -300,7 +300,7 @@ def _draw_chart(c: Any, ch: dict[str, Any], x: float, y: float, w: float, h: flo
     text(left - 4, bottom, format_number(str(vmin), lang, str(ch.get("unit")) if ch.get("unit") != "currency" else "number"), 6.5, "#6b7280", right=True)
 
     def ypos(v: Decimal) -> float:
-        # coordonnées de dessin uniquement (les valeurs affichées restent décimales)
+        # drawing coordinates only (displayed values stay decimal)
         return bottom + float((v - vmin) / span) * ph
 
     if ch["type"] == "line":
@@ -312,7 +312,7 @@ def _draw_chart(c: Any, ch: dict[str, Any], x: float, y: float, w: float, h: flo
             for i, p in enumerate(s["points"]):
                 px = left + pw * i / n
                 if p["y"] is None:
-                    prev = None  # trou : donnée absente, pas de zéro fictif
+                    prev = None  # gap: missing data, no fake zero
                     continue
                 py = ypos(Decimal(p["y"]))
                 if prev:
@@ -375,7 +375,7 @@ DANGEROUS_PREFIX = ("=", "+", "-", "@", "\t", "\r", "\n", "|", "%")
 
 
 def neutralize(value: Any) -> str:
-    """Neutralise les formules dans les cellules TEXTE uniquement ; les vrais nombres (Decimal) restent intacts."""
+    """Neutralises formulas in TEXT cells only; real numbers (Decimal) are left untouched."""
     if value is None:
         return ""
     if isinstance(value, Decimal):

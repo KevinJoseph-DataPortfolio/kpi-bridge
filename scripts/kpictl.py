@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""KPI Bridge — outil de contrôle local (installation, lancement, arrêt, diagnostic, mise à jour, sauvegarde,
-désinstallation). Bibliothèque standard uniquement : il s'exécute avant que l'environnement virtuel existe.
+"""KPI Bridge — local control tool (setup, launch, stop, diagnostics, update, backup, uninstall).
+Standard library only: it runs before the virtual environment exists.
 
     python scripts/kpictl.py setup [--no-ai] [--no-ocr] [--model qwen3:4b]
     python scripts/kpictl.py launch [--no-browser] [--docker]
     python scripts/kpictl.py stop | status | doctor | update | backup | uninstall [--purge-data]
 
-Principes : idempotent (rien n'est retéléchargé si présent), aucune modification système, aucun contournement de
-politique d'exécution, téléchargements uniquement depuis les sources officielles avec affichage du volume attendu.
+Principles: idempotent (nothing is re-downloaded if present), no system change, no bypass of the execution
+policy, downloads only from official sources with the expected size displayed.
 """
 
 from __future__ import annotations
@@ -76,13 +76,13 @@ def human(n: float) -> str:
 
 
 def download(url: str, dest: Path, expected_sha256: str | None = None) -> Path:
-    """Téléchargement avec progression réelle et reprise idempotente (fichier final déjà présent = réutilisé)."""
+    """Download with real progress and idempotent resume (final file already present = reused)."""
     if dest.exists() and dest.stat().st_size > 0:
         return dest
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".part")
     req = urllib.request.Request(url, headers={"User-Agent": "kpi-bridge-setup"})
-    with urllib.request.urlopen(req, timeout=60) as r:  # noqa: S310 — URL officielle codée en dur
+    with urllib.request.urlopen(req, timeout=60) as r:  # noqa: S310 — official URL, hard-coded
         total = int(r.headers.get("Content-Length") or 0)
         say(f"téléchargement {url.split('/')[-1]} ({human(total) if total else 'taille inconnue'})")
         done = 0
@@ -108,7 +108,7 @@ def download(url: str, dest: Path, expected_sha256: str | None = None) -> Path:
     return dest
 
 
-# Accès aux services LOCAUX (application, Ollama) sans proxy : un proxy système ne doit ni intercepter ni bloquer 127.0.0.1.
+# Access to LOCAL services (application, Ollama) without a proxy: a system proxy must neither intercept nor block 127.0.0.1.
 LOCAL = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
@@ -172,7 +172,7 @@ def ensure_venv() -> None:
         run([sys.executable, "-m", "venv", str(VENV)])
     say("installation des dépendances verrouillées (empreintes vérifiées)")
     run([str(PY), "-m", "pip", "install", "--disable-pip-version-check", "-q", "--require-hashes", "-r", str(lock)])
-    # le code de l'application est exécuté depuis backend/ via PYTHONPATH (pas d'installation de paquet nécessaire)
+    # the application code runs from backend/ via PYTHONPATH (no package installation needed)
     stamp.write_text(digest)
 
 
@@ -199,7 +199,7 @@ def ensure_node() -> str:
     shutil.rmtree(tmp, ignore_errors=True)
     if ext == "zip":
         with zipfile.ZipFile(archive) as zf:
-            zf.extractall(tmp)  # noqa: S202 — archive officielle vérifiée (SHA-256) ; zipfile neutralise chemins absolus et ".."
+            zf.extractall(tmp)  # noqa: S202 — official archive, SHA-256 verified; zipfile neutralises absolute paths and ".."
     else:
         with tarfile.open(archive) as tf:
             tf.extractall(tmp, filter="data")
@@ -252,7 +252,7 @@ def ensure_ollama(model: str) -> None:
             say(f"installation d'Ollama {OLLAMA_VERSION} (archive officielle ≈ 1,4 Gio, mode utilisateur)")
             arch = download(f"https://github.com/ollama/ollama/releases/download/v{OLLAMA_VERSION}/ollama-windows-amd64.zip", TOOLS / "downloads" / f"ollama-{OLLAMA_VERSION}.zip")
             with zipfile.ZipFile(arch) as zf:
-                zf.extractall(TOOLS / "ollama")  # noqa: S202 — archive officielle Ollama ; zipfile neutralise chemins absolus et ".."
+                zf.extractall(TOOLS / "ollama")  # noqa: S202 — official Ollama archive; zipfile neutralises absolute paths and ".."
             exe = ollama_path()
         else:
             say("Ollama absent. Installez-le depuis https://ollama.com/download (le script officiel Linux demande sudo).")
@@ -274,7 +274,7 @@ def start_ollama() -> None:
         return
     LOGS.mkdir(parents=True, exist_ok=True)
     env = dict(os.environ)
-    env["OLLAMA_HOST"] = OLLAMA_URL.replace("http://", "")  # écoute locale uniquement
+    env["OLLAMA_HOST"] = OLLAMA_URL.replace("http://", "")  # local listening only
     env.setdefault("OLLAMA_MAX_LOADED_MODELS", "1")
     env.setdefault("OLLAMA_NUM_PARALLEL", "1")
     spawn([exe, "serve"], "ollama", env)
@@ -402,7 +402,7 @@ def cmd_launch(args: argparse.Namespace) -> None:
         say("première exécution : installation")
         cmd_setup(argparse.Namespace(no_ai=args.no_ai, no_ocr=False, model=MODEL))
     else:
-        ensure_venv()  # réinstalle seulement si le verrou a changé
+        ensure_venv()  # reinstall only if the lock file changed
     env = env_for_app()
     if not args.no_ai:
         start_ollama()
@@ -500,7 +500,7 @@ def cmd_backup(_args: argparse.Namespace) -> None:
     if db.exists():
         src = sqlite3.connect(db)
         out = sqlite3.connect(snapshot)
-        src.backup(out)  # copie cohérente même si l'application tourne
+        src.backup(out)  # consistent copy even while the application is running
         out.close()
         src.close()
     with zipfile.ZipFile(dest, "w", zipfile.ZIP_DEFLATED) as zf:

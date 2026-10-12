@@ -1,7 +1,7 @@
-"""Archive de livraison versionnée : fichiers suivis par Git + interface compilée (frontend/dist).
-Exclut données utilisateur, secrets, caches, environnements et modèles (rien de tout cela n'est suivi par Git).
+"""Versioned release archive: Git-tracked files + built interface (frontend/dist).
+Excludes user data, secrets, caches, environments and models (none of these is tracked by Git).
 
-Usage : python scripts/make_release.py  →  dist-release/kpi-bridge-<version>.zip + .sha256
+Usage: python scripts/make_release.py  →  dist-release/kpi-bridge-<version>.zip + .sha256
 """
 
 from __future__ import annotations

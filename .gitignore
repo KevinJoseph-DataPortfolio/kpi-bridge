@@ -1,4 +1,4 @@
-# Environnements et dépendances
+# Environments and dependencies
 .venv/
 venv/
 node_modules/
@@ -14,7 +14,7 @@ __pycache__/
 *.egg-info/
 build/
 
-# Données utilisateur, secrets, exécution
+# User data, secrets, runtime
 .env
 data/
 *.sqlite3
@@ -23,11 +23,11 @@ run/
 backups/
 dist-release/
 
-# Modèles et outils téléchargés
+# Downloaded models and tools
 models/
 .tools/
 
-# Divers
+# Misc
 .DS_Store
 Thumbs.db
 *.log
@@ -36,3 +36,4 @@ Thumbs.db
 *.tsbuildinfo
 publier_github.cmd
 TASKS.md
+frontend/playwright.local.config.ts

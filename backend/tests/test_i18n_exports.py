@@ -1,4 +1,4 @@
-"""Six langues : parité des clés, clés utilisées par le frontend présentes, exports sans glyphes manquants."""
+"""Six languages: key parity, keys used by the frontend present, exports with no missing glyph."""
 
 from __future__ import annotations
 
@@ -77,21 +77,21 @@ PAYLOAD = {
 def test_pdf_export_glyphs_pagination_and_filters(lang):
     pdf = render_pdf(PAYLOAD, lang, "Проект 项目")
     doc = pdfium.PdfDocument(pdf)
-    assert len(doc) >= 2  # le tableau détaillé est paginé
+    assert len(doc) >= 2  # the detail table is paginated
     text = "".join(doc[i].get_textpage().get_text_range() for i in range(len(doc)))
     for s in ("Выручка", "销售额", "Строка 0", "Проект", "项目"):
         assert s in text, (lang, s)
-    assert "2026-01-01" in text and "Товар Б" in text  # période et filtres visibles
+    assert "2026-01-01" in text and "Товар Б" in text  # period and filters visible
     assert translate(lang, "export.page", {"n": 1}) in text
-    # aucun glyphe de remplacement (« tofu ») : chaque caractère est mappé dans la police embarquée
+    # no replacement glyph ("tofu"): every character is mapped in the embedded font
     assert "�" not in text
-    # chaque caractère des textes d'export traduits existe dans une police embarquée (aucun remplacement « □ »)
+    # every character of the translated export texts exists in an embedded font (no "□" replacement)
     from kpibridge.exports import MISSING_GLYPH, _runs
 
     loc = flat(json.loads((LOCALES / f"{lang}.json").read_text(encoding="utf-8")))
     sample = " ".join(v for k, v in loc.items() if k.startswith(("export.", "reasons.", "dashboard.unavailable")))
     assert MISSING_GLYPH not in "".join(t for _f, t in _runs(sample + "Выручка 销售额 Строка 行 € ₽ ¥")), lang
-    assert MISSING_GLYPH in "".join(t for _f, t in _runs("⋈"))  # caractère non couvert : remplacé visiblement
+    assert MISSING_GLYPH in "".join(t for _f, t in _runs("⋈"))  # uncovered character: visibly replaced
     png = render_png(pdf)
     assert png.startswith(b"\x89PNG") and len(png) > 20_000
 

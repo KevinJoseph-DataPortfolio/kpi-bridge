@@ -1,4 +1,4 @@
-"""Connexions DuckDB de calcul : en mémoire, sans accès externe, sans extensions, configuration verrouillée."""
+"""DuckDB computation connections: in-memory, no external access, no extensions, locked configuration."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ SAFE_CONFIG = {
 
 
 def open_dataset(parquet_path: Path) -> tuple[duckdb.DuckDBPyConnection, threading.Lock]:
-    """Charge le Parquet (lu par pyarrow, pas par DuckDB) dans une base en mémoire verrouillée."""
+    """Loads the Parquet file (read by pyarrow, not by DuckDB) into a locked in-memory database."""
     key = str(parquet_path)
     with _LOCK:
         if key in _CACHE:
@@ -50,7 +50,7 @@ def open_dataset(parquet_path: Path) -> tuple[duckdb.DuckDBPyConnection, threadi
 
 
 def forget(prefix: str) -> None:
-    """Ferme les connexions d'un projet supprimé."""
+    """Closes the connections of a deleted project."""
     with _LOCK:
         for k in [k for k in _CACHE if k.startswith(prefix)]:
             con, _l = _CACHE.pop(k)

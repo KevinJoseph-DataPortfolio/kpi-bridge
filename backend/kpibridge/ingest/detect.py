@@ -1,4 +1,4 @@
-"""Liste blanche des formats et contrôle du contenu réel (le MIME annoncé n'est jamais utilisé)."""
+"""Format allow-list and real-content check (the declared MIME type is never used)."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ SUPPORTED = {
     "jpeg": "image",
 }
 
-# Refus explicites avec motif dédié
+# Explicit refusals with a dedicated reason
 MACRO_EXTS = {"xlsm", "xltm", "xlsb", "docm", "dotm", "pptm", "xlam"}
 ARCHIVE_EXTS = {"zip", "7z", "rar", "gz", "tgz", "tar", "bz2", "xz", "zst", "cab", "iso"}
 EXECUTABLE_EXTS = {"exe", "dll", "msi", "bat", "cmd", "ps1", "sh", "com", "scr", "js", "vbs", "jar", "app", "apk", "py"}
@@ -57,7 +57,7 @@ def check_extension(filename: str) -> str:
 
 
 def check_zip(path: Path, limits: Limits, required: tuple[str, ...]) -> None:
-    """Valide un conteneur OOXML AVANT extraction : chemins, nombre d'entrées, taille et ratio de décompression."""
+    """Validates an OOXML container BEFORE extraction: paths, entry count, size and decompression ratio."""
     try:
         with zipfile.ZipFile(path) as zf:
             infos = zf.infolist()
@@ -88,7 +88,7 @@ def check_zip(path: Path, limits: Limits, required: tuple[str, ...]) -> None:
 
 
 def sniff_format(path: Path, ext: str, limits: Limits) -> str:
-    """Vérifie que le contenu correspond à l'extension. Retourne le format logique."""
+    """Checks that the content matches the extension. Returns the logical format."""
     with open(path, "rb") as fh:
         head = fh.read(65536)
     if not head:
@@ -96,7 +96,7 @@ def sniff_format(path: Path, ext: str, limits: Limits) -> str:
     kind = SUPPORTED[ext]
     if kind == "xlsx":
         if head.startswith(OLE_MAGIC):
-            # OOXML chiffré = conteneur OLE avec EncryptionInfo
+            # Encrypted OOXML = OLE container with EncryptionInfo
             raise UserError("protected_file")
         if not head.startswith(ZIP_MAGIC):
             raise UserError("content_mismatch")
@@ -126,7 +126,7 @@ def sniff_format(path: Path, ext: str, limits: Limits) -> str:
         if ext in ("jpg", "jpeg") and not head.startswith(b"\xff\xd8\xff"):
             raise UserError("content_mismatch")
         return "image"
-    # Formats texte : pas d'octets binaires (hors BOM UTF-16)
+    # Text formats: no binary bytes (except the UTF-16 BOM)
     if head.startswith((ZIP_MAGIC, OLE_MAGIC, b"%PDF-", b"MZ", b"\x7fELF", b"\x89PNG")):
         raise UserError("content_mismatch")
     if not head.startswith((b"\xff\xfe", b"\xfe\xff")) and b"\x00" in head:

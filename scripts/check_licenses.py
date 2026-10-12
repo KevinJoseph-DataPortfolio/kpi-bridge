@@ -10,7 +10,7 @@ from importlib import metadata
 
 FORBIDDEN = ("AGPL", "Affero", "SSPL", "GNU General Public License v3", "GPLv3", "GPL-3")
 ALLOWED_EXCEPTIONS = {
-    # Bibliothèques LGPL/doubles licences acceptables en usage non modifié : aucune actuellement.
+    # LGPL / dual-licence libraries acceptable when used unmodified: none at the moment.
 }
 DEV_ONLY = {"pytest", "ruff", "mypy", "xlwt", "fonttools", "pip-audit", "iniconfig", "pluggy", "pygments", "mypy-extensions", "pathspec", "librt"}
 

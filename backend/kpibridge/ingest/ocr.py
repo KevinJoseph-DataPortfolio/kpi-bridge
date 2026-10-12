@@ -1,7 +1,7 @@
-"""OCR local (Tesseract) et reconstruction de tableau à partir de la disposition des mots.
+"""Local OCR (Tesseract) and table reconstruction from the layout of the words.
 
-Le score OCR est conservé par cellule, mais n'est PAS présenté comme une probabilité d'exactitude du tableau :
-il sert uniquement à signaler des cellules à vérifier (« cellule OCR peu lisible »).
+The OCR score is kept per cell but is NOT presented as a probability that the table is correct:
+it only serves to flag cells worth checking ("hard-to-read OCR cell").
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ class Word:
 
 
 def tessdata_dir(tesseract_cmd: str | None) -> str | None:
-    """Répertoire des modèles de langue pour une installation Tesseract locale (conda-forge) si présent."""
+    """Language-model directory of a local Tesseract install (conda-forge), if present."""
     from pathlib import Path
 
     if not tesseract_cmd:
@@ -74,9 +74,9 @@ def run_ocr(image: Image.Image, tesseract_cmd: str | None, langs: str, timeout: 
         data = pytesseract.image_to_data(
             image, lang=langs, config="--psm 6", output_type=pytesseract.Output.DICT, timeout=timeout
         )
-    except pytesseract.TesseractError as exc:  # sous-classe de RuntimeError : à tester en premier
+    except pytesseract.TesseractError as exc:  # subclass of RuntimeError: must be tested first
         raise UserError("ocr_failed") from exc
-    except RuntimeError as exc:  # délai dépassé
+    except RuntimeError as exc:  # timeout exceeded
         raise UserError("ocr_timeout") from exc
     words: list[Word] = []
     for i, txt in enumerate(data["text"]):
@@ -116,9 +116,9 @@ def _cells(line: list[Word], gap: float) -> list[list[Word]]:
 
 
 def words_to_grid(words: list[Word], page_no: int) -> tuple[list[list[str | None]], list[str], dict[str, dict[str, Any]], int]:
-    """Construit une grille (lignes × colonnes) à partir des mots et de leurs coordonnées.
+    """Builds a grid (rows × columns) from the words and their coordinates.
 
-    Retourne (grille, provenance par ligne, métadonnées par cellule, nombre de cellules peu lisibles).
+        Returns (grid, per-row provenance, per-cell metadata, number of hard-to-read cells).
     """
     lines = _lines(words)
     if not lines:
@@ -126,7 +126,7 @@ def words_to_grid(words: list[Word], page_no: int) -> tuple[list[list[str | None
     med_h = statistics.median(w.height for w in words) or 10
     gap = med_h * 1.2
     line_cells = [_cells(line, gap) for line in lines]
-    # Colonnes de référence : la ligne avec le plus de cellules (souvent l'en-tête ou une ligne de données complète)
+    # Reference columns: the row with the most cells (often the header or a complete data row)
     n_cols = max(len(c) for c in line_cells)
     anchors_line = next(c for c in line_cells if len(c) == n_cols)
     anchors = [(min(w.left for w in cell), max(w.right for w in cell)) for cell in anchors_line]
@@ -180,7 +180,7 @@ def prepare_image(path: Path, max_pixels: int) -> Image.Image:
         raise UserError("image_too_large") from exc
     except UserError:
         raise
-    except Exception as exc:  # noqa: BLE001 — tout échec de décodage est un fichier illisible
+    except Exception as exc:  # noqa: BLE001 — any decoding failure means an unreadable file
         raise UserError("corrupted_file") from exc
     gray: Image.Image = img.convert("L")
     if gray.width < 1200:
