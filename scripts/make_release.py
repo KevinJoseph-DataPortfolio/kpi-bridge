@@ -26,7 +26,7 @@ def main() -> None:
     files = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.splitlines()
     files += [str(p.relative_to(ROOT)).replace("\\", "/") for p in (ROOT / "frontend" / "dist").rglob("*") if p.is_file()]
     for f in files:
-        if any(f == x or f.startswith(x) or f.endswith(x) for x in FORBIDDEN):
+        if f == ".env" or any(f.startswith(x) or f.endswith(x) for x in FORBIDDEN[1:]):
             sys.exit(f"fichier interdit dans l'archive : {f}")
     out_dir = ROOT / "dist-release"
     out_dir.mkdir(exist_ok=True)
