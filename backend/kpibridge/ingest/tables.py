@@ -16,10 +16,12 @@ from decimal import Decimal, InvalidOperation
 
 from .base import RawTable, decode
 
+# Le mot-clé doit OUVRIR la cellule (« Total », « Sous-total Nord », « Итого »…) : un texte qui contient seulement
+# « sum » (ex. une formule textuelle « @SUM(…) ») n'est pas une ligne de total.
 TOTAL_RE = re.compile(
-    r"(?i)(^|\b)(sous[-\s]?totaux?|totaux?|total\s+général|grand\s+total|subtotal|sub-total|total|sum|"
-    r"summe|gesamt(summe)?|zwischensumme|insgesamt|итого|всего|подытог|suma|subtotal|total\s+general)(\b|$)"
-    r"|合计|总计|小计|共计"
+    r"(?i)^\s*((sous[-\s]?total(es|aux)?|total(es|aux)?|total\s+général|grand\s+total|subtotal|sub-total|total|"
+    r"summe|gesamt(summe)?|zwischensumme|insgesamt|итого|всего|подытог|suma|total\s+general)(\b|$|\s)"
+    r"|合计|总计|小计|共计)"
 )
 
 _NUM_LIKE = re.compile(r"^[\s(+-]*[$€£¥₽]?\s*\d[\d\s.,'  ]*\s*(%|€|\$|£|¥|₽|[A-Z]{3})?\)?\s*$")
@@ -167,8 +169,11 @@ def mark_rows(table: RawTable) -> None:
             run_counts = [0] * width
             continue
         # Ligne sans libellé dont chaque nombre égale la somme des lignes précédentes ⇒ total implicite
-        nums = {j: _to_decimal(c) for j, c in enumerate(row) if cell_is_numeric(c)}
-        nums = {j: v for j, v in nums.items() if v is not None}
+        nums: dict[int, Decimal] = {}
+        for j, c in enumerate(row):
+            dv = _to_decimal(c) if cell_is_numeric(c) else None
+            if dv is not None:
+                nums[j] = dv
         if nums and not texts and len(nums) >= 1 and all(run_counts[j] >= 2 for j in nums):
             if all(run_sums[j] == v for j, v in nums.items()):
                 table.excluded[i] = "total"
@@ -193,7 +198,7 @@ def structure_grid(
     tables: list[RawTable] = []
     blocks = split_blocks(rows)
     pending_titles: list[str] = []
-    for b_idx, (s, e) in enumerate(blocks):
+    for s, e in blocks:
         block_rows = rows[s:e]
         width = max((len(r) for r in block_rows), default=0)
         filled_rows = [_filled(r) for r in block_rows]

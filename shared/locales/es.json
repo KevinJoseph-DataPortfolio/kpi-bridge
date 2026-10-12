@@ -1,20 +1,54 @@
 {
-  "common": { "close": "Cerrar", "cancel": "Cancelar", "delete": "Eliminar", "save": "Guardar", "back": "Volver", "loading": "Cargando…", "language": "Idioma" },
-  "session": { "required": "Se necesita una sesión local. Abra KPI Bridge con el lanzador (crea una sesión segura de un solo uso)." },
-  "nav": { "home": "Inicio" },
+  "common": {
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "back": "Volver",
+    "loading": "Cargando…",
+    "language": "Idioma"
+  },
+  "session": {
+    "required": "Se necesita una sesión local. Abra KPI Bridge con el lanzador (crea una sesión segura de un solo uso)."
+  },
+  "nav": {
+    "home": "Inicio"
+  },
   "ai": {
     "unreachable": "IA local no disponible",
     "unreachable_hint": "El servicio Ollama o el modelo no están disponibles. Las sugerencias y el constructor guiado siguen funcionando.",
     "test_double": "Sustituto de IA de prueba (CI)"
   },
-  "footer": { "local": "Procesamiento 100 % local · ningún dato se envía a terceros" },
-  "steps": { "label": "Pasos", "upload": "Subir", "ask": "Comprender y preguntar", "verify": "Verificar", "dashboard": "Panel" },
+  "footer": {
+    "local": "Procesamiento 100 % local · ningún dato se envía a terceros"
+  },
+  "steps": {
+    "label": "Pasos",
+    "upload": "Subir",
+    "ask": "Comprender y preguntar",
+    "verify": "Verificar",
+    "dashboard": "Panel"
+  },
   "jobs": {
-    "kind": { "ingest": "Importación del documento", "interpret": "Interpretación de la solicitud", "sleep_test": "Tarea de prueba" },
+    "kind": {
+      "ingest": "Importación del documento",
+      "interpret": "Interpretación de la solicitud",
+      "sleep_test": "Tarea de prueba"
+    },
     "stage": {
-      "queued": "En espera", "starting": "Inicio", "upload": "Enviando archivo", "import": "Importación", "extract": "Extracción", "ocr": "Lectura OCR",
-      "verify": "Verificación", "ai": "Análisis por la IA local", "validate": "Validación del plan", "done": "Terminado", "failed": "Error",
-      "cancelled": "Cancelado", "requeued_after_crash": "Reinicio tras interrupción"
+      "queued": "En espera",
+      "starting": "Inicio",
+      "upload": "Enviando archivo",
+      "import": "Importación",
+      "extract": "Extracción",
+      "ocr": "Lectura OCR",
+      "verify": "Verificación",
+      "ai": "Análisis por la IA local",
+      "validate": "Validación del plan",
+      "done": "Terminado",
+      "failed": "Error",
+      "cancelled": "Cancelado",
+      "requeued_after_crash": "Reinicio tras interrupción"
     }
   },
   "upload": {
@@ -37,7 +71,10 @@
     "delimiter_auto": "Separador automático",
     "retry": "Reintentar"
   },
-  "projects": { "title": "Proyectos guardados", "confirm_delete": "¿Eliminar definitivamente el proyecto «{{name}}» (fuentes, datos derivados, resultados)?" },
+  "projects": {
+    "title": "Proyectos guardados",
+    "confirm_delete": "¿Eliminar definitivamente el proyecto «{{name}}» (fuentes, datos derivados, resultados)?"
+  },
   "next_action": {
     "default": "Revise el archivo o pruebe otro formato (CSV o Excel).",
     "no_table_found_pdf": "No se encontró ninguna tabla ni valor numérico utilizable. Si es posible, exporte la fuente a CSV/Excel.",
@@ -194,7 +231,14 @@
     "blank": "Filas vacías: {{count}}",
     "title": "Filas de título: {{count}}"
   },
-  "excluded_reason": { "total": "total", "repeated_header": "encabezado repetido", "duplicate": "duplicado", "manual": "excluida", "blank": "vacía", "title": "título" },
+  "excluded_reason": {
+    "total": "total",
+    "repeated_header": "encabezado repetido",
+    "duplicate": "duplicado",
+    "manual": "excluida",
+    "blank": "vacía",
+    "title": "título"
+  },
   "join": {
     "title": "Unir dos tablas",
     "hint": "Solo se permite una unión «varios a uno»: la clave de la tabla derecha debe ser única. Se controlan el número de filas y las sumas antes y después.",
@@ -219,27 +263,59 @@
     "import": "Importar un archivo de receta",
     "apply": "Aplicar",
     "remap_needed": "Algunas columnas cambiaron: indique la columna correspondiente.",
-    "problem": { "missing": "ausente", "type_changed": "tipo modificado", "currency_changed": "moneda modificada" },
+    "problem": {
+      "missing": "ausente",
+      "type_changed": "tipo modificado",
+      "currency_changed": "moneda modificada"
+    },
     "pick_column": "Elegir la columna…",
     "name_prompt": "Nombre de la receta"
   },
-  "types": { "text": "texto", "id": "identificador", "number": "número", "money": "importe", "percent": "porcentaje", "date": "fecha", "bool": "sí/no", "ignore": "ignorada" },
+  "types": {
+    "text": "texto",
+    "id": "identificador",
+    "number": "número",
+    "money": "importe",
+    "percent": "porcentaje",
+    "date": "fecha",
+    "bool": "sí/no",
+    "ignore": "ignorada"
+  },
   "describe": {
     "fn": {
-      "sum": "suma de {{field}}", "count_rows": "número de filas", "count": "número de valores de {{field}}", "count_distinct": "número distinto de {{field}}",
-      "avg": "media de {{field}}", "median": "mediana de {{field}}", "min": "mínimo de {{field}}", "max": "máximo de {{field}}"
+      "sum": "suma de {{field}}",
+      "count_rows": "número de filas",
+      "count": "número de valores de {{field}}",
+      "count_distinct": "número distinto de {{field}}",
+      "avg": "media de {{field}}",
+      "median": "mediana de {{field}}",
+      "min": "mínimo de {{field}}",
+      "max": "máximo de {{field}}"
     },
     "per": "(un solo valor por {{key}})",
     "where": "donde {{cond}}",
     "op": {
-      "eq": "{{field}} = {{values}}", "neq": "{{field}} ≠ {{values}}", "in": "{{field}} entre {{values}}", "not_in": "{{field}} fuera de {{values}}",
-      "gt": "{{field}} > {{values}}", "gte": "{{field}} ≥ {{values}}", "lt": "{{field}} < {{values}}", "lte": "{{field}} ≤ {{values}}",
-      "is_null": "{{field}} vacío", "not_null": "{{field}} informado", "between": "{{field}} entre {{values}}"
+      "eq": "{{field}} = {{values}}",
+      "neq": "{{field}} ≠ {{values}}",
+      "in": "{{field}} entre {{values}}",
+      "not_in": "{{field}} fuera de {{values}}",
+      "gt": "{{field}} > {{values}}",
+      "gte": "{{field}} ≥ {{values}}",
+      "lt": "{{field}} < {{values}}",
+      "lte": "{{field}} ≤ {{values}}",
+      "is_null": "{{field}} vacío",
+      "not_null": "{{field}} informado",
+      "between": "{{field}} entre {{values}}"
     }
   },
   "plan": {
     "title": "Plan del panel",
-    "origin": { "ai": "Interpretado por la IA local ({{model}}) y validado por el motor.", "suggestions": "Construido con las sugerencias elegidas (sin IA).", "builder": "Construido con el constructor guiado (sin IA).", "recipe": "Procedente de una receta, revalidado con los nuevos datos." },
+    "origin": {
+      "ai": "Interpretado por la IA local ({{model}}) y validado por el motor.",
+      "suggestions": "Construido con las sugerencias elegidas (sin IA).",
+      "builder": "Construido con el constructor guiado (sin IA).",
+      "recipe": "Procedente de una receta, revalidado con los nuevos datos."
+    },
     "status": {
       "ai_failed": "La interpretación por la IA no tuvo éxito.",
       "not_understood": "No se pudo relacionar la solicitud con los datos disponibles.",
@@ -301,9 +377,25 @@
     "worker_crashed": "Procesamiento interrumpido.",
     "internal_error": "Error interno."
   },
-  "units": { "currency": "importe", "count": "recuento", "number": "número", "percent": "porcentaje", "ratio": "ratio" },
-  "chart_types": { "line": "Línea", "bar": "Barras", "hbar": "Barras horizontales" },
-  "grains": { "day": "día", "week": "semana", "month": "mes", "quarter": "trimestre", "year": "año" },
+  "units": {
+    "currency": "importe",
+    "count": "recuento",
+    "number": "número",
+    "percent": "porcentaje",
+    "ratio": "ratio"
+  },
+  "chart_types": {
+    "line": "Línea",
+    "bar": "Barras",
+    "hbar": "Barras horizontales"
+  },
+  "grains": {
+    "day": "día",
+    "week": "semana",
+    "month": "mes",
+    "quarter": "trimestre",
+    "year": "año"
+  },
   "questions": {
     "date_order": "Las fechas de «{{name}}» son ambiguas ({{examples}}). ¿Qué convención?",
     "date_order_example": "En «{{name}}», ¿«{{example}}» significa el {{dmy}} o el {{mdy}}?",
@@ -314,40 +406,116 @@
     "amount_basis": "Existen dos importes: «{{ht}}» y «{{ttc}}». ¿Cuál usar?",
     "duplicates": "Se encontraron {{rows}} filas idénticas ({{groups}} grupos). ¿Son transacciones distintas?",
     "options": {
-      "date_order": { "DMY": "día/mes/año", "MDY": "mes/día/año" },
-      "number_convention": { "dot": "punto decimal (1,234.56)", "comma": "coma decimal (1.234,56)" },
-      "currency": { "none": "Sin moneda / desconocida" },
-      "cancelled_rows": { "exclude": "Excluir estas filas", "include": "Incluirlas" },
-      "order_level_amount": { "once_per_order": "Una sola vez por clave", "per_line": "En cada línea" },
-      "duplicates": { "keep": "Sí, conservarlas", "exclude": "No, excluir duplicados" }
+      "date_order": {
+        "DMY": "día/mes/año",
+        "MDY": "mes/día/año"
+      },
+      "number_convention": {
+        "dot": "punto decimal (1,234.56)",
+        "comma": "coma decimal (1.234,56)"
+      },
+      "currency": {
+        "none": "Sin moneda / desconocida"
+      },
+      "cancelled_rows": {
+        "exclude": "Excluir estas filas",
+        "include": "Incluirlas"
+      },
+      "order_level_amount": {
+        "once_per_order": "Una sola vez por clave",
+        "per_line": "En cada línea"
+      },
+      "duplicates": {
+        "keep": "Sí, conservarlas",
+        "exclude": "No, excluir duplicados"
+      }
     }
   },
   "builder": {
     "title": "Constructor guiado de KPI",
     "hint": "Elija agregaciones y campos: el cálculo lo hace el motor determinista, igual que con la IA.",
-    "fn": "Agregación", "field": "Campo", "per": "Granularidad", "per_line": "cada fila", "once_per": "una vez por {{name}}",
-    "label": "Etiqueta", "kind": "Tipo de cálculo", "unit": "Unidad", "compare": "Variación vs periodo anterior",
-    "add_metric": "Añadir un indicador", "new_metric": "Nuevo indicador", "charts": "Gráficos", "add_chart": "Añadir un gráfico",
-    "by_period": "Por periodo", "period_field": "Columna de periodo", "no_period": "Ninguna", "grain": "Paso de tiempo", "submit": "Crear el plan",
-    "fns": { "sum": "Suma", "count_rows": "Número de filas", "count": "Número de valores", "count_distinct": "Número distinto", "avg": "Media", "median": "Mediana", "min": "Mínimo", "max": "Máximo" },
-    "kinds": { "aggregate": "Agregado simple (A)", "ratio": "Ratio (A ÷ B)", "difference": "Diferencia (A − B)", "difference_ratio": "Tasa de margen ((A − B) ÷ A)", "percent_of": "Porcentaje (A ÷ B × 100)" }
+    "fn": "Agregación",
+    "field": "Campo",
+    "per": "Granularidad",
+    "per_line": "cada fila",
+    "once_per": "una vez por {{name}}",
+    "label": "Etiqueta",
+    "kind": "Tipo de cálculo",
+    "unit": "Unidad",
+    "compare": "Variación vs periodo anterior",
+    "add_metric": "Añadir un indicador",
+    "new_metric": "Nuevo indicador",
+    "charts": "Gráficos",
+    "add_chart": "Añadir un gráfico",
+    "by_period": "Por periodo",
+    "period_field": "Columna de periodo",
+    "no_period": "Ninguna",
+    "grain": "Paso de tiempo",
+    "submit": "Crear el plan",
+    "fns": {
+      "sum": "Suma",
+      "count_rows": "Número de filas",
+      "count": "Número de valores",
+      "count_distinct": "Número distinto",
+      "avg": "Media",
+      "median": "Mediana",
+      "min": "Mínimo",
+      "max": "Máximo"
+    },
+    "kinds": {
+      "aggregate": "Agregado simple (A)",
+      "ratio": "Ratio (A ÷ B)",
+      "difference": "Diferencia (A − B)",
+      "difference_ratio": "Tasa de margen ((A − B) ÷ A)",
+      "percent_of": "Porcentaje (A ÷ B × 100)"
+    }
   },
   "fix": {
     "title": "Verificar los datos — {{name}}",
     "hint": "Cada cambio crea una nueva versión reversible; los resultados dependientes se recalculan.",
-    "columns": "Columnas", "column": "Columna", "type": "Tipo", "convention": "Convención", "currency": "Moneda", "quality": "Calidad",
-    "invalid": "Valores ilegibles: {{count}}", "ocr_low": "Celdas OCR por revisar: {{count}}", "formula_missing": "Fórmulas sin caché: {{count}}",
+    "columns": "Columnas",
+    "column": "Columna",
+    "type": "Tipo",
+    "convention": "Convención",
+    "currency": "Moneda",
+    "quality": "Calidad",
+    "invalid": "Valores ilegibles: {{count}}",
+    "ocr_low": "Celdas OCR por revisar: {{count}}",
+    "formula_missing": "Fórmulas sin caché: {{count}}",
     "save": "Aplicar tipos y convenciones",
     "raw_title": "Datos brutos",
     "raw_hint": "Elija la fila de encabezado, excluya o reintegre una fila, haga clic en una celda para corregirla (con su origen).",
-    "status": "Estado", "header": "Encabezado", "include": "Reintegrar", "exclude": "Excluir", "use_as_header": "Encabezado",
-    "flag": { "ocr_low": "Lectura OCR poco fiable: revisar", "formula_no_cache": "Fórmula sin valor en caché" },
+    "status": "Estado",
+    "header": "Encabezado",
+    "include": "Reintegrar",
+    "exclude": "Excluir",
+    "use_as_header": "Encabezado",
+    "flag": {
+      "ocr_low": "Lectura OCR poco fiable: revisar",
+      "formula_no_cache": "Fórmula sin valor en caché"
+    },
     "edit_cell": "Corregir la celda",
     "versions": "Versiones de los datos",
-    "ops": { "initial": "importación", "columns": "tipos/convenciones", "include_row": "fila reintegrada", "exclude_row": "fila excluida", "correct_cell": "celda corregida", "set_header_row": "encabezado", "revert": "vuelta atrás", "answer": "respuesta", "recipe_conventions": "receta", "join": "unión", "edit": "cambio" },
-    "revert": "Volver a esta versión", "current": "actual",
-    "source": "Origen: {{src}}", "ocr_conf": "Puntuación del motor OCR: {{conf}} (orientativa, no es una probabilidad de exactitud)",
-    "source_image": "Zona de origen de la celda", "new_value": "Valor corregido", "date_order": "Orden de las fechas",
+    "ops": {
+      "initial": "importación",
+      "columns": "tipos/convenciones",
+      "include_row": "fila reintegrada",
+      "exclude_row": "fila excluida",
+      "correct_cell": "celda corregida",
+      "set_header_row": "encabezado",
+      "revert": "vuelta atrás",
+      "answer": "respuesta",
+      "recipe_conventions": "receta",
+      "join": "unión",
+      "edit": "cambio"
+    },
+    "revert": "Volver a esta versión",
+    "current": "actual",
+    "source": "Origen: {{src}}",
+    "ocr_conf": "Puntuación del motor OCR: {{conf}} (orientativa, no es una probabilidad de exactitud)",
+    "source_image": "Zona de origen de la celda",
+    "new_value": "Valor corregido",
+    "date_order": "Orden de las fechas",
     "question": {
       "header_row": "La fila de encabezado es dudosa: revísela abajo.",
       "date_order": "Fechas ambiguas en «{{name}}» ({{examples}}): elija el orden.",
@@ -372,10 +540,18 @@
   "variation": {
     "previous_equal_window": "Periodo seleccionado {{cur}} comparado con el periodo anterior de la misma duración {{prev}}",
     "last_month_vs_previous": "Último mes de los datos {{cur}} comparado con el mes anterior {{prev}}",
-    "short": { "previous_equal_window": "vs periodo anterior", "last_month_vs_previous": "último mes vs anterior" },
+    "short": {
+      "previous_equal_window": "vs periodo anterior",
+      "last_month_vs_previous": "último mes vs anterior"
+    },
     "unavailable": "Variación no disponible: {{reason}}"
   },
-  "filters": { "from": "Desde", "to": "Hasta", "apply": "Aplicar", "reset": "Restablecer filtros" },
+  "filters": {
+    "from": "Desde",
+    "to": "Hasta",
+    "apply": "Aplicar",
+    "reset": "Restablecer filtros"
+  },
   "quality": {
     "title": "Avisos de calidad",
     "none": "ninguno",
@@ -431,8 +607,8 @@
     "row_count": "Número de filas"
   },
   "export": {
-    "period": "Periodo: {{from}} → {{to}}",
-    "period_all": "Periodo: todos los datos ({{from}} → {{to}})",
+    "period": "Periodo: {{from}} – {{to}}",
+    "period_all": "Periodo: todos los datos ({{from}} – {{to}})",
     "global_filter": "Filtro global: {{field}} {{op}} {{values}}",
     "no_filter": "Sin filtro",
     "snapshot": "Instantánea no interactiva generada el {{date}}",

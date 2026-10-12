@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from .grammar import AnalysisPlan
+from .grammar import AnalysisPlan, Unit
 from .llm_schema import AggSpec, ChartSpec, LLMOutput, MetricSpec, compile_output
 
 
@@ -44,7 +44,7 @@ def suggestions(profile: dict[str, Any]) -> list[dict[str, Any]]:
     def add(sid: str, params: dict[str, Any], metrics: list[MetricSpec], charts: list[ChartSpec] | None = None) -> None:
         out.append({"id": sid, "params": params, "metrics": [m.model_dump() for m in metrics], "charts": [c.model_dump() for c in (charts or [])]})
 
-    unit_amount = "currency" if amount and amount["type"] == "money" or (amount and "amount" in amount.get("roles", [])) else "number"
+    unit_amount: Unit = "currency" if amount and amount["type"] == "money" or (amount and "amount" in amount.get("roles", [])) else "number"
     if amount:
         total = MetricSpec(id="total_amount", label=amount["name"][:80], unit=unit_amount, kind="aggregate", a=AggSpec(fn="sum", field=amount["id"]),
                            compare="previous_period" if date else "none")

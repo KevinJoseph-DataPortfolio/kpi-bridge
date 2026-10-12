@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "backend" / "kpibridge" / "examples"
-FONT = ROOT / "backend" / "kpibridge" / "exports" / "fonts" / "NotoSans-Variable.ttf"
+FONT = ROOT / "backend" / "kpibridge" / "exports" / "fonts" / "NotoSans-Regular.ttf"
 
 PRODUCTS = [
     ("Stylo bille", "Papeterie", Decimal("1.90")),
@@ -113,10 +113,10 @@ def write_xlsx(rows: list[dict]) -> None:
 
 def write_pdf(rows: list[dict]) -> None:
     from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
     from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
-    from reportlab.lib.styles import getSampleStyleSheet
 
     pdfmetrics.registerFont(TTFont("NS", str(FONT)))
     doc = SimpleDocTemplate(str(OUT / "rapport_ventes_demo.pdf"), pagesize=A4)

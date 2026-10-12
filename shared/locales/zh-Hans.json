@@ -1,20 +1,54 @@
 {
-  "common": { "close": "关闭", "cancel": "取消", "delete": "删除", "save": "保存", "back": "返回", "loading": "加载中…", "language": "语言" },
-  "session": { "required": "需要本地会话。请通过启动器打开 KPI Bridge（它会创建一次性的安全会话）。" },
-  "nav": { "home": "首页" },
+  "common": {
+    "close": "关闭",
+    "cancel": "取消",
+    "delete": "删除",
+    "save": "保存",
+    "back": "返回",
+    "loading": "加载中…",
+    "language": "语言"
+  },
+  "session": {
+    "required": "需要本地会话。请通过启动器打开 KPI Bridge（它会创建一次性的安全会话）。"
+  },
+  "nav": {
+    "home": "首页"
+  },
   "ai": {
     "unreachable": "本地 AI 不可用",
     "unreachable_hint": "Ollama 服务或模型不可用。建议和引导式构建器仍可使用。",
     "test_double": "测试用 AI 替身（CI）"
   },
-  "footer": { "local": "完全本地处理 · 不向第三方发送任何数据" },
-  "steps": { "label": "步骤", "upload": "上传", "ask": "理解与提问", "verify": "核查", "dashboard": "仪表板" },
+  "footer": {
+    "local": "完全本地处理 · 不向第三方发送任何数据"
+  },
+  "steps": {
+    "label": "步骤",
+    "upload": "上传",
+    "ask": "理解与提问",
+    "verify": "核查",
+    "dashboard": "仪表板"
+  },
   "jobs": {
-    "kind": { "ingest": "导入文档", "interpret": "解析请求", "sleep_test": "测试任务" },
+    "kind": {
+      "ingest": "导入文档",
+      "interpret": "解析请求",
+      "sleep_test": "测试任务"
+    },
     "stage": {
-      "queued": "排队中", "starting": "启动中", "upload": "上传文件", "import": "导入", "extract": "提取", "ocr": "OCR 识别",
-      "verify": "核查", "ai": "本地 AI 分析", "validate": "校验计划", "done": "完成", "failed": "失败",
-      "cancelled": "已取消", "requeued_after_crash": "中断后重新开始"
+      "queued": "排队中",
+      "starting": "启动中",
+      "upload": "上传文件",
+      "import": "导入",
+      "extract": "提取",
+      "ocr": "OCR 识别",
+      "verify": "核查",
+      "ai": "本地 AI 分析",
+      "validate": "校验计划",
+      "done": "完成",
+      "failed": "失败",
+      "cancelled": "已取消",
+      "requeued_after_crash": "中断后重新开始"
     }
   },
   "upload": {
@@ -37,7 +71,10 @@
     "delimiter_auto": "自动识别分隔符",
     "retry": "重试"
   },
-  "projects": { "title": "已保存的项目", "confirm_delete": "永久删除项目“{{name}}”（源文件、派生数据、结果）？" },
+  "projects": {
+    "title": "已保存的项目",
+    "confirm_delete": "永久删除项目“{{name}}”（源文件、派生数据、结果）？"
+  },
   "next_action": {
     "default": "请检查文件或尝试其他格式（CSV 或 Excel）。",
     "no_table_found_pdf": "未找到可用的表格或数值。如有可能，请将源数据导出为 CSV/Excel。",
@@ -194,7 +231,14 @@
     "blank": "空行：{{count}}",
     "title": "标题行：{{count}}"
   },
-  "excluded_reason": { "total": "合计", "repeated_header": "重复表头", "duplicate": "重复", "manual": "已排除", "blank": "空", "title": "标题" },
+  "excluded_reason": {
+    "total": "合计",
+    "repeated_header": "重复表头",
+    "duplicate": "重复",
+    "manual": "已排除",
+    "blank": "空",
+    "title": "标题"
+  },
   "join": {
     "title": "关联两个表格",
     "hint": "只允许“多对一”关联：右表的键必须唯一。关联前后会核对行数和合计。",
@@ -219,27 +263,59 @@
     "import": "导入配方文件",
     "apply": "应用",
     "remap_needed": "部分列已变化：请选择对应的列。",
-    "problem": { "missing": "缺失", "type_changed": "类型已变", "currency_changed": "币种已变" },
+    "problem": {
+      "missing": "缺失",
+      "type_changed": "类型已变",
+      "currency_changed": "币种已变"
+    },
     "pick_column": "选择列…",
     "name_prompt": "配方名称"
   },
-  "types": { "text": "文本", "id": "标识符", "number": "数字", "money": "金额", "percent": "百分比", "date": "日期", "bool": "是/否", "ignore": "已忽略" },
+  "types": {
+    "text": "文本",
+    "id": "标识符",
+    "number": "数字",
+    "money": "金额",
+    "percent": "百分比",
+    "date": "日期",
+    "bool": "是/否",
+    "ignore": "已忽略"
+  },
   "describe": {
     "fn": {
-      "sum": "{{field}} 的总和", "count_rows": "行数", "count": "{{field}} 的值个数", "count_distinct": "{{field}} 的不同值个数",
-      "avg": "{{field}} 的平均值", "median": "{{field}} 的中位数", "min": "{{field}} 的最小值", "max": "{{field}} 的最大值"
+      "sum": "{{field}} 的总和",
+      "count_rows": "行数",
+      "count": "{{field}} 的值个数",
+      "count_distinct": "{{field}} 的不同值个数",
+      "avg": "{{field}} 的平均值",
+      "median": "{{field}} 的中位数",
+      "min": "{{field}} 的最小值",
+      "max": "{{field}} 的最大值"
     },
     "per": "（每个 {{key}} 只取一个值）",
     "where": "条件：{{cond}}",
     "op": {
-      "eq": "{{field}} = {{values}}", "neq": "{{field}} ≠ {{values}}", "in": "{{field}} 属于 {{values}}", "not_in": "{{field}} 不属于 {{values}}",
-      "gt": "{{field}} > {{values}}", "gte": "{{field}} ≥ {{values}}", "lt": "{{field}} < {{values}}", "lte": "{{field}} ≤ {{values}}",
-      "is_null": "{{field}} 为空", "not_null": "{{field}} 已填写", "between": "{{field}} 介于 {{values}}"
+      "eq": "{{field}} = {{values}}",
+      "neq": "{{field}} ≠ {{values}}",
+      "in": "{{field}} 属于 {{values}}",
+      "not_in": "{{field}} 不属于 {{values}}",
+      "gt": "{{field}} > {{values}}",
+      "gte": "{{field}} ≥ {{values}}",
+      "lt": "{{field}} < {{values}}",
+      "lte": "{{field}} ≤ {{values}}",
+      "is_null": "{{field}} 为空",
+      "not_null": "{{field}} 已填写",
+      "between": "{{field}} 介于 {{values}}"
     }
   },
   "plan": {
     "title": "仪表板计划",
-    "origin": { "ai": "由本地 AI（{{model}}）解析，并经引擎校验。", "suggestions": "根据所选建议生成（不使用 AI）。", "builder": "使用引导式构建器生成（不使用 AI）。", "recipe": "来自配方，已在新数据上重新校验。" },
+    "origin": {
+      "ai": "由本地 AI（{{model}}）解析，并经引擎校验。",
+      "suggestions": "根据所选建议生成（不使用 AI）。",
+      "builder": "使用引导式构建器生成（不使用 AI）。",
+      "recipe": "来自配方，已在新数据上重新校验。"
+    },
     "status": {
       "ai_failed": "AI 解析未成功。",
       "not_understood": "无法将请求与可用数据关联。",
@@ -301,9 +377,25 @@
     "worker_crashed": "处理中断。",
     "internal_error": "内部错误。"
   },
-  "units": { "currency": "金额", "count": "计数", "number": "数字", "percent": "百分比", "ratio": "比率" },
-  "chart_types": { "line": "折线图", "bar": "柱状图", "hbar": "条形图" },
-  "grains": { "day": "日", "week": "周", "month": "月", "quarter": "季度", "year": "年" },
+  "units": {
+    "currency": "金额",
+    "count": "计数",
+    "number": "数字",
+    "percent": "百分比",
+    "ratio": "比率"
+  },
+  "chart_types": {
+    "line": "折线图",
+    "bar": "柱状图",
+    "hbar": "条形图"
+  },
+  "grains": {
+    "day": "日",
+    "week": "周",
+    "month": "月",
+    "quarter": "季度",
+    "year": "年"
+  },
   "questions": {
     "date_order": "“{{name}}”中的日期有歧义（{{examples}}）。采用哪种格式？",
     "date_order_example": "在“{{name}}”中，“{{example}}”是指 {{dmy}} 还是 {{mdy}}？",
@@ -314,40 +406,116 @@
     "amount_basis": "存在两个金额：“{{ht}}”和“{{ttc}}”。使用哪一个？",
     "duplicates": "发现 {{rows}} 行相同的数据（{{groups}} 组）。它们是不同的交易吗？",
     "options": {
-      "date_order": { "DMY": "日/月/年", "MDY": "月/日/年" },
-      "number_convention": { "dot": "小数点（1,234.56）", "comma": "小数逗号（1 234,56）" },
-      "currency": { "none": "无币种 / 未知" },
-      "cancelled_rows": { "exclude": "排除这些行", "include": "包含这些行" },
-      "order_level_amount": { "once_per_order": "每个键只计一次", "per_line": "每行都计" },
-      "duplicates": { "keep": "是，保留", "exclude": "否，排除重复" }
+      "date_order": {
+        "DMY": "日/月/年",
+        "MDY": "月/日/年"
+      },
+      "number_convention": {
+        "dot": "小数点（1,234.56）",
+        "comma": "小数逗号（1 234,56）"
+      },
+      "currency": {
+        "none": "无币种 / 未知"
+      },
+      "cancelled_rows": {
+        "exclude": "排除这些行",
+        "include": "包含这些行"
+      },
+      "order_level_amount": {
+        "once_per_order": "每个键只计一次",
+        "per_line": "每行都计"
+      },
+      "duplicates": {
+        "keep": "是，保留",
+        "exclude": "否，排除重复"
+      }
     }
   },
   "builder": {
     "title": "引导式指标构建器",
     "hint": "选择聚合和字段：计算由确定性引擎完成，与 AI 路径相同。",
-    "fn": "聚合", "field": "字段", "per": "粒度", "per_line": "每一行", "once_per": "每个 {{name}} 一次",
-    "label": "名称", "kind": "计算类型", "unit": "单位", "compare": "与上一期间的变化",
-    "add_metric": "添加指标", "new_metric": "新指标", "charts": "图表", "add_chart": "添加图表",
-    "by_period": "按期间", "period_field": "期间列", "no_period": "无", "grain": "时间粒度", "submit": "创建计划",
-    "fns": { "sum": "总和", "count_rows": "行数", "count": "值个数", "count_distinct": "不同值个数", "avg": "平均值", "median": "中位数", "min": "最小值", "max": "最大值" },
-    "kinds": { "aggregate": "简单聚合（A）", "ratio": "比率（A ÷ B）", "difference": "差值（A − B）", "difference_ratio": "利润率（(A − B) ÷ A）", "percent_of": "百分比（A ÷ B × 100）" }
+    "fn": "聚合",
+    "field": "字段",
+    "per": "粒度",
+    "per_line": "每一行",
+    "once_per": "每个 {{name}} 一次",
+    "label": "名称",
+    "kind": "计算类型",
+    "unit": "单位",
+    "compare": "与上一期间的变化",
+    "add_metric": "添加指标",
+    "new_metric": "新指标",
+    "charts": "图表",
+    "add_chart": "添加图表",
+    "by_period": "按期间",
+    "period_field": "期间列",
+    "no_period": "无",
+    "grain": "时间粒度",
+    "submit": "创建计划",
+    "fns": {
+      "sum": "总和",
+      "count_rows": "行数",
+      "count": "值个数",
+      "count_distinct": "不同值个数",
+      "avg": "平均值",
+      "median": "中位数",
+      "min": "最小值",
+      "max": "最大值"
+    },
+    "kinds": {
+      "aggregate": "简单聚合（A）",
+      "ratio": "比率（A ÷ B）",
+      "difference": "差值（A − B）",
+      "difference_ratio": "利润率（(A − B) ÷ A）",
+      "percent_of": "百分比（A ÷ B × 100）"
+    }
   },
   "fix": {
     "title": "核查数据 — {{name}}",
     "hint": "每次修改都会生成可回退的新版本；相关结果会重新计算。",
-    "columns": "列", "column": "列", "type": "类型", "convention": "格式约定", "currency": "币种", "quality": "质量",
-    "invalid": "无法识别的值：{{count}}", "ocr_low": "需核查的 OCR 单元格：{{count}}", "formula_missing": "无缓存的公式：{{count}}",
+    "columns": "列",
+    "column": "列",
+    "type": "类型",
+    "convention": "格式约定",
+    "currency": "币种",
+    "quality": "质量",
+    "invalid": "无法识别的值：{{count}}",
+    "ocr_low": "需核查的 OCR 单元格：{{count}}",
+    "formula_missing": "无缓存的公式：{{count}}",
     "save": "应用类型和格式约定",
     "raw_title": "原始数据",
     "raw_hint": "选择表头行、排除或恢复某行，点击单元格进行更正（可查看其来源）。",
-    "status": "状态", "header": "表头", "include": "恢复", "exclude": "排除", "use_as_header": "设为表头",
-    "flag": { "ocr_low": "OCR 识别不可靠：需核查", "formula_no_cache": "公式没有缓存值" },
+    "status": "状态",
+    "header": "表头",
+    "include": "恢复",
+    "exclude": "排除",
+    "use_as_header": "设为表头",
+    "flag": {
+      "ocr_low": "OCR 识别不可靠：需核查",
+      "formula_no_cache": "公式没有缓存值"
+    },
     "edit_cell": "更正单元格",
     "versions": "数据版本",
-    "ops": { "initial": "导入", "columns": "类型/格式", "include_row": "已恢复行", "exclude_row": "已排除行", "correct_cell": "已更正单元格", "set_header_row": "表头", "revert": "回退", "answer": "回答", "recipe_conventions": "配方", "join": "关联", "edit": "修改" },
-    "revert": "回到此版本", "current": "当前",
-    "source": "来源：{{src}}", "ocr_conf": "OCR 引擎分数：{{conf}}（仅供参考，并非正确概率）",
-    "source_image": "单元格的来源区域", "new_value": "更正后的值", "date_order": "日期顺序",
+    "ops": {
+      "initial": "导入",
+      "columns": "类型/格式",
+      "include_row": "已恢复行",
+      "exclude_row": "已排除行",
+      "correct_cell": "已更正单元格",
+      "set_header_row": "表头",
+      "revert": "回退",
+      "answer": "回答",
+      "recipe_conventions": "配方",
+      "join": "关联",
+      "edit": "修改"
+    },
+    "revert": "回到此版本",
+    "current": "当前",
+    "source": "来源：{{src}}",
+    "ocr_conf": "OCR 引擎分数：{{conf}}（仅供参考，并非正确概率）",
+    "source_image": "单元格的来源区域",
+    "new_value": "更正后的值",
+    "date_order": "日期顺序",
     "question": {
       "header_row": "表头行不确定：请在下方核查。",
       "date_order": "“{{name}}”中的日期有歧义（{{examples}}）：请选择顺序。",
@@ -372,10 +540,18 @@
   "variation": {
     "previous_equal_window": "所选期间 {{cur}} 与等长的上一期间 {{prev}} 比较",
     "last_month_vs_previous": "数据最后一个月 {{cur}} 与上个月 {{prev}} 比较",
-    "short": { "previous_equal_window": "较上一期间", "last_month_vs_previous": "最后一月较上月" },
+    "short": {
+      "previous_equal_window": "较上一期间",
+      "last_month_vs_previous": "最后一月较上月"
+    },
     "unavailable": "变化不可用：{{reason}}"
   },
-  "filters": { "from": "从", "to": "至", "apply": "应用", "reset": "重置筛选" },
+  "filters": {
+    "from": "从",
+    "to": "至",
+    "apply": "应用",
+    "reset": "重置筛选"
+  },
   "quality": {
     "title": "质量提示",
     "none": "无",
@@ -431,8 +607,8 @@
     "row_count": "行数"
   },
   "export": {
-    "period": "期间：{{from}} → {{to}}",
-    "period_all": "期间：全部数据（{{from}} → {{to}}）",
+    "period": "期间：{{from}} – {{to}}",
+    "period_all": "期间：全部数据（{{from}} – {{to}}）",
     "global_filter": "全局筛选：{{field}} {{op}} {{values}}",
     "no_filter": "无筛选",
     "snapshot": "非交互式快照，生成于 {{date}}",

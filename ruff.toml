@@ -1,0 +1,10 @@
+line-length = 120
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "W", "I", "B", "S", "UP"]
+ignore = ["S101", "S603", "S607", "S608", "B008", "E501", "S310", "S311"]
+
+[lint.per-file-ignores]
+"backend/tests/*" = ["S", "B"]
+"scripts/kpictl.py" = ["UP036"]

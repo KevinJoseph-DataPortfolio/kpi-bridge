@@ -54,26 +54,39 @@ class OllamaProvider:
             "model": self.settings.ollama_model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             "format": schema,
-            "stream": False,
+            "stream": True,
             "think": False,
             "keep_alive": "10m",
             "options": {"temperature": 0, "num_ctx": self.settings.ollama_num_ctx, "num_predict": 1800, "seed": 7},
         }
         t0 = time.monotonic()
+        deadline = t0 + self.settings.ollama_timeout_s  # échéance globale réelle (pas seulement un délai de lecture)
+        parts: list[str] = []
+        model = self.settings.ollama_model
         try:
-            r = self.client.post("/api/chat", json=body)
+            with self.client.stream("POST", "/api/chat", json=body) as r:
+                if r.status_code == 404:
+                    raise UserError("ai_model_missing", model=self.settings.ollama_model)
+                if r.status_code >= 400:
+                    raise UserError("ai_error", status=r.status_code)
+                for line in r.iter_lines():
+                    if time.monotonic() > deadline:
+                        raise UserError("ai_timeout", seconds=self.settings.ollama_timeout_s)
+                    if not line.strip():
+                        continue
+                    chunk = json.loads(line)
+                    if chunk.get("error"):
+                        raise UserError("ai_error", status=500)
+                    model = chunk.get("model", model)
+                    parts.append((chunk.get("message") or {}).get("content") or "")
+                    if chunk.get("done"):
+                        break
         except httpx.TimeoutException as exc:
             raise UserError("ai_timeout", seconds=self.settings.ollama_timeout_s) from exc
         except httpx.HTTPError as exc:
             raise UserError("ai_unreachable") from exc
-        if r.status_code == 404:
-            raise UserError("ai_model_missing", model=self.settings.ollama_model)
-        if r.status_code >= 400:
-            raise UserError("ai_error", status=r.status_code)
-        data = r.json()
-        content = (data.get("message") or {}).get("content") or ""
-        content = re.sub(r"<think>.*?</think>", "", content, flags=re.S).strip()
-        return LLMReply(content=content, model=data.get("model", self.settings.ollama_model), duration_s=time.monotonic() - t0, provider="ollama")
+        content = re.sub(r"<think>.*?</think>", "", "".join(parts), flags=re.S).strip()
+        return LLMReply(content=content, model=model, duration_s=time.monotonic() - t0, provider="ollama")
 
 
 class FakeProvider:

@@ -84,7 +84,7 @@ def data_row_indices(n_rows: int, config: TableConfig) -> list[int]:
 
 def _infer_column(values: list[str | None]) -> dict[str, Any]:
     """Infère type et conventions d'une colonne à partir de ses cellules brutes."""
-    kinds = Counter()
+    kinds: Counter[str] = Counter()
     texts: list[str] = []
     for cell in values:
         kind, val, _ = decode(cell)
@@ -253,9 +253,9 @@ def apply_config(rows: list[list[str | None]], row_src: list[str], meta: dict[st
                         values.append(None)
                         invalid.append({"row": i, "raw": val[:60]})
                 elif kind == "text" and val is not None:
-                    d = parse_date(val, spec.date_order)
-                    values.append(d)
-                    if d is None:
+                    pdate = parse_date(val, spec.date_order)
+                    values.append(pdate)
+                    if pdate is None:
                         invalid.append({"row": i, "raw": val[:60]})
                 else:
                     values.append(None)

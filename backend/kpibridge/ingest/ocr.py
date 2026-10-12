@@ -182,9 +182,9 @@ def prepare_image(path: Path, max_pixels: int) -> Image.Image:
         raise
     except Exception as exc:  # noqa: BLE001 — tout échec de décodage est un fichier illisible
         raise UserError("corrupted_file") from exc
-    img = img.convert("L")
-    if img.width < 1200:
-        factor = min(3, max(1, 1600 // max(1, img.width)))
+    gray: Image.Image = img.convert("L")
+    if gray.width < 1200:
+        factor = min(3, max(1, 1600 // max(1, gray.width)))
         if factor > 1:
-            img = img.resize((img.width * factor, img.height * factor), Image.Resampling.LANCZOS)
-    return img
+            gray = gray.resize((gray.width * factor, gray.height * factor), Image.Resampling.LANCZOS)
+    return gray

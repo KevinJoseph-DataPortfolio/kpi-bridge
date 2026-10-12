@@ -1,20 +1,54 @@
 {
-  "common": { "close": "Schließen", "cancel": "Abbrechen", "delete": "Löschen", "save": "Speichern", "back": "Zurück", "loading": "Wird geladen…", "language": "Sprache" },
-  "session": { "required": "Eine lokale Sitzung ist erforderlich. Öffnen Sie KPI Bridge über den Starter (er erstellt eine sichere Einmal-Sitzung)." },
-  "nav": { "home": "Startseite" },
+  "common": {
+    "close": "Schließen",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "save": "Speichern",
+    "back": "Zurück",
+    "loading": "Wird geladen…",
+    "language": "Sprache"
+  },
+  "session": {
+    "required": "Eine lokale Sitzung ist erforderlich. Öffnen Sie KPI Bridge über den Starter (er erstellt eine sichere Einmal-Sitzung)."
+  },
+  "nav": {
+    "home": "Startseite"
+  },
   "ai": {
     "unreachable": "Lokale KI nicht verfügbar",
     "unreachable_hint": "Der Ollama-Dienst oder das Modell ist nicht verfügbar. Vorschläge und der geführte Editor funktionieren weiterhin.",
     "test_double": "KI-Testattrappe (CI)"
   },
-  "footer": { "local": "100 % lokale Verarbeitung · keine Daten an Dritte" },
-  "steps": { "label": "Schritte", "upload": "Hochladen", "ask": "Verstehen & fragen", "verify": "Prüfen", "dashboard": "Dashboard" },
+  "footer": {
+    "local": "100 % lokale Verarbeitung · keine Daten an Dritte"
+  },
+  "steps": {
+    "label": "Schritte",
+    "upload": "Hochladen",
+    "ask": "Verstehen & fragen",
+    "verify": "Prüfen",
+    "dashboard": "Dashboard"
+  },
   "jobs": {
-    "kind": { "ingest": "Dokumentimport", "interpret": "Auswertung der Anfrage", "sleep_test": "Testaufgabe" },
+    "kind": {
+      "ingest": "Dokumentimport",
+      "interpret": "Auswertung der Anfrage",
+      "sleep_test": "Testaufgabe"
+    },
     "stage": {
-      "queued": "Wartend", "starting": "Start", "upload": "Datei wird gesendet", "import": "Import", "extract": "Extraktion", "ocr": "OCR-Erkennung",
-      "verify": "Prüfung", "ai": "Analyse durch lokale KI", "validate": "Planprüfung", "done": "Fertig", "failed": "Fehlgeschlagen",
-      "cancelled": "Abgebrochen", "requeued_after_crash": "Neustart nach Unterbrechung"
+      "queued": "Wartend",
+      "starting": "Start",
+      "upload": "Datei wird gesendet",
+      "import": "Import",
+      "extract": "Extraktion",
+      "ocr": "OCR-Erkennung",
+      "verify": "Prüfung",
+      "ai": "Analyse durch lokale KI",
+      "validate": "Planprüfung",
+      "done": "Fertig",
+      "failed": "Fehlgeschlagen",
+      "cancelled": "Abgebrochen",
+      "requeued_after_crash": "Neustart nach Unterbrechung"
     }
   },
   "upload": {
@@ -37,7 +71,10 @@
     "delimiter_auto": "Trennzeichen automatisch",
     "retry": "Erneut versuchen"
   },
-  "projects": { "title": "Gespeicherte Projekte", "confirm_delete": "Projekt „{{name}}“ endgültig löschen (Quellen, abgeleitete Daten, Ergebnisse)?" },
+  "projects": {
+    "title": "Gespeicherte Projekte",
+    "confirm_delete": "Projekt „{{name}}“ endgültig löschen (Quellen, abgeleitete Daten, Ergebnisse)?"
+  },
   "next_action": {
     "default": "Prüfen Sie die Datei oder versuchen Sie ein anderes Format (CSV oder Excel).",
     "no_table_found_pdf": "Keine verwertbare Tabelle und kein Zahlenwert gefunden. Exportieren Sie die Quelle wenn möglich als CSV/Excel.",
@@ -194,7 +231,14 @@
     "blank": "Leere Zeilen: {{count}}",
     "title": "Titelzeilen: {{count}}"
   },
-  "excluded_reason": { "total": "Summe", "repeated_header": "wiederholte Kopfzeile", "duplicate": "Duplikat", "manual": "ausgeschlossen", "blank": "leer", "title": "Titel" },
+  "excluded_reason": {
+    "total": "Summe",
+    "repeated_header": "wiederholte Kopfzeile",
+    "duplicate": "Duplikat",
+    "manual": "ausgeschlossen",
+    "blank": "leer",
+    "title": "Titel"
+  },
   "join": {
     "title": "Zwei Tabellen verknüpfen",
     "hint": "Nur eine n:1-Verknüpfung ist erlaubt: Der Schlüssel der rechten Tabelle muss eindeutig sein. Zeilenzahl und Summen werden vorher/nachher geprüft.",
@@ -219,27 +263,59 @@
     "import": "Rezeptdatei importieren",
     "apply": "Anwenden",
     "remap_needed": "Einige Spalten haben sich geändert: Wählen Sie die passende Spalte.",
-    "problem": { "missing": "fehlt", "type_changed": "Typ geändert", "currency_changed": "Währung geändert" },
+    "problem": {
+      "missing": "fehlt",
+      "type_changed": "Typ geändert",
+      "currency_changed": "Währung geändert"
+    },
     "pick_column": "Spalte wählen…",
     "name_prompt": "Name des Rezepts"
   },
-  "types": { "text": "Text", "id": "Kennung", "number": "Zahl", "money": "Betrag", "percent": "Prozent", "date": "Datum", "bool": "ja/nein", "ignore": "ignoriert" },
+  "types": {
+    "text": "Text",
+    "id": "Kennung",
+    "number": "Zahl",
+    "money": "Betrag",
+    "percent": "Prozent",
+    "date": "Datum",
+    "bool": "ja/nein",
+    "ignore": "ignoriert"
+  },
   "describe": {
     "fn": {
-      "sum": "Summe von {{field}}", "count_rows": "Anzahl der Zeilen", "count": "Anzahl der Werte von {{field}}", "count_distinct": "Anzahl verschiedener {{field}}",
-      "avg": "Durchschnitt von {{field}}", "median": "Median von {{field}}", "min": "Minimum von {{field}}", "max": "Maximum von {{field}}"
+      "sum": "Summe von {{field}}",
+      "count_rows": "Anzahl der Zeilen",
+      "count": "Anzahl der Werte von {{field}}",
+      "count_distinct": "Anzahl verschiedener {{field}}",
+      "avg": "Durchschnitt von {{field}}",
+      "median": "Median von {{field}}",
+      "min": "Minimum von {{field}}",
+      "max": "Maximum von {{field}}"
     },
     "per": "(ein Wert pro {{key}})",
     "where": "wobei {{cond}}",
     "op": {
-      "eq": "{{field}} = {{values}}", "neq": "{{field}} ≠ {{values}}", "in": "{{field}} in {{values}}", "not_in": "{{field}} nicht in {{values}}",
-      "gt": "{{field}} > {{values}}", "gte": "{{field}} ≥ {{values}}", "lt": "{{field}} < {{values}}", "lte": "{{field}} ≤ {{values}}",
-      "is_null": "{{field}} leer", "not_null": "{{field}} ausgefüllt", "between": "{{field}} zwischen {{values}}"
+      "eq": "{{field}} = {{values}}",
+      "neq": "{{field}} ≠ {{values}}",
+      "in": "{{field}} in {{values}}",
+      "not_in": "{{field}} nicht in {{values}}",
+      "gt": "{{field}} > {{values}}",
+      "gte": "{{field}} ≥ {{values}}",
+      "lt": "{{field}} < {{values}}",
+      "lte": "{{field}} ≤ {{values}}",
+      "is_null": "{{field}} leer",
+      "not_null": "{{field}} ausgefüllt",
+      "between": "{{field}} zwischen {{values}}"
     }
   },
   "plan": {
     "title": "Dashboard-Plan",
-    "origin": { "ai": "Von der lokalen KI ({{model}}) ausgewertet und von der Engine geprüft.", "suggestions": "Aus den gewählten Vorschlägen erstellt (ohne KI).", "builder": "Mit dem geführten Editor erstellt (ohne KI).", "recipe": "Aus einem Rezept, auf den neuen Daten erneut geprüft." },
+    "origin": {
+      "ai": "Von der lokalen KI ({{model}}) ausgewertet und von der Engine geprüft.",
+      "suggestions": "Aus den gewählten Vorschlägen erstellt (ohne KI).",
+      "builder": "Mit dem geführten Editor erstellt (ohne KI).",
+      "recipe": "Aus einem Rezept, auf den neuen Daten erneut geprüft."
+    },
     "status": {
       "ai_failed": "Die KI-Auswertung war nicht erfolgreich.",
       "not_understood": "Die Anfrage konnte nicht mit den verfügbaren Daten verknüpft werden.",
@@ -301,9 +377,25 @@
     "worker_crashed": "Verarbeitung unterbrochen.",
     "internal_error": "Interner Fehler."
   },
-  "units": { "currency": "Betrag", "count": "Anzahl", "number": "Zahl", "percent": "Prozent", "ratio": "Verhältnis" },
-  "chart_types": { "line": "Linie", "bar": "Säulendiagramm", "hbar": "Horizontale Balken" },
-  "grains": { "day": "Tag", "week": "Woche", "month": "Monat", "quarter": "Quartal", "year": "Jahr" },
+  "units": {
+    "currency": "Betrag",
+    "count": "Anzahl",
+    "number": "Zahl",
+    "percent": "Prozent",
+    "ratio": "Verhältnis"
+  },
+  "chart_types": {
+    "line": "Linie",
+    "bar": "Säulendiagramm",
+    "hbar": "Horizontale Balken"
+  },
+  "grains": {
+    "day": "Tag",
+    "week": "Woche",
+    "month": "Monat",
+    "quarter": "Quartal",
+    "year": "Jahr"
+  },
   "questions": {
     "date_order": "Die Datumswerte in „{{name}}“ sind mehrdeutig ({{examples}}). Welche Konvention?",
     "date_order_example": "Bedeutet „{{example}}“ in „{{name}}“ den {{dmy}} oder den {{mdy}}?",
@@ -314,40 +406,116 @@
     "amount_basis": "Es gibt zwei Beträge: „{{ht}}“ und „{{ttc}}“. Welcher soll verwendet werden?",
     "duplicates": "{{rows}} identische Zeilen gefunden ({{groups}} Gruppen). Handelt es sich um verschiedene Vorgänge?",
     "options": {
-      "date_order": { "DMY": "Tag/Monat/Jahr", "MDY": "Monat/Tag/Jahr" },
-      "number_convention": { "dot": "Dezimalpunkt (1,234.56)", "comma": "Dezimalkomma (1.234,56)" },
-      "currency": { "none": "Keine Währung / unbekannt" },
-      "cancelled_rows": { "exclude": "Diese Zeilen ausschließen", "include": "Einbeziehen" },
-      "order_level_amount": { "once_per_order": "Nur einmal pro Schlüssel", "per_line": "In jeder Zeile" },
-      "duplicates": { "keep": "Ja, behalten", "exclude": "Nein, Duplikate ausschließen" }
+      "date_order": {
+        "DMY": "Tag/Monat/Jahr",
+        "MDY": "Monat/Tag/Jahr"
+      },
+      "number_convention": {
+        "dot": "Dezimalpunkt (1,234.56)",
+        "comma": "Dezimalkomma (1.234,56)"
+      },
+      "currency": {
+        "none": "Keine Währung / unbekannt"
+      },
+      "cancelled_rows": {
+        "exclude": "Diese Zeilen ausschließen",
+        "include": "Einbeziehen"
+      },
+      "order_level_amount": {
+        "once_per_order": "Nur einmal pro Schlüssel",
+        "per_line": "In jeder Zeile"
+      },
+      "duplicates": {
+        "keep": "Ja, behalten",
+        "exclude": "Nein, Duplikate ausschließen"
+      }
     }
   },
   "builder": {
     "title": "Geführter KPI-Editor",
     "hint": "Wählen Sie Aggregationen und Felder: Die Berechnung erfolgt durch die deterministische Engine, wie bei der KI.",
-    "fn": "Aggregation", "field": "Feld", "per": "Granularität", "per_line": "jede Zeile", "once_per": "einmal pro {{name}}",
-    "label": "Bezeichnung", "kind": "Berechnungsart", "unit": "Einheit", "compare": "Veränderung zum Vorzeitraum",
-    "add_metric": "Kennzahl hinzufügen", "new_metric": "Neue Kennzahl", "charts": "Diagramme", "add_chart": "Diagramm hinzufügen",
-    "by_period": "Nach Zeitraum", "period_field": "Zeitraumspalte", "no_period": "Keine", "grain": "Zeitschritt", "submit": "Plan erstellen",
-    "fns": { "sum": "Summe", "count_rows": "Anzahl Zeilen", "count": "Anzahl Werte", "count_distinct": "Anzahl verschiedener", "avg": "Durchschnitt", "median": "Median", "min": "Minimum", "max": "Maximum" },
-    "kinds": { "aggregate": "Einfaches Aggregat (A)", "ratio": "Verhältnis (A ÷ B)", "difference": "Differenz (A − B)", "difference_ratio": "Margenquote ((A − B) ÷ A)", "percent_of": "Prozentsatz (A ÷ B × 100)" }
+    "fn": "Aggregation",
+    "field": "Feld",
+    "per": "Granularität",
+    "per_line": "jede Zeile",
+    "once_per": "einmal pro {{name}}",
+    "label": "Bezeichnung",
+    "kind": "Berechnungsart",
+    "unit": "Einheit",
+    "compare": "Veränderung zum Vorzeitraum",
+    "add_metric": "Kennzahl hinzufügen",
+    "new_metric": "Neue Kennzahl",
+    "charts": "Diagramme",
+    "add_chart": "Diagramm hinzufügen",
+    "by_period": "Nach Zeitraum",
+    "period_field": "Zeitraumspalte",
+    "no_period": "Keine",
+    "grain": "Zeitschritt",
+    "submit": "Plan erstellen",
+    "fns": {
+      "sum": "Summe",
+      "count_rows": "Anzahl Zeilen",
+      "count": "Anzahl Werte",
+      "count_distinct": "Anzahl verschiedener",
+      "avg": "Durchschnitt",
+      "median": "Median",
+      "min": "Minimum",
+      "max": "Maximum"
+    },
+    "kinds": {
+      "aggregate": "Einfaches Aggregat (A)",
+      "ratio": "Verhältnis (A ÷ B)",
+      "difference": "Differenz (A − B)",
+      "difference_ratio": "Margenquote ((A − B) ÷ A)",
+      "percent_of": "Prozentsatz (A ÷ B × 100)"
+    }
   },
   "fix": {
     "title": "Daten prüfen — {{name}}",
     "hint": "Jede Änderung erzeugt eine neue umkehrbare Version; abhängige Ergebnisse werden neu berechnet.",
-    "columns": "Spalten", "column": "Spalte", "type": "Typ", "convention": "Konvention", "currency": "Währung", "quality": "Qualität",
-    "invalid": "Nicht lesbare Werte: {{count}}", "ocr_low": "Zu prüfende OCR-Zellen: {{count}}", "formula_missing": "Formeln ohne Cache: {{count}}",
+    "columns": "Spalten",
+    "column": "Spalte",
+    "type": "Typ",
+    "convention": "Konvention",
+    "currency": "Währung",
+    "quality": "Qualität",
+    "invalid": "Nicht lesbare Werte: {{count}}",
+    "ocr_low": "Zu prüfende OCR-Zellen: {{count}}",
+    "formula_missing": "Formeln ohne Cache: {{count}}",
     "save": "Typen und Konventionen anwenden",
     "raw_title": "Rohdaten",
     "raw_hint": "Kopfzeile wählen, Zeile ausschließen oder wiederherstellen, auf eine Zelle klicken, um sie zu korrigieren (mit Quelle).",
-    "status": "Status", "header": "Kopfzeile", "include": "Wiederherstellen", "exclude": "Ausschließen", "use_as_header": "Als Kopfzeile",
-    "flag": { "ocr_low": "Unsichere OCR-Erkennung: prüfen", "formula_no_cache": "Formel ohne gespeicherten Wert" },
+    "status": "Status",
+    "header": "Kopfzeile",
+    "include": "Wiederherstellen",
+    "exclude": "Ausschließen",
+    "use_as_header": "Als Kopfzeile",
+    "flag": {
+      "ocr_low": "Unsichere OCR-Erkennung: prüfen",
+      "formula_no_cache": "Formel ohne gespeicherten Wert"
+    },
     "edit_cell": "Zelle korrigieren",
     "versions": "Datenversionen",
-    "ops": { "initial": "Import", "columns": "Typen/Konventionen", "include_row": "Zeile wiederhergestellt", "exclude_row": "Zeile ausgeschlossen", "correct_cell": "Zelle korrigiert", "set_header_row": "Kopfzeile", "revert": "Rücksprung", "answer": "Antwort", "recipe_conventions": "Rezept", "join": "Verknüpfung", "edit": "Änderung" },
-    "revert": "Zu dieser Version zurückkehren", "current": "aktuell",
-    "source": "Quelle: {{src}}", "ocr_conf": "Wert der OCR-Engine: {{conf}} (Richtwert, keine Wahrscheinlichkeit der Richtigkeit)",
-    "source_image": "Quellbereich der Zelle", "new_value": "Korrigierter Wert", "date_order": "Datumsreihenfolge",
+    "ops": {
+      "initial": "Import",
+      "columns": "Typen/Konventionen",
+      "include_row": "Zeile wiederhergestellt",
+      "exclude_row": "Zeile ausgeschlossen",
+      "correct_cell": "Zelle korrigiert",
+      "set_header_row": "Kopfzeile",
+      "revert": "Rücksprung",
+      "answer": "Antwort",
+      "recipe_conventions": "Rezept",
+      "join": "Verknüpfung",
+      "edit": "Änderung"
+    },
+    "revert": "Zu dieser Version zurückkehren",
+    "current": "aktuell",
+    "source": "Quelle: {{src}}",
+    "ocr_conf": "Wert der OCR-Engine: {{conf}} (Richtwert, keine Wahrscheinlichkeit der Richtigkeit)",
+    "source_image": "Quellbereich der Zelle",
+    "new_value": "Korrigierter Wert",
+    "date_order": "Datumsreihenfolge",
     "question": {
       "header_row": "Die Kopfzeile ist unsicher: Prüfen Sie sie unten.",
       "date_order": "Mehrdeutige Datumswerte in „{{name}}“ ({{examples}}): Reihenfolge wählen.",
@@ -372,10 +540,18 @@
   "variation": {
     "previous_equal_window": "Gewählter Zeitraum {{cur}} verglichen mit dem gleich langen Vorzeitraum {{prev}}",
     "last_month_vs_previous": "Letzter Monat der Daten {{cur}} verglichen mit dem Vormonat {{prev}}",
-    "short": { "previous_equal_window": "ggü. Vorzeitraum", "last_month_vs_previous": "letzter Monat ggü. Vormonat" },
+    "short": {
+      "previous_equal_window": "ggü. Vorzeitraum",
+      "last_month_vs_previous": "letzter Monat ggü. Vormonat"
+    },
     "unavailable": "Veränderung nicht verfügbar: {{reason}}"
   },
-  "filters": { "from": "Von", "to": "Bis", "apply": "Anwenden", "reset": "Filter zurücksetzen" },
+  "filters": {
+    "from": "Von",
+    "to": "Bis",
+    "apply": "Anwenden",
+    "reset": "Filter zurücksetzen"
+  },
   "quality": {
     "title": "Qualitätshinweise",
     "none": "keine",
@@ -431,8 +607,8 @@
     "row_count": "Anzahl Zeilen"
   },
   "export": {
-    "period": "Zeitraum: {{from}} → {{to}}",
-    "period_all": "Zeitraum: alle Daten ({{from}} → {{to}})",
+    "period": "Zeitraum: {{from}} – {{to}}",
+    "period_all": "Zeitraum: alle Daten ({{from}} – {{to}})",
     "global_filter": "Globaler Filter: {{field}} {{op}} {{values}}",
     "no_filter": "Kein Filter",
     "snapshot": "Nicht interaktive Momentaufnahme vom {{date}}",

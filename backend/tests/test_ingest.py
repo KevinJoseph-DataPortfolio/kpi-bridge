@@ -14,7 +14,7 @@ from kpibridge.errors import LimitExceeded, UserError
 
 from .conftest import agg, metric, value
 
-FONT = Path(__file__).resolve().parents[1] / "kpibridge" / "exports" / "fonts" / "NotoSans-Variable.ttf"
+FONT = Path(__file__).resolve().parents[1] / "kpibridge" / "exports" / "fonts" / "NotoSans-Regular.ttf"
 
 
 def test_clean_csv_exact_kpis(env):

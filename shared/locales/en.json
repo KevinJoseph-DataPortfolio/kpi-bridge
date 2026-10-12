@@ -1,20 +1,54 @@
 {
-  "common": { "close": "Close", "cancel": "Cancel", "delete": "Delete", "save": "Save", "back": "Back", "loading": "Loading…", "language": "Language" },
-  "session": { "required": "A local session is required. Open KPI Bridge with the launcher (it creates a secure single-use session)." },
-  "nav": { "home": "Home" },
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "save": "Save",
+    "back": "Back",
+    "loading": "Loading…",
+    "language": "Language"
+  },
+  "session": {
+    "required": "A local session is required. Open KPI Bridge with the launcher (it creates a secure single-use session)."
+  },
+  "nav": {
+    "home": "Home"
+  },
   "ai": {
     "unreachable": "Local AI unavailable",
     "unreachable_hint": "The Ollama service or the model is not available. Suggestions and the guided builder still work.",
     "test_double": "Test AI double (CI)"
   },
-  "footer": { "local": "100% local processing · no data sent to third parties" },
-  "steps": { "label": "Steps", "upload": "Upload", "ask": "Understand & ask", "verify": "Check", "dashboard": "Dashboard" },
+  "footer": {
+    "local": "100% local processing · no data sent to third parties"
+  },
+  "steps": {
+    "label": "Steps",
+    "upload": "Upload",
+    "ask": "Understand & ask",
+    "verify": "Check",
+    "dashboard": "Dashboard"
+  },
   "jobs": {
-    "kind": { "ingest": "Document import", "interpret": "Request interpretation", "sleep_test": "Test job" },
+    "kind": {
+      "ingest": "Document import",
+      "interpret": "Request interpretation",
+      "sleep_test": "Test job"
+    },
     "stage": {
-      "queued": "Queued", "starting": "Starting", "upload": "Uploading file", "import": "Import", "extract": "Extraction", "ocr": "OCR reading",
-      "verify": "Verification", "ai": "Local AI analysis", "validate": "Plan validation", "done": "Done", "failed": "Failed",
-      "cancelled": "Cancelled", "requeued_after_crash": "Restarted after interruption"
+      "queued": "Queued",
+      "starting": "Starting",
+      "upload": "Uploading file",
+      "import": "Import",
+      "extract": "Extraction",
+      "ocr": "OCR reading",
+      "verify": "Verification",
+      "ai": "Local AI analysis",
+      "validate": "Plan validation",
+      "done": "Done",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "requeued_after_crash": "Restarted after interruption"
     }
   },
   "upload": {
@@ -37,7 +71,10 @@
     "delimiter_auto": "Automatic delimiter",
     "retry": "Retry"
   },
-  "projects": { "title": "Saved projects", "confirm_delete": "Permanently delete project “{{name}}” (sources, derived data, results)?" },
+  "projects": {
+    "title": "Saved projects",
+    "confirm_delete": "Permanently delete project “{{name}}” (sources, derived data, results)?"
+  },
   "next_action": {
     "default": "Check the file or try another format (CSV or Excel).",
     "no_table_found_pdf": "No usable table or numeric value was found. Export the source as CSV/Excel if possible.",
@@ -194,7 +231,14 @@
     "blank": "Empty rows: {{count}}",
     "title": "Title rows: {{count}}"
   },
-  "excluded_reason": { "total": "total", "repeated_header": "repeated header", "duplicate": "duplicate", "manual": "excluded", "blank": "empty", "title": "title" },
+  "excluded_reason": {
+    "total": "total",
+    "repeated_header": "repeated header",
+    "duplicate": "duplicate",
+    "manual": "excluded",
+    "blank": "empty",
+    "title": "title"
+  },
   "join": {
     "title": "Join two tables",
     "hint": "Only a many-to-one join is allowed: the key of the right table must be unique. Row count and sums are checked before/after.",
@@ -219,27 +263,59 @@
     "import": "Import a recipe file",
     "apply": "Apply",
     "remap_needed": "Some columns changed: select the matching column.",
-    "problem": { "missing": "missing", "type_changed": "type changed", "currency_changed": "currency changed" },
+    "problem": {
+      "missing": "missing",
+      "type_changed": "type changed",
+      "currency_changed": "currency changed"
+    },
     "pick_column": "Choose the column…",
     "name_prompt": "Recipe name"
   },
-  "types": { "text": "text", "id": "identifier", "number": "number", "money": "amount", "percent": "percentage", "date": "date", "bool": "yes/no", "ignore": "ignored" },
+  "types": {
+    "text": "text",
+    "id": "identifier",
+    "number": "number",
+    "money": "amount",
+    "percent": "percentage",
+    "date": "date",
+    "bool": "yes/no",
+    "ignore": "ignored"
+  },
   "describe": {
     "fn": {
-      "sum": "sum of {{field}}", "count_rows": "number of rows", "count": "number of values of {{field}}", "count_distinct": "distinct count of {{field}}",
-      "avg": "average of {{field}}", "median": "median of {{field}}", "min": "minimum of {{field}}", "max": "maximum of {{field}}"
+      "sum": "sum of {{field}}",
+      "count_rows": "number of rows",
+      "count": "number of values of {{field}}",
+      "count_distinct": "distinct count of {{field}}",
+      "avg": "average of {{field}}",
+      "median": "median of {{field}}",
+      "min": "minimum of {{field}}",
+      "max": "maximum of {{field}}"
     },
     "per": "(one value per {{key}})",
     "where": "where {{cond}}",
     "op": {
-      "eq": "{{field}} = {{values}}", "neq": "{{field}} ≠ {{values}}", "in": "{{field}} in {{values}}", "not_in": "{{field}} not in {{values}}",
-      "gt": "{{field}} > {{values}}", "gte": "{{field}} ≥ {{values}}", "lt": "{{field}} < {{values}}", "lte": "{{field}} ≤ {{values}}",
-      "is_null": "{{field}} empty", "not_null": "{{field}} filled", "between": "{{field}} between {{values}}"
+      "eq": "{{field}} = {{values}}",
+      "neq": "{{field}} ≠ {{values}}",
+      "in": "{{field}} in {{values}}",
+      "not_in": "{{field}} not in {{values}}",
+      "gt": "{{field}} > {{values}}",
+      "gte": "{{field}} ≥ {{values}}",
+      "lt": "{{field}} < {{values}}",
+      "lte": "{{field}} ≤ {{values}}",
+      "is_null": "{{field}} empty",
+      "not_null": "{{field}} filled",
+      "between": "{{field}} between {{values}}"
     }
   },
   "plan": {
     "title": "Dashboard plan",
-    "origin": { "ai": "Interpreted by the local AI ({{model}}) then validated by the engine.", "suggestions": "Built from the chosen suggestions (no AI).", "builder": "Built with the guided builder (no AI).", "recipe": "From a recipe, validated again on the new data." },
+    "origin": {
+      "ai": "Interpreted by the local AI ({{model}}) then validated by the engine.",
+      "suggestions": "Built from the chosen suggestions (no AI).",
+      "builder": "Built with the guided builder (no AI).",
+      "recipe": "From a recipe, validated again on the new data."
+    },
     "status": {
       "ai_failed": "The AI interpretation did not succeed.",
       "not_understood": "The request could not be related to the available data.",
@@ -301,9 +377,25 @@
     "worker_crashed": "Processing interrupted.",
     "internal_error": "Internal error."
   },
-  "units": { "currency": "amount", "count": "count", "number": "number", "percent": "percentage", "ratio": "ratio" },
-  "chart_types": { "line": "Line", "bar": "Bar chart", "hbar": "Horizontal bars" },
-  "grains": { "day": "day", "week": "week", "month": "month", "quarter": "quarter", "year": "year" },
+  "units": {
+    "currency": "amount",
+    "count": "count",
+    "number": "number",
+    "percent": "percentage",
+    "ratio": "ratio"
+  },
+  "chart_types": {
+    "line": "Line",
+    "bar": "Bar chart",
+    "hbar": "Horizontal bars"
+  },
+  "grains": {
+    "day": "day",
+    "week": "week",
+    "month": "month",
+    "quarter": "quarter",
+    "year": "year"
+  },
   "questions": {
     "date_order": "Dates in “{{name}}” are ambiguous ({{examples}}). Which convention?",
     "date_order_example": "In “{{name}}”, does “{{example}}” mean {{dmy}} or {{mdy}}?",
@@ -314,40 +406,116 @@
     "amount_basis": "Two amounts exist: “{{ht}}” and “{{ttc}}”. Which one should be used?",
     "duplicates": "{{rows}} identical rows were found ({{groups}} groups). Are they distinct transactions?",
     "options": {
-      "date_order": { "DMY": "day/month/year", "MDY": "month/day/year" },
-      "number_convention": { "dot": "decimal point (1,234.56)", "comma": "decimal comma (1 234,56)" },
-      "currency": { "none": "No currency / unknown" },
-      "cancelled_rows": { "exclude": "Exclude these rows", "include": "Include them" },
-      "order_level_amount": { "once_per_order": "Only once per key", "per_line": "On every line" },
-      "duplicates": { "keep": "Yes, keep them", "exclude": "No, exclude duplicates" }
+      "date_order": {
+        "DMY": "day/month/year",
+        "MDY": "month/day/year"
+      },
+      "number_convention": {
+        "dot": "decimal point (1,234.56)",
+        "comma": "decimal comma (1 234,56)"
+      },
+      "currency": {
+        "none": "No currency / unknown"
+      },
+      "cancelled_rows": {
+        "exclude": "Exclude these rows",
+        "include": "Include them"
+      },
+      "order_level_amount": {
+        "once_per_order": "Only once per key",
+        "per_line": "On every line"
+      },
+      "duplicates": {
+        "keep": "Yes, keep them",
+        "exclude": "No, exclude duplicates"
+      }
     }
   },
   "builder": {
     "title": "Guided KPI builder",
     "hint": "Choose aggregations and fields: the calculation is done by the deterministic engine, as with the AI.",
-    "fn": "Aggregation", "field": "Field", "per": "Grain", "per_line": "each row", "once_per": "once per {{name}}",
-    "label": "Label", "kind": "Calculation type", "unit": "Unit", "compare": "Change vs previous period",
-    "add_metric": "Add an indicator", "new_metric": "New indicator", "charts": "Charts", "add_chart": "Add a chart",
-    "by_period": "By period", "period_field": "Period column", "no_period": "None", "grain": "Time step", "submit": "Create the plan",
-    "fns": { "sum": "Sum", "count_rows": "Number of rows", "count": "Number of values", "count_distinct": "Distinct count", "avg": "Average", "median": "Median", "min": "Minimum", "max": "Maximum" },
-    "kinds": { "aggregate": "Simple aggregate (A)", "ratio": "Ratio (A ÷ B)", "difference": "Difference (A − B)", "difference_ratio": "Margin rate ((A − B) ÷ A)", "percent_of": "Percentage (A ÷ B × 100)" }
+    "fn": "Aggregation",
+    "field": "Field",
+    "per": "Grain",
+    "per_line": "each row",
+    "once_per": "once per {{name}}",
+    "label": "Label",
+    "kind": "Calculation type",
+    "unit": "Unit",
+    "compare": "Change vs previous period",
+    "add_metric": "Add an indicator",
+    "new_metric": "New indicator",
+    "charts": "Charts",
+    "add_chart": "Add a chart",
+    "by_period": "By period",
+    "period_field": "Period column",
+    "no_period": "None",
+    "grain": "Time step",
+    "submit": "Create the plan",
+    "fns": {
+      "sum": "Sum",
+      "count_rows": "Number of rows",
+      "count": "Number of values",
+      "count_distinct": "Distinct count",
+      "avg": "Average",
+      "median": "Median",
+      "min": "Minimum",
+      "max": "Maximum"
+    },
+    "kinds": {
+      "aggregate": "Simple aggregate (A)",
+      "ratio": "Ratio (A ÷ B)",
+      "difference": "Difference (A − B)",
+      "difference_ratio": "Margin rate ((A − B) ÷ A)",
+      "percent_of": "Percentage (A ÷ B × 100)"
+    }
   },
   "fix": {
     "title": "Check the data — {{name}}",
     "hint": "Each change creates a new reversible version; dependent results are recomputed.",
-    "columns": "Columns", "column": "Column", "type": "Type", "convention": "Convention", "currency": "Currency", "quality": "Quality",
-    "invalid": "{{count}} unreadable values", "ocr_low": "{{count}} OCR cells to check", "formula_missing": "{{count}} formulas without cache",
+    "columns": "Columns",
+    "column": "Column",
+    "type": "Type",
+    "convention": "Convention",
+    "currency": "Currency",
+    "quality": "Quality",
+    "invalid": "{{count}} unreadable values",
+    "ocr_low": "{{count}} OCR cells to check",
+    "formula_missing": "{{count}} formulas without cache",
     "save": "Apply types and conventions",
     "raw_title": "Raw data",
     "raw_hint": "Choose the header row, exclude or restore a row, click a cell to correct it (with its source).",
-    "status": "State", "header": "Header", "include": "Restore", "exclude": "Exclude", "use_as_header": "Header",
-    "flag": { "ocr_low": "Unreliable OCR reading: to check", "formula_no_cache": "Formula without cached value" },
+    "status": "State",
+    "header": "Header",
+    "include": "Restore",
+    "exclude": "Exclude",
+    "use_as_header": "Header",
+    "flag": {
+      "ocr_low": "Unreliable OCR reading: to check",
+      "formula_no_cache": "Formula without cached value"
+    },
     "edit_cell": "Correct the cell",
     "versions": "Data versions",
-    "ops": { "initial": "import", "columns": "types/conventions", "include_row": "row restored", "exclude_row": "row excluded", "correct_cell": "cell corrected", "set_header_row": "header", "revert": "rollback", "answer": "answer", "recipe_conventions": "recipe", "join": "join", "edit": "change" },
-    "revert": "Go back to this version", "current": "current",
-    "source": "Source: {{src}}", "ocr_conf": "OCR engine score: {{conf}} (indicative, not a probability of correctness)",
-    "source_image": "Source area of the cell", "new_value": "Corrected value", "date_order": "Date order",
+    "ops": {
+      "initial": "import",
+      "columns": "types/conventions",
+      "include_row": "row restored",
+      "exclude_row": "row excluded",
+      "correct_cell": "cell corrected",
+      "set_header_row": "header",
+      "revert": "rollback",
+      "answer": "answer",
+      "recipe_conventions": "recipe",
+      "join": "join",
+      "edit": "change"
+    },
+    "revert": "Go back to this version",
+    "current": "current",
+    "source": "Source: {{src}}",
+    "ocr_conf": "OCR engine score: {{conf}} (indicative, not a probability of correctness)",
+    "source_image": "Source area of the cell",
+    "new_value": "Corrected value",
+    "date_order": "Date order",
     "question": {
       "header_row": "The header row is uncertain: check it below.",
       "date_order": "Ambiguous dates in “{{name}}” ({{examples}}): choose the order.",
@@ -372,10 +540,18 @@
   "variation": {
     "previous_equal_window": "Selected period {{cur}} compared with the previous period of the same length {{prev}}",
     "last_month_vs_previous": "Last month of the data {{cur}} compared with the previous month {{prev}}",
-    "short": { "previous_equal_window": "vs previous period", "last_month_vs_previous": "last month vs previous" },
+    "short": {
+      "previous_equal_window": "vs previous period",
+      "last_month_vs_previous": "last month vs previous"
+    },
     "unavailable": "Change unavailable: {{reason}}"
   },
-  "filters": { "from": "From", "to": "To", "apply": "Apply", "reset": "Reset filters" },
+  "filters": {
+    "from": "From",
+    "to": "To",
+    "apply": "Apply",
+    "reset": "Reset filters"
+  },
   "quality": {
     "title": "Quality warnings",
     "none": "none",
@@ -431,8 +607,8 @@
     "row_count": "Number of rows"
   },
   "export": {
-    "period": "Period: {{from}} → {{to}}",
-    "period_all": "Period: all data ({{from}} → {{to}})",
+    "period": "Period: {{from}} – {{to}}",
+    "period_all": "Period: all data ({{from}} – {{to}})",
     "global_filter": "Global filter: {{field}} {{op}} {{values}}",
     "no_filter": "No filter",
     "snapshot": "Non-interactive snapshot generated on {{date}}",

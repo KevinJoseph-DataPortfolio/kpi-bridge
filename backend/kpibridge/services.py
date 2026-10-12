@@ -183,8 +183,8 @@ class Services:
             raise
         prog("verify", 0.9)
         # remplace les tables existantes de ce fichier (réimport avec options)
-        for t in self.db.all("SELECT id FROM extracted_tables WHERE source_file_id=?", (fid,)):
-            self._remove_table_files(pid, t["id"])
+        for old in self.db.all("SELECT id FROM extracted_tables WHERE source_file_id=?", (fid,)):
+            self._remove_table_files(pid, old["id"])
         self.db.run("DELETE FROM extracted_tables WHERE source_file_id=?", (fid,))
         created = []
         for t in tables:
@@ -275,8 +275,8 @@ class Services:
             if c.raw_index >= width or c.id != f"c{c.raw_index}":
                 raise UserError("invalid_column_spec")
         for k in cfg.corrections:
-            r, c = (int(x) for x in k.split(","))
-            if r >= len(rows) or c >= width:
+            r_i, c_i = (int(x) for x in k.split(","))
+            if r_i >= len(rows) or c_i >= width:
                 raise UserError("invalid_correction")
         meta = loads(row["meta"], {})
         return self._write_version(row["project_id"], tid, rows, srcs, meta, cfg, op=op, params=params, note=op)

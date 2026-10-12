@@ -27,7 +27,15 @@ from .normalize import TableConfig
 from .plan.llm import get_provider
 from .plans import SUPPORTED_LANGS, Plans
 from .recipes import Recipes
-from .security import COOKIE, SecurityMiddleware, consume_bootstrap_token, create_session, revoke_session, session_valid, set_session_cookie
+from .security import (
+    COOKIE,
+    SecurityMiddleware,
+    consume_bootstrap_token,
+    create_session,
+    revoke_session,
+    session_valid,
+    set_session_cookie,
+)
 from .services import Services
 from .storage import check_id
 from .worker import worker_alive

@@ -504,7 +504,7 @@ class Engine:
                 if not present:
                     continue
                 start, end = min(present), max(present)
-                xs = []
+                xs: list[dt.date] = []
                 d = bucket_start(start, self.plan.time_grain)
                 while d <= end and len(xs) < MAX_POINTS:
                     xs.append(d)

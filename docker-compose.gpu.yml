@@ -1,0 +1,10 @@
+# Surcouche facultative : accélération GPU NVIDIA pour Ollama (NVIDIA Container Toolkit requis).
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

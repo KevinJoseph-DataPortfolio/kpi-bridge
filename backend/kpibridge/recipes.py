@@ -75,7 +75,7 @@ class Recipes:
         if payload.get("format") != "kpi-bridge-recipe" or payload.get("version") != 1:
             raise UserError("recipe_invalid")
         AnalysisPlan.model_validate(payload.get("plan"))
-        clean = {k: payload[k] for k in ("format", "version", "name", "fields", "plan", "answers", "layout") if k in payload}
+        clean: dict[str, Any] = {k: payload[k] for k in ("format", "version", "name", "fields", "plan", "answers", "layout") if k in payload}
         clean["name"] = str(clean.get("name", "Recette"))[:120]
         rid = new_id("rcp")
         self.db.run("INSERT INTO recipes (id, name, payload, created_at) VALUES (?, ?, ?, ?)", (rid, clean["name"], dumps(clean), now()))

@@ -79,7 +79,7 @@ def analyse_join(svc: Services, left_id: str, left_key: str, right_id: str, righ
 def create_join(svc: Services, pid: str, left_id: str, left_key: str, right_id: str, right_key: str, right_columns: list[str]) -> dict[str, Any]:
     report = analyse_join(svc, left_id, left_key, right_id, right_key)
     if not report.get("allowed"):
-        raise UserError("join_blocked", **{k: v for k, v in report.items() if isinstance(v, (int, str, bool))})
+        raise UserError("join_blocked", reason=str(report.get("reason")), duplicates=report.get("right_key_duplicates"))
     lv, rv = svc.current_version(left_id), svc.current_version(right_id)
     left = pq.read_table(lv["parquet"])
     right = pq.read_table(rv["parquet"])

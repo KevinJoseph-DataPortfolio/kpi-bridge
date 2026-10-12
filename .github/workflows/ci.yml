@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: OCR (Tesseract + langues)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-fra tesseract-ocr-deu \
+            tesseract-ocr-spa tesseract-ocr-rus tesseract-ocr-chi-sim
+      - name: Dépendances verrouillées (empreintes vérifiées)
+        run: |
+          python -m pip install --require-hashes -r backend/requirements.lock
+          python -m pip install --require-hashes -r backend/requirements-dev.lock
+      - name: Lint
+        run: ruff check backend scripts
+      - name: Types
+        run: mypy backend/kpibridge
+      - name: Tests (IA remplacée par un substitut de test explicitement identifié)
+        working-directory: backend
+        env:
+          KPI_LLM_PROVIDER: fake
+        run: python -m pytest -q
+      - name: Audit des vulnérabilités Python
+        run: pip-audit -r backend/requirements.lock --require-hashes --strict
+      - name: Inventaire et contrôle des licences
+        run: python scripts/check_licenses.py
+
+  frontend:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run lint
+        working-directory: frontend
+      - run: npm run typecheck
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
+      - name: Audit npm (vulnérabilités élevées ou critiques)
+        run: npm audit --audit-level=high --omit=dev
+        working-directory: frontend
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist
+
+  e2e:
+    needs: [frontend]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist
+      - run: python -m pip install --require-hashes -r backend/requirements.lock
+      - run: npm ci && npx playwright install --with-deps chromium
+        working-directory: frontend
+      - name: Parcours navigateur dans les six langues (substitut d'IA de test)
+        working-directory: frontend
+        env:
+          KPI_LLM_PROVIDER: fake
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: frontend/playwright-report
+
+  security:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Recherche de secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Construction de l'image
+        run: docker build -t kpi-bridge:ci .
+      - name: Analyse de l'image (vulnérabilités corrigibles élevées/critiques)
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: kpi-bridge:ci
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"

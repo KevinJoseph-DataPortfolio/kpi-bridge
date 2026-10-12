@@ -1,0 +1,134 @@
+{
+  "model": "qwen3:4b",
+  "ollama": {
+    "provider": "ollama",
+    "reachable": true,
+    "model": "qwen3:4b",
+    "model_present": true
+  },
+  "runs": [
+    {
+      "lang": "fr",
+      "valid": true,
+      "attempts": 1,
+      "seconds": 18.3,
+      "labels": [
+        "Revenus",
+        "Panier moyen",
+        "Cinq meilleurs produits",
+        "Marge"
+      ],
+      "unavailable": [],
+      "checks": {
+        "sum_amount": true,
+        "basket_distinct_orders": true,
+        "no_row_count_ratio": true,
+        "top5_products_chart": true,
+        "monthly_chart": true,
+        "margin_difference": true
+      }
+    },
+    {
+      "lang": "en",
+      "valid": true,
+      "attempts": 1,
+      "seconds": 16.2,
+      "labels": [
+        "Sales",
+        "Average basket",
+        "Top 5 products",
+        "Margin"
+      ],
+      "unavailable": [],
+      "checks": {
+        "sum_amount": true,
+        "basket_distinct_orders": true,
+        "no_row_count_ratio": true,
+        "top5_products_chart": true,
+        "monthly_chart": true,
+        "margin_difference": true
+      }
+    },
+    {
+      "lang": "ru",
+      "valid": true,
+      "attempts": 1,
+      "seconds": 18.1,
+      "labels": [
+        "Продажи",
+        "Средний чек",
+        "Пять лучших товаров",
+        "Маржу"
+      ],
+      "unavailable": [],
+      "checks": {
+        "sum_amount": true,
+        "basket_distinct_orders": true,
+        "no_row_count_ratio": true,
+        "top5_products_chart": true,
+        "monthly_chart": true,
+        "margin_difference": true
+      }
+    },
+    {
+      "lang": "zh-Hans",
+      "valid": true,
+      "attempts": 1,
+      "seconds": 14.4,
+      "labels": [
+        "销售额",
+        "平均订单金额",
+        "毛利"
+      ],
+      "unavailable": [],
+      "checks": {
+        "sum_amount": true,
+        "basket_distinct_orders": true,
+        "no_row_count_ratio": true,
+        "top5_products_chart": true,
+        "monthly_chart": true,
+        "margin_difference": true
+      }
+    },
+    {
+      "lang": "de",
+      "valid": true,
+      "attempts": 1,
+      "seconds": 13.9,
+      "labels": [
+        "Umsätze",
+        "Durchschnittlicher Warenkorb",
+        "Marge"
+      ],
+      "unavailable": [],
+      "checks": {
+        "sum_amount": true,
+        "basket_distinct_orders": true,
+        "no_row_count_ratio": true,
+        "top5_products_chart": true,
+        "monthly_chart": true,
+        "margin_difference": true
+      }
+    },
+    {
+      "lang": "es",
+      "valid": true,
+      "attempts": 1,
+      "seconds": 14.2,
+      "labels": [
+        "Ventas mensuales",
+        "Ticket medio",
+        "Margen"
+      ],
+      "unavailable": [],
+      "checks": {
+        "sum_amount": true,
+        "basket_distinct_orders": true,
+        "no_row_count_ratio": true,
+        "top5_products_chart": true,
+        "monthly_chart": true,
+        "margin_difference": true
+      }
+    }
+  ]
+}

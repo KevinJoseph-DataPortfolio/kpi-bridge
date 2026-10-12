@@ -10,7 +10,19 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from .grammar import FIELD_PATTERN, ID_PATTERN, Agg, AnalysisPlan, BinOp, Chart, ChartType, Filter, Metric, TimeGrain, Unit
+from .grammar import (
+    FIELD_PATTERN,
+    ID_PATTERN,
+    Agg,
+    AnalysisPlan,
+    BinOp,
+    Chart,
+    ChartType,
+    Filter,
+    Metric,
+    TimeGrain,
+    Unit,
+)
 
 
 class S(BaseModel):
@@ -70,6 +82,7 @@ def _agg(spec: AggSpec, filters: list[Filter] | None = None) -> Agg:
 
 def compile_metric(m: MetricSpec) -> Metric:
     a = _agg(m.a)
+    expr: Agg | BinOp
     if m.kind == "aggregate":
         expr = a
     else:

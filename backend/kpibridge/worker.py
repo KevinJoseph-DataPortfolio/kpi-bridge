@@ -14,7 +14,6 @@ import logging
 import multiprocessing as mp
 import shutil
 import signal
-import sys
 import time
 from pathlib import Path
 from typing import Any
@@ -33,7 +32,7 @@ def _limit_memory(mib: int) -> None:
         import resource  # POSIX uniquement
 
         limit = mib * 1024 * 1024
-        resource.setrlimit(resource.RLIMIT_AS, (limit, limit))
+        resource.setrlimit(resource.RLIMIT_AS, (limit, limit))  # type: ignore[attr-defined]
     except (ImportError, ValueError, OSError):
         pass
 
@@ -139,7 +138,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
 
 
 def worker_alive(run_dir: Path, max_age: float = 15.0) -> bool:

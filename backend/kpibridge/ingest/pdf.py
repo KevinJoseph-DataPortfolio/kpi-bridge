@@ -96,7 +96,7 @@ def parse_pdf(path: Path, name: str, ctx: IngestContext) -> list[RawTable]:
                     raise LimitExceeded("too_many_columns", limit=limits.max_cols, count=len(rows[0]))
                 clean_rows = [[(clean_text(c) if c else None) or None for c in r] for r in rows]
                 srcs = []
-                for r_i, row_obj in enumerate(tbl.rows):
+                for row_obj in tbl.rows:
                     b = row_obj.bbox
                     srcs.append(f"page={p};bbox={b[0]:.0f},{b[1]:.0f},{b[2]:.0f},{b[3]:.0f}")
                 while len(srcs) < len(clean_rows):
@@ -158,9 +158,9 @@ def parse_pdf(path: Path, name: str, ctx: IngestContext) -> list[RawTable]:
             finally:
                 doc.close()
         if not tables and text_lines_total:
-            t = extract_text_values(text_lines_total, name)
-            if t is not None:
-                tables.append(t)
+            text_table = extract_text_values(text_lines_total, name)
+            if text_table is not None:
+                tables.append(text_table)
         if not tables:
             raise UserError("no_table_found_pdf")
         return tables

@@ -45,7 +45,7 @@ def format_number(value: str | None, lang: str, unit: str = "number", currency: 
     s = format(abs(q), "f")
     int_part, _, frac = s.partition(".")
     group, dec = SEP.get(lang, SEP["en"])
-    groups = []
+    groups: list[str] = []
     while len(int_part) > 3:
         groups.insert(0, int_part[-3:])
         int_part = int_part[:-3]
@@ -68,13 +68,48 @@ def _register_fonts() -> None:
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
 
-    pdfmetrics.registerFont(TTFont("KPI-Sans", str(FONT_DIR / "NotoSans-Variable.ttf")))
-    pdfmetrics.registerFont(TTFont("KPI-SC", str(FONT_DIR / "NotoSansSC-Variable.ttf")))
+    pdfmetrics.registerFont(TTFont("KPI-Sans", str(FONT_DIR / "NotoSans-Regular.ttf")))
+    pdfmetrics.registerFont(TTFont("KPI-SC", str(FONT_DIR / "NotoSansSC-Regular.ttf")))
     _FONTS_READY = True
 
 
 def _font(text: str) -> str:
     return "KPI-SC" if CJK_RE.search(text or "") else "KPI-Sans"
+
+
+MISSING_GLYPH = "□"
+
+
+def _runs(text: str) -> list[tuple[str, str]]:
+    """Découpe un texte en segments (police, texte) selon la couverture réelle des polices embarquées.
+    Un caractère absent des deux polices est remplacé de façon visible par « □ » (jamais supprimé en silence)."""
+    from reportlab.pdfbase import pdfmetrics
+
+    _register_fonts()
+    sans = pdfmetrics.getFont("KPI-Sans").face.charToGlyph
+    sc = pdfmetrics.getFont("KPI-SC").face.charToGlyph
+    runs: list[tuple[str, str]] = []
+    for ch in text or "":
+        o = ord(ch)
+        if o in sans:
+            font = "KPI-Sans"
+        elif o in sc:
+            font = "KPI-SC"
+        elif ord(MISSING_GLYPH) in sc:
+            font, ch = "KPI-SC", MISSING_GLYPH
+        else:
+            font, ch = "KPI-Sans", "?"
+        if runs and runs[-1][0] == font:
+            runs[-1] = (font, runs[-1][1] + ch)
+        else:
+            runs.append((font, ch))
+    return runs
+
+
+def _width(text: str, size: float) -> float:
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    return sum(stringWidth(t, f, size) for f, t in _runs(text))
 
 
 PALETTE = ["#2563eb", "#0f766e", "#b45309", "#7c3aed", "#be123c", "#4d7c0f"]
@@ -112,19 +147,20 @@ def render_pdf(payload: dict[str, Any], lang: str, project_name: str) -> bytes:
     margin = 32
 
     def text(x: float, y: float, s: str, size: float = 9, color: str = "#111827", right: bool = False) -> None:
-        c.setFillColor(color)
-        c.setFont(_font(s), size)
-        if right:
-            c.drawRightString(x, y, s)
-        else:
-            c.drawString(x, y, s)
-
-    def fit(s: str, size: float, width: float) -> str:
         from reportlab.pdfbase.pdfmetrics import stringWidth
 
-        if stringWidth(s, _font(s), size) <= width:
+        c.setFillColor(color)
+        if right:
+            x -= _width(s, size)
+        for font, part in _runs(s):
+            c.setFont(font, size)
+            c.drawString(x, y, part)
+            x += stringWidth(part, font, size)
+
+    def fit(s: str, size: float, width: float) -> str:
+        if _width(s, size) <= width:
             return s
-        while s and stringWidth(s + "…", _font(s), size) > width:
+        while s and _width(s + "…", size) > width:
             s = s[:-1]
         return s + "…"
 
@@ -260,11 +296,12 @@ def _draw_chart(c: Any, ch: dict[str, Any], x: float, y: float, w: float, h: flo
     pw, ph = right - left, top - bottom
     c.setStrokeColor("#d1d5db")
     c.line(left, bottom, right, bottom)
-    text(left - 4, top - 6, format_number(str(vmax), lang, ch.get("unit") if ch.get("unit") != "currency" else "number"), 6.5, "#6b7280", right=True)
-    text(left - 4, bottom, format_number(str(vmin), lang, ch.get("unit") if ch.get("unit") != "currency" else "number"), 6.5, "#6b7280", right=True)
+    text(left - 4, top - 6, format_number(str(vmax), lang, str(ch.get("unit")) if ch.get("unit") != "currency" else "number"), 6.5, "#6b7280", right=True)
+    text(left - 4, bottom, format_number(str(vmin), lang, str(ch.get("unit")) if ch.get("unit") != "currency" else "number"), 6.5, "#6b7280", right=True)
 
     def ypos(v: Decimal) -> float:
-        return float(bottom + (v - vmin) / span * Decimal(str(ph)))
+        # coordonnées de dessin uniquement (les valeurs affichées restent décimales)
+        return bottom + float((v - vmin) / span) * ph
 
     if ch["type"] == "line":
         for si, s in enumerate(series[:4]):

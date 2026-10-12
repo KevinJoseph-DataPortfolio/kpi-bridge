@@ -1,0 +1,73 @@
+# KPI Bridge — distribution Docker Compose (chemin de référence quand Docker est disponible).
+# Seul le port de l'application est publié, et uniquement sur 127.0.0.1. Ollama et le worker ne sont pas exposés.
+# CPU par défaut ; GPU NVIDIA facultatif : docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d
+
+name: kpi-bridge
+
+x-app-env: &app-env
+  KPI_HOST: 0.0.0.0              # écoute interne au conteneur ; publication limitée à 127.0.0.1 ci-dessous
+  KPI_PORT: "8765"
+  KPI_EXTRA_HOSTS: ""
+  KPI_OLLAMA_URL: http://ollama:11434
+  KPI_OLLAMA_MODEL: ${KPI_OLLAMA_MODEL:-qwen3:4b}
+  KPI_MAX_FILE_MIB: ${KPI_MAX_FILE_MIB:-25}
+  KPI_MAX_ROWS: ${KPI_MAX_ROWS:-200000}
+
+services:
+  app:
+    build: .
+    image: kpi-bridge:1.0.0
+    environment: *app-env
+    ports:
+      - "127.0.0.1:${KPI_PORT:-8765}:8765"
+    volumes:
+      - kpi-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    networks: [frontend, internal]
+    depends_on: [worker]
+    restart: unless-stopped
+
+  worker:
+    image: kpi-bridge:1.0.0
+    build: .
+    command: ["python", "-m", "kpibridge.worker"]
+    environment:
+      <<: *app-env
+      KPI_JOB_MEMORY_MIB: "3072"
+    volumes:
+      - kpi-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 4g
+    pids_limit: 256
+    cpus: 2
+    networks: [internal]       # réseau interne sans accès Internet : aucun traitement ne sort
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.40.3
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_MAX_LOADED_MODELS: "1"
+      OLLAMA_NUM_PARALLEL: "1"
+    volumes:
+      - ollama-models:/root/.ollama
+    networks: [internal, models]   # « models » sert au premier téléchargement du modèle ; aucun port publié
+    restart: unless-stopped
+
+networks:
+  frontend: {}
+  internal:
+    internal: true
+  models: {}
+
+volumes:
+  kpi-data: {}
+  ollama-models: {}

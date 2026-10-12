@@ -32,7 +32,7 @@ def open_dataset(parquet_path: Path) -> tuple[duckdb.DuckDBPyConnection, threadi
             _CACHE.move_to_end(key)
             return _CACHE[key]
     arrow_tbl = pq.read_table(parquet_path)
-    con = duckdb.connect(":memory:", config=dict(SAFE_CONFIG))
+    con = duckdb.connect(":memory:", config=dict(SAFE_CONFIG))  # type: ignore[arg-type]
     con.register("src_arrow", arrow_tbl)
     con.execute("CREATE TABLE data AS SELECT * FROM src_arrow")
     con.unregister("src_arrow")
