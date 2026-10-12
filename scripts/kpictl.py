@@ -108,9 +108,13 @@ def download(url: str, dest: Path, expected_sha256: str | None = None) -> Path:
     return dest
 
 
+# Accès aux services LOCAUX (application, Ollama) sans proxy : un proxy système ne doit ni intercepter ni bloquer 127.0.0.1.
+LOCAL = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+
 def http_ok(url: str, timeout: float = 2) -> bool:
     try:
-        with urllib.request.urlopen(url, timeout=timeout) as r:  # noqa: S310
+        with LOCAL.open(url, timeout=timeout) as r:
             return r.status == 200
     except OSError:
         return False
@@ -283,7 +287,7 @@ def start_ollama() -> None:
 
 def model_present(model: str) -> bool:
     try:
-        with urllib.request.urlopen(f"{OLLAMA_URL}/api/tags", timeout=3) as r:  # noqa: S310
+        with LOCAL.open(f"{OLLAMA_URL}/api/tags", timeout=3) as r:
             names = [m.get("name") for m in json.load(r).get("models", [])]
         return model in names or f"{model}:latest" in names
     except OSError:
@@ -293,7 +297,7 @@ def model_present(model: str) -> bool:
 def pull_model(model: str) -> None:
     req = urllib.request.Request(f"{OLLAMA_URL}/api/pull", data=json.dumps({"model": model, "stream": True}).encode(), headers={"Content-Type": "application/json"})
     last = 0.0
-    with urllib.request.urlopen(req, timeout=3600) as r:  # noqa: S310
+    with LOCAL.open(req, timeout=3600) as r:
         for line in r:
             ev = json.loads(line)
             if "error" in ev:
