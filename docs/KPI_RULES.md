@@ -1,42 +1,42 @@
-# Règles de calcul des KPI
+# KPI computation rules
 
-**L'IA interprète la demande et propose un plan ; le moteur de données calcule.** Le modèle ne produit jamais de
-chiffre, de SQL ou de code. Les trois origines de plan (IA, suggestions, constructeur guidé) et les recettes
-passent par la même grammaire, la même validation et le même moteur.
+**The AI interprets the request and proposes a plan; the data engine computes.** The model never produces a figure,
+SQL or code. The three plan origins (AI, suggestions, guided builder) and the recipes all go through the same
+grammar, the same validation and the same engine.
 
-## Grammaire
-- Agrégations : `sum`, `count_rows`, `count`, `count_distinct`, `avg`, `median`, `min`, `max`, avec filtres et grain
-  optionnel `per` (une valeur par clé).
-- Opérations dérivées : `add`, `sub`, `mul`, `div`, constantes décimales ; profondeur ≤ 4, ≤ 6 agrégats.
-  Le format simplifié (modèle et constructeur) propose : agrégat, ratio, différence, taux de marge
-  `(A − B) ÷ A × 100`, pourcentage `A ÷ B × 100`.
-- Filtres : `eq neq in not_in gt gte lt lte is_null not_null between` ; `neq`/`not_in` conservent les valeurs vides.
-- Graphiques : `line` (par période), `bar`, `hbar` (top N ≤ 20). Pas de camembert, pas de 3D.
-- Définition de KPI : identifiant stable, libellé, unité, expression structurée, filtres, comparaison, règle de taux,
-  décimales d'affichage. Grain, champs sources, période, traitement des absents et de la division par zéro sont
-  ceux décrits ci-dessous et visibles dans « Vérifier ce chiffre ».
+## Grammar
+- Aggregations: `sum`, `count_rows`, `count`, `count_distinct`, `avg`, `median`, `min`, `max`, with filters and an
+  optional `per` grain (one value per key).
+- Derived operations: `add`, `sub`, `mul`, `div`, decimal constants; depth ≤ 4, ≤ 6 aggregates.
+  The simplified format (model and builder) offers: aggregate, ratio, difference, margin rate
+  `(A − B) ÷ A × 100`, percentage `A ÷ B × 100`.
+- Filters: `eq neq in not_in gt gte lt lte is_null not_null between`; `neq` / `not_in` keep empty values.
+- Charts: `line` (by period), `bar`, `hbar` (top N ≤ 20). No pie charts, no 3D.
+- KPI definition: stable identifier, label, unit, structured expression, filters, comparison, rate rule, display
+  decimals. Grain, source fields, period, and the handling of missing values and division by zero follow the rules
+  below and are visible in "Check this figure".
 
-## Règles (toutes testées dans `backend/tests/test_kpi_rules.py`)
-| Règle | Comportement |
+## Rules (all tested in `backend/tests/test_kpi_rules.py`)
+| Rule | Behaviour |
 |---|---|
-| Panier moyen | `somme(montant) ÷ nombre distinct de commandes` ; jamais divisé par le nombre de lignes. Le modèle reçoit cette consigne et l'évaluation vérifie l'usage de `count_distinct`. |
-| Taux global | `Σ numérateur ÷ Σ dénominateur`. Somme de pourcentages refusée ; moyenne de taux par ligne refusée sauf règle `row_average` explicite. |
-| Division par zéro | Résultat « indisponible » avec motif `division_by_zero`. |
-| Valeur absente | Jamais convertie en 0 ; ignorée par l'agrégat, comptée et affichée (« valeurs vides ignorées »). Un agrégat sans aucune valeur est « indisponible » (`no_values`). Une valeur illisible est comptée comme invalide, jamais remplacée par 0. |
-| Variation | Période sélectionnée vs période précédente de même durée ; sans filtre, dernier mois des données vs mois précédent. Indisponible si la période précédente est hors des données ou vide (`no_comparable_period`) ; une couverture partielle est signalée (`previous_partial`). |
-| Mois absents | Points absents (trous) dans les courbes, jamais 0. |
-| Décimales | Montants en `DECIMAL(38, s)` dans DuckDB et `decimal.Decimal` en Python ; médiane calculée avec une décimale de plus pour rester exacte ; arrondi uniquement à l'affichage (Intl.NumberFormat sur chaînes, ReportLab sur Decimal). |
-| Devises | Montants de devises différentes : résultats séparés par devise (colonne devise, symbole par ligne, ou devise de colonne). Aucune conversion ; combiner deux colonnes de devises différentes est refusé. Une devise inconnue fait l'objet d'une question. |
-| HT/TTC, annulations, remboursements, avoirs | Jamais devinés : si deux bases de montant existent, ou si une colonne contient des valeurs d'annulation/remboursement, une question est posée (exclure / inclure). |
-| Grains différents | Un montant constant au sein d'une commande et répété sur chaque ligne déclenche une question ; « une fois par commande » applique `per`. Le moteur vérifie que la valeur est constante par clé (`grain_conflict`) et refuse de répartir une clé sur plusieurs catégories (`grain_dimension_conflict`). |
-| Totaux et sous-totaux | Lignes dont une cellule texte commence par un mot-clé de total (6 langues) ou ligne sans libellé égale à la somme des lignes précédentes : exclues de façon visible et réversible. |
-| Doublons | Jamais supprimés automatiquement ; signalés, et une question propose de les exclure. |
-| Jointures | Uniquement « plusieurs vers un » : clé de droite unique, types de clé compatibles, nombre de lignes et sommes identiques avant/après, sinon blocage. |
-| Filtre global | S'applique aux cartes, graphiques, tableau détaillé, preuve et exports. |
-| Périmètre complet | Tous les calculs portent sur la totalité des lignes retenues ; le modèle ne reçoit qu'un profil, jamais un échantillon utilisé pour calculer. |
-| KPI impossible | Le modèle doit le déclarer `unavailable` avec les données manquantes ; l'interface affiche les champs manquants et propose les suggestions et le constructeur guidé. Un champ inexistant ou une opération incompatible rend le plan invalide (jamais d'approximation). |
+| Average basket | `sum(amount) ÷ distinct order count`; never divided by the number of rows. The model receives this instruction and the evaluation checks that `count_distinct` is used. |
+| Global rate | `Σ numerator ÷ Σ denominator`. Summing percentages is rejected; averaging row-level rates is rejected unless an explicit `row_average` rule is given. |
+| Division by zero | Result "unavailable" with reason code `division_by_zero`. |
+| Missing value | Never converted to 0; ignored by the aggregate, counted and displayed ("empty values ignored"). An aggregate with no value at all is "unavailable" (`no_values`). An unreadable value is counted as invalid, never replaced by 0. |
+| Period-over-period change | Selected period vs the previous period of the same length; with no filter, the last month of the data vs the month before. Unavailable if the previous period is outside the data or empty (`no_comparable_period`); partial coverage is flagged (`previous_partial`). |
+| Missing months | Gaps in line charts, never 0. |
+| Decimals | Amounts are `DECIMAL(38, s)` in DuckDB and `decimal.Decimal` in Python; the median is computed with one extra decimal to stay exact; rounding happens only at display time (Intl.NumberFormat on strings, ReportLab on Decimal). |
+| Currencies | Amounts in different currencies: separate results per currency (currency column, per-row symbol, or column currency). No conversion; combining two columns with different currencies is rejected. An unknown currency triggers a question. |
+| Tax-inclusive vs exclusive, cancellations, refunds, credit notes | Never guessed: if two amount bases exist, or a column contains cancellation/refund values, a question is asked (exclude / include). |
+| Different grains | An amount that is constant within an order and repeated on each line triggers a question; "once per order" applies `per`. The engine checks the value is constant per key (`grain_conflict`) and refuses to split a key across several categories (`grain_dimension_conflict`). |
+| Totals and subtotals | Rows with a text cell starting with a total keyword (6 languages), or an unlabelled row equal to the sum of the preceding rows, are excluded visibly and reversibly. |
+| Duplicates | Never removed automatically; flagged, and a question offers to exclude them. |
+| Joins | Many-to-one only: unique right key, compatible key types, identical row counts and sums before and after, otherwise blocked. |
+| Global filter | Applies to cards, charts, the detail table, the evidence and the exports. |
+| Full scope | Every computation runs on all retained rows; the model only receives a profile, never a sample used for computing. |
+| Impossible KPI | The model must declare it `unavailable` with the missing data; the interface shows the missing fields and offers the suggestions and the guided builder. A non-existent field or an incompatible operation makes the plan invalid (never an approximation). |
 
-## Normalisations sûres de la sortie du modèle
-Uniquement structurelles et déterministes : si une seule colonne date existe et que le plan demande une variation
-ou une courbe temporelle sans période, cette colonne devient la période ; un graphique dont la dimension est cette
-colonne devient un graphique par période. Le plan obtenu est toujours montré à l'utilisateur, qui le valide.
+## Safe normalisations of the model output
+Strictly structural and deterministic: if only one date column exists and the plan asks for a change or a time
+curve without a period, that column becomes the period; a chart whose dimension is that column becomes a by-period
+chart. The resulting plan is always shown to the user, who validates it.

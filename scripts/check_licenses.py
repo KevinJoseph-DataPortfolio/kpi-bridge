@@ -1,6 +1,6 @@
-"""Inventaire des licences des dépendances Python installées et refus des licences incompatibles (GPL/AGPL/SSPL).
+"""Inventory of installed Python dependency licences; rejects incompatible licences (GPL/AGPL/SSPL).
 
-Usage : python scripts/check_licenses.py [--markdown]
+Usage: python scripts/check_licenses.py [--markdown]
 """
 
 from __future__ import annotations
@@ -37,14 +37,14 @@ def main() -> int:
         if any(f.lower() in lic.lower() for f in FORBIDDEN) and name.lower() not in ALLOWED_EXCEPTIONS and name.lower() not in DEV_ONLY:
             bad.append((name, lic))
     if "--markdown" in sys.argv:
-        print("| Paquet | Version | Licence |\n|---|---|---|")
+        print("| Package | Version | Licence |\n|---|---|---|")
         for r in rows:
             print(f"| {r[0]} | {r[1]} | {r[2]} |")
     else:
         for r in rows:
             print(f"{r[0]:32s} {r[1]:14s} {r[2]}")
     if bad:
-        print("\nLicences incompatibles :", bad, file=sys.stderr)
+        print("\nIncompatible licences:", bad, file=sys.stderr)
         return 1
     return 0
 

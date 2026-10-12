@@ -1,70 +1,71 @@
 # Architecture
 
 ```
-Navigateur (React + ECharts, même origine)
-   │  HTTP 127.0.0.1:8765, cookie HttpOnly, en-tête CSRF
+Browser (React + ECharts, same origin)
+   │  HTTP 127.0.0.1:8765, HttpOnly cookie, CSRF header
    ▼
-API FastAPI  (kpibridge.app)  ──── calcul déterministe DuckDB en mémoire (engine/)
-   │  SQLite : projets, versions, plans, tâches, cache de résultats
-   │  file de tâches persistante (jobs)
+FastAPI API  (kpibridge.app)  ──── deterministic in-memory DuckDB computation (engine/)
+   │  SQLite: projects, versions, plans, jobs, result cache
+   │  persistent job queue
    ▼
-Worker superviseur (kpibridge.worker) ── 1 sous-processus par tâche (annulation, délai, crash)
-   ├─ ingestion : détection de format → parseur dédié → RawTable (cellules texte + provenance)
-   ├─ normalisation : TableConfig → Parquet typé versionné + profil qualité
-   └─ interprétation : Ollama local (qwen3:4b) → plan JSON contraint → validation
+Supervisor worker (kpibridge.worker) ── 1 subprocess per job (cancellation, timeout, crash isolation)
+   ├─ ingestion: format detection → dedicated parser → RawTable (text cells + provenance)
+   ├─ normalisation: TableConfig → typed, versioned Parquet + quality profile
+   └─ interpretation: local Ollama (qwen3:4b) → constrained JSON plan → validation
 ```
 
-## Modules backend (`backend/kpibridge`)
+## Backend modules (`backend/kpibridge`)
 
-| Module | Rôle |
+| Module | Role |
 |---|---|
-| `config.py` | Paramètres et limites (`KPI_*`), sans secret fixe |
-| `db.py`, `migrations/` | SQLite + migrations versionnées (`schema_migrations`) |
-| `security.py`, `session.py` | Host/Origin/CSRF, CSP, sessions, jeton d'amorçage à usage unique |
-| `storage.py` | Répertoires privés par projet, chemins confinés, suppression, balayage des temporaires |
-| `ingest/` | `detect` (liste blanche + contenu réel + ZIP), `csvtab`, `excel` (XLSX/XLS), `pdf` (texte + OCR), `ocr` (Tesseract + reconstruction de grille), `docs` (DOCX/TXT/JSON), `text` (valeurs « libellé : nombre » avec preuve), `tables` (blocs, en-tête, titres, totaux) |
-| `normalize/` | `parse` (conventions numériques/dates, devises), `roles` (rôles multilingues), application de la `TableConfig` et profil |
-| `plan/` | `grammar` (grammaire fermée), `validate`, `llm_schema` (format modèle/constructeur), `llm` (Ollama, substitut de test), `interpret` (prompt, réparation bornée, normalisation structurelle), `suggest`, `clarify` |
-| `engine/` | `store` (DuckDB verrouillé), `compute` (compilation SQL paramétrée, évaluation décimale, devises, grain, variations, preuve) |
-| `plans.py` | Cycle de vie demande → plan → clarification → validation → dashboard (cache versionné) |
-| `services.py` | Projets, fichiers, tables, versions, aperçus |
-| `joins.py` | Jointure many-to-one contrôlée |
-| `recipes.py` | Recettes réutilisables et remapping |
-| `exports/` | PDF (ReportLab, polices Noto embarquées), PNG (rendu PDFium), CSV neutralisé |
-| `jobs.py`, `worker.py`, `handlers.py` | File persistante, superviseur, gestionnaires |
-| `i18n.py` | Traductions serveur depuis `shared/locales` |
+| `config.py` | Settings and limits (`KPI_*`), no hard-coded secret |
+| `db.py`, `migrations/` | SQLite + versioned migrations (`schema_migrations`) |
+| `security.py`, `session.py` | Host/Origin/CSRF checks, CSP, sessions, single-use bootstrap token |
+| `storage.py` | Private per-project directories, confined paths, deletion, temp-file sweep |
+| `ingest/` | `detect` (allow-list + real content + ZIP checks), `csvtab`, `excel` (XLSX/XLS), `pdf` (text + OCR), `ocr` (Tesseract + grid reconstruction), `docs` (DOCX/TXT/JSON), `text` ("label: number" values with evidence), `tables` (blocks, header, titles, totals) |
+| `normalize/` | `parse` (number/date conventions, currencies), `roles` (multilingual column roles), `TableConfig` application and profile |
+| `plan/` | `grammar` (closed grammar), `validate`, `llm_schema` (model/builder format), `llm` (Ollama, test substitute), `interpret` (prompt, bounded repair, structural normalisation), `suggest`, `clarify` |
+| `engine/` | `store` (locked-down DuckDB), `compute` (parameterised SQL compilation, decimal evaluation, currencies, grain, period-over-period change, evidence) |
+| `plans.py` | Lifecycle: request → plan → clarification → validation → dashboard (versioned cache) |
+| `services.py` | Projects, files, tables, versions, previews |
+| `joins.py` | Controlled many-to-one join |
+| `recipes.py` | Reusable recipes and column remapping |
+| `exports/` | PDF (ReportLab, embedded Noto fonts), PNG (PDFium rendering), neutralised CSV |
+| `jobs.py`, `worker.py`, `handlers.py` | Persistent queue, supervisor, handlers |
+| `i18n.py` | Server-side translations from `shared/locales` |
 
-## Modèle canonique
-`Project` (projects) · `SourceFile` (source_files, original en lecture seule) · `ExtractedTable` (extracted_tables +
-Parquet brut `raw/<id>.parquet`, cellules texte et colonne `_src`) · `ColumnProfile` (profil JSON de la version) ·
-`SourceReference` (colonne `_src` par ligne : `rec=;line=`, `sheet=;row=`, `page=;bbox=`, `line=;chars=`) ·
-`Transformation` (transformations) · `DatasetVersion` (dataset_versions + Parquet typé `ds/<id>_v<n>.parquet`, config
-complète réversible) · `AnalysisRequest` · `AnalysisPlan` (plan JSON validé, questions, réponses, origine) ·
-`MetricDefinition` (métrique de la grammaire) · `MetricResult` (cartes calculées, cache `result_cache` clé = plan +
-version + filtres) · `DashboardSpec` (graphiques, dimensions de filtre, disposition de la recette) · `Job` (jobs).
+## Canonical model
+`Project` (projects) · `SourceFile` (source_files, original kept read-only) · `ExtractedTable` (extracted_tables +
+raw Parquet `raw/<id>.parquet`, text cells and a `_src` column) · `ColumnProfile` (JSON profile of the version) ·
+`SourceReference` (per-row `_src` column: `rec=;line=`, `sheet=;row=`, `page=;bbox=`, `line=;chars=`) ·
+`Transformation` (transformations) · `DatasetVersion` (dataset_versions + typed Parquet `ds/<id>_v<n>.parquet`, full
+reversible config) · `AnalysisRequest` · `AnalysisPlan` (validated JSON plan, questions, answers, origin) ·
+`MetricDefinition` (grammar metric) · `MetricResult` (computed cards, `result_cache` keyed by plan + version +
+filters) · `DashboardSpec` (charts, filter dimensions, recipe layout) · `Job` (jobs).
 
-Chaque ligne typée garde `_row` (index brut) et `_src` (provenance) : la preuve d'un chiffre est la requête
-reproductible (filtres + agrégat) qui retrouve les lignes contributrices, sans stocker de liste dans les cartes.
+Every typed row keeps `_row` (raw index) and `_src` (provenance). The evidence for a figure is the reproducible
+query (filters + aggregate) that retrieves the contributing rows; no row list is stored in the cards.
 
-## Choix et écarts au cahier des charges
-- **pandas non utilisé** : parseurs → cellules texte → typage maîtrisé (Decimal) → Arrow/Parquet. Évite les
-  conversions implicites en flottants.
-- **PyMuPDF écarté** (AGPL) : pdfplumber pour le texte, pypdfium2 pour le rendu.
-- **Export PNG** = rendu de la page 1 du PDF par PDFium : un seul moteur de mise en page et les mêmes polices.
-- **DuckDB lit des tables Arrow** chargées par pyarrow, puis l'accès externe est désactivé et la configuration
-  verrouillée : le moteur de calcul n'a accès à aucun fichier.
-- **Lanceur en Python** (`scripts/kpictl.py`) : aucune dépendance au mode d'exécution des scripts PowerShell ;
-  `launch.cmd`/`launch.sh` ne font que trouver Python ≥ 3.12.
-- **Tesseract sous Windows sans admin** : l'installeur UB-Mannheim exige une élévation ; le lanceur utilise
-  micromamba + conda-forge en mode utilisateur.
-- **Docker Compose** : écrit et décrit comme chemin de référence, mais non exécuté ici (voir TEST_REPORT).
+## Design decisions and deviations from the original brief
+- **pandas is not used**: parsers → text cells → controlled typing (Decimal) → Arrow/Parquet. This avoids implicit
+  float conversions.
+- **PyMuPDF excluded** (AGPL): pdfplumber for text, pypdfium2 for rendering.
+- **PNG export** = page 1 of the PDF rendered by PDFium: one layout engine and the same fonts for both formats.
+- **DuckDB reads Arrow tables** loaded by pyarrow, then external access is disabled and the configuration is
+  locked: the computation engine cannot reach any file.
+- **Launcher in Python** (`scripts/kpictl.py`): no dependency on PowerShell execution policy;
+  `launch.cmd` / `launch.sh` only locate Python ≥ 3.12.
+- **Tesseract on Windows without admin rights**: the UB-Mannheim installer requires elevation; the launcher uses
+  micromamba + conda-forge in user mode.
+- **Docker Compose**: written and documented as the reference path, but not executed on the development machine
+  (see [TEST_REPORT](TEST_REPORT.md)).
 
 ## API (`/api/v1`)
-Session : `POST /session/bootstrap`, `GET /session`, `POST /session/logout` · Méta : `GET /meta`, `GET /health` ·
-Projets : `GET|POST /projects`, `GET|PATCH|DELETE /projects/{id}` · Fichiers : `PUT /projects/{id}/files` (flux
-brut, en-tête `X-File-Name`), `POST /projects/{id}/examples/{nom}`, `POST .../files/{fid}/reingest`,
-`DELETE .../files/{fid}` · Tâches : `GET /jobs/{id}`, `POST /jobs/{id}/cancel` · Tables : `.../tables/{tid}/preview|raw|config|header|revert/{v}|cells/{r}/{c}[/image]|suggestions` ·
-Jointures : `POST .../joins/check`, `POST .../joins` · Plans : `POST .../requests`, `POST .../builder`,
+Session: `POST /session/bootstrap`, `GET /session`, `POST /session/logout` · Meta: `GET /meta`, `GET /health` ·
+Projects: `GET|POST /projects`, `GET|PATCH|DELETE /projects/{id}` · Files: `PUT /projects/{id}/files` (raw
+stream, `X-File-Name` header), `POST /projects/{id}/examples/{name}`, `POST .../files/{fid}/reingest`,
+`DELETE .../files/{fid}` · Jobs: `GET /jobs/{id}`, `POST /jobs/{id}/cancel` · Tables: `.../tables/{tid}/preview|raw|config|header|revert/{v}|cells/{r}/{c}[/image]|suggestions` ·
+Joins: `POST .../joins/check`, `POST .../joins` · Plans: `POST .../requests`, `POST .../builder`,
 `GET|PUT .../plans/{pid}`, `POST .../plans/{pid}/answers|validate|dashboard|detail|evidence/{metric}|export` ·
-Recettes : `GET /recipes`, `GET|DELETE /recipes/{id}`, `POST /recipes/import`, `POST .../recipes`,
+Recipes: `GET /recipes`, `GET|DELETE /recipes/{id}`, `POST /recipes/import`, `POST .../recipes`,
 `POST .../recipes/{rid}/check|apply`.

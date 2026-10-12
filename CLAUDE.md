@@ -1,39 +1,39 @@
-# KPI Bridge — mémoire de projet pour Claude Code
+# KPI Bridge: project memory for Claude Code
 
-Source des exigences : cahier des charges « KPI Bridge — mission complète » (copie résumée ici).
-Ce fichier conserve les exigences, décisions et contraintes entre les sessions. L'état d'avancement est dans `TASKS.md`.
+Source of the requirements: the "KPI Bridge: full mission" brief (condensed copy here).
+This file keeps requirements, decisions and constraints across sessions. Progress is tracked in `docs/STATUS.md`.
 
-## Produit
-Document → examen → « Que veux-tu savoir ? » → clarifications (1 à 3 questions max par étape) → dashboard interactif
-(cartes KPI, graphiques, filtres, tableau). Pas de synthèse narrative. Chaque chiffre est vérifiable (« Vérifier ce chiffre »).
-Outil local mono-utilisateur. Six langues d'interface : fr (défaut), en, ru, zh-Hans, de, es.
+## Product
+Document → review → "What do you want to know?" → clarifications (1 to 3 questions max per step) → interactive
+dashboard (KPI cards, charts, filters, table). No narrative summary. Every figure is verifiable ("Check this figure").
+Local single-user tool. Six UI languages: fr (default), en, ru, zh-Hans, de, es.
 
-## Règles non négociables
-- L'IA (Ollama, `qwen3:4b` par défaut) propose un plan JSON ; **le moteur déterministe calcule**. Aucun SQL/Python libre.
-- Grammaire de calcul fermée (`backend/kpibridge/plan/grammar.py`), validée contre les champs réels.
-- Décimales exactes (DECIMAL DuckDB / `decimal.Decimal`), arrondi uniquement à l'affichage.
-- Valeur absente ≠ 0 ; division par zéro → indisponible + motif ; devises mélangées → résultats séparés.
-- Panier moyen = somme / nombre distinct de commandes. Taux global = Σnum / Σdén.
-- Pas de suppression automatique des doublons ; sous-totaux détectés exclus de manière visible et réversible.
-- Jointures uniquement many-to-one avec clé unique vérifiée et contrôle des sommes avant/après.
-- Formules Excel : valeur en cache uniquement, sinon « indisponible » signalé.
-- Toute transformation est enregistrée et réversible ; une correction crée une nouvelle `DatasetVersion`.
-- Sécurité : 127.0.0.1 uniquement, session via jeton à usage unique créé par le lanceur, cookie HttpOnly SameSite=Strict,
-  contrôle Host/Origin + en-tête CSRF, CSP stricte, DuckDB sans accès externe ni extensions.
+## Non-negotiable rules
+- The AI (Ollama, `qwen3:4b` by default) proposes a JSON plan; **the deterministic engine computes**. No free-form SQL/Python.
+- Closed computation grammar (`backend/kpibridge/plan/grammar.py`), validated against the real fields.
+- Exact decimals (DuckDB DECIMAL / `decimal.Decimal`), rounding only at display time.
+- Missing value ≠ 0; division by zero → unavailable + reason; mixed currencies → separate results.
+- Average basket = sum / distinct order count. Global rate = Σnumerator / Σdenominator.
+- No automatic duplicate removal; detected subtotals are excluded visibly and reversibly.
+- Joins only many-to-one with a verified unique key and a sums check before/after.
+- Excel formulas: cached value only, otherwise flagged "unavailable".
+- Every transformation is recorded and reversible; a correction creates a new `DatasetVersion`.
+- Security: 127.0.0.1 only, session via a single-use token created by the launcher, HttpOnly SameSite=Strict cookie,
+  Host/Origin check + CSRF header, strict CSP, DuckDB without external access or extensions.
 
-## Décisions techniques (et écarts au cahier des charges)
-- Backend Python 3.12+ (testé 3.14 sous Windows), FastAPI, Pydantic v2, DuckDB, pyarrow (Parquet immuable par version).
-- Pas de pandas : les parseurs produisent des cellules texte ; le typage est fait par `normalize.py`.
-- PDF : pdfplumber (texte), pypdfium2 (rendu raster), Tesseract via pytesseract (OCR). PyMuPDF exclu (AGPL).
-- Export PDF : ReportLab + polices Noto embarquées (OFL). Export PNG : rendu de la page 1 du PDF via pdfium (même code, mêmes polices).
-- Worker séparé (`python -m kpibridge.worker`) avec file de tâches SQLite (pas de Redis).
-- Frontend React + TypeScript + Vite, ECharts, i18next. Locales partagées dans `shared/locales/*.json` (frontend + exports).
-- Environnement de dev de référence : Windows 11 sans droits admin, sans WSL ⇒ Docker non testable ici.
-  Outils installés en mode utilisateur dans `%USERPROFILE%\.kpi-bridge\tools` (Node portable, Ollama, Tesseract via micromamba/conda-forge, gh).
-  Attention : l'app Claude (MSIX) virtualise `%LOCALAPPDATA%` ; ne rien y installer qui doive être vu par l'utilisateur.
+## Technical decisions (and deviations from the brief)
+- Backend Python 3.12+ (tested on 3.14 under Windows), FastAPI, Pydantic v2, DuckDB, pyarrow (immutable Parquet per version).
+- No pandas: parsers produce text cells; typing is done by `normalize.py`.
+- PDF: pdfplumber (text), pypdfium2 (raster rendering), Tesseract through pytesseract (OCR). PyMuPDF excluded (AGPL).
+- PDF export: ReportLab + embedded Noto fonts (OFL). PNG export: page 1 of the PDF rendered with pdfium (same code, same fonts).
+- Separate worker (`python -m kpibridge.worker`) with a SQLite job queue (no Redis).
+- Frontend React + TypeScript + Vite, ECharts, i18next. Locales shared in `shared/locales/*.json` (frontend + exports).
+- Reference dev environment: Windows 11 without admin rights, without WSL ⇒ Docker cannot be tested there.
+  Tools installed in user mode under `%USERPROFILE%\.kpi-bridge\tools` (portable Node, Ollama, Tesseract via micromamba/conda-forge, gh).
+  Note: the Claude app (MSIX) virtualises `%LOCALAPPDATA%`; do not install there anything the user must see.
 
-## Commandes utiles
-- Tests backend : `.venv\Scripts\python -m pytest -q backend/tests`
-- Lint/types : `.venv\Scripts\ruff check backend` ; `.venv\Scripts\mypy backend/kpibridge`
-- Frontend : `cd frontend; npm ci; npm run build; npm run test:e2e`
-- Lancement natif : `launch.cmd` (Windows) ou `./launch.sh`
+## Useful commands
+- Backend tests: `.venv\Scripts\python -m pytest -q backend/tests`
+- Lint/types: `.venv\Scripts\ruff check backend`; `.venv\Scripts\mypy backend/kpibridge`
+- Frontend: `cd frontend; npm ci; npm run build; npm run test:e2e`
+- Native launch: `launch.cmd` (Windows) or `./launch.sh`
