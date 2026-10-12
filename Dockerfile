@@ -1,5 +1,5 @@
-# KPI Bridge — image de l'application (API + frontend compilé, même origine) et du worker.
-# Images de base fixées par version précise. Aucun serveur Vite dans la distribution.
+# KPI Bridge: application image (API + built frontend, same origin) and worker.
+# Base images pinned to a precise version. No Vite server in the distribution.
 
 FROM node:24.21.0-bookworm-slim AS frontend
 WORKDIR /src/frontend
@@ -13,7 +13,9 @@ FROM python:3.13.9-slim-bookworm AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 \
     KPI_DATA_DIR=/data KPI_STATIC_DIR=/app/static KPI_LOCALES_DIR=/app/shared/locales \
     PYTHONPATH=/app/backend KPI_TESSERACT_CMD=/usr/bin/tesseract
+# apt-get upgrade applies the Debian security fixes published since the base image was built.
 RUN apt-get update \
+ && apt-get upgrade -y \
  && apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-fra tesseract-ocr-deu tesseract-ocr-spa \
       tesseract-ocr-rus tesseract-ocr-chi-sim \
  && rm -rf /var/lib/apt/lists/* \
